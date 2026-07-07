@@ -1,4 +1,5 @@
-console.log("script.js loaded");
+console.log("SCRIPT.JS IS RUNNING");
+
 /* ==========================================
    BUKK1T WEBSITE
    PART 1
