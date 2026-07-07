@@ -1,10 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bukk1t | Steam Profile</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#171a21,#0f141b);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:70px 20px;
+}
+
+.avatar{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    border:4px solid #66c0f4;
+    object-fit:cover;
+    box-shadow:0 0 25px rgba(102,192,244,.45);
+}
+
+h1{
+    margin-top:20px;
+    font-size:3rem;
+}
+
+.subtitle{
+    color:#c7d5e0;
+    margin-top:10px;
+    font-size:1.2rem;
+}
+
+.button{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    background:#66c0f4;
+    color:#171a21;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    background:white;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin:50px 0;
+}
+
+.card{
+    background:#1b2838;
+    padding:25px;
+    border-radius:15px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    color:#66c0f4;
+    margin-bottom:12px;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    color:#8f98a0;
+}
+
+.social{
+    margin-top:40px;
+}
+
+.social a{
+    color:white;
+    margin:0 12px;
+    text-decoration:none;
+}
+
+.social a:hover{
+    color:#66c0f4;
+}
+</style>
+
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>My GitHub Pages site is working!</p>
+
+<header>
+
+<!-- Replace this with your Steam avatar -->
+<img class="avatar"
+src="https://avatars.githubusercontent.com/u/9919?v=4"
+alt="Profile Picture">
+
+<h1>Bukk1t</h1>
+
+<p class="subtitle">
+Steam Gamer • Achievement Hunter • PC Gaming
+</p>
+
+<a class="button"
+href="https://steamcommunity.com/id/Bukk1t/"
+target="_blank">
+Visit My Steam Profile
+</a>
+
+</header>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h2>🎮 About Me</h2>
+<p>
+Welcome to my Steam page! I enjoy collecting achievements, exploring new games, and playing with friends.
+</p>
+</div>
+
+<div class="card">
+<h2>🏆 Favorite Games</h2>
+<p>
+• Counter-Strike 2<br>
+• Blox Fruits (Roblox)<br>
+• Fortnite<br>
+• Whatever I'm grinding next!
+</p>
+</div>
+
+<div class="card">
+<h2>💻 PC Setup</h2>
+<p>
+You can customize this section with your PC specs, peripherals, or gaming setup.
+</p>
+</div>
+
+<div class="card">
+<h2>📈 Steam Profile</h2>
+<p>
+Click the button above to see my games, achievements, screenshots, and friends.
+</p>
+</div>
+
+</div>
+
+<div class="social">
+<a href="https://steamcommunity.com/id/Bukk1t/" target="_blank">Steam</a>
+</div>
+
+</div>
+
+<footer>
+Made with ❤️ using GitHub Pages
+</footer>
+
 </body>
 </html>
