@@ -1978,3 +1978,101 @@ transform:rotate(360deg);
     border-radius:20px;
 
 }
+/* ==========================================
+   GITHUB CARDS
+========================================== */
+
+
+#repos{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.repoCard{
+
+    background:
+    rgba(255,255,255,.07);
+
+
+    padding:20px;
+
+
+    border-radius:20px;
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+
+    transition:.3s;
+
+}
+
+
+
+.repoCard:hover{
+
+    transform:
+    translateY(-8px);
+
+
+    box-shadow:
+    0 0 35px
+    rgba(139,92,246,.45);
+
+}
+
+
+
+.repoCard h3{
+
+    margin-top:0;
+
+}
+
+
+
+.repoCard p{
+
+    opacity:.75;
+
+}
+
+
+
+.repoInfo{
+
+    display:flex;
+
+    gap:12px;
+
+    margin:15px 0;
+
+    font-size:14px;
+
+}
+
+
+
+.repoCard a{
+
+    color:#66c0f4;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
