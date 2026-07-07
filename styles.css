@@ -2076,3 +2076,152 @@ transform:rotate(360deg);
     font-weight:bold;
 
 }
+/* ==========================================
+   GITHUB PROJECT CARDS
+========================================== */
+
+
+#repos{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
+margin-top:30px;
+
+}
+
+
+
+.repoCard{
+
+background:
+rgba(255,255,255,0.06);
+
+border:
+
+1px solid rgba(255,255,255,0.12);
+
+backdrop-filter:
+blur(15px);
+
+padding:25px;
+
+border-radius:22px;
+
+transition:
+0.35s ease;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+
+.repoCard:hover{
+
+transform:
+translateY(-10px)
+scale(1.03);
+
+box-shadow:
+0 20px 60px rgba(0,200,255,.25);
+
+}
+
+
+
+.repoCard h3{
+
+font-size:24px;
+
+margin-bottom:12px;
+
+color:#66c0f4;
+
+}
+
+
+
+.repoCard p{
+
+color:#cbd5e1;
+
+min-height:50px;
+
+}
+
+
+
+.repoInfo{
+
+display:flex;
+
+gap:15px;
+
+margin-top:20px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+.repoInfo span{
+
+background:
+rgba(102,192,244,.15);
+
+padding:
+
+6px 12px;
+
+border-radius:20px;
+
+font-size:14px;
+
+}
+
+
+
+.repoCard a{
+
+display:inline-block;
+
+margin-top:20px;
+
+padding:
+
+10px 18px;
+
+border-radius:12px;
+
+background:
+
+linear-gradient(
+45deg,
+#66c0f4,
+#8b5cf6
+);
+
+color:white;
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+
+
+.repoCard a:hover{
+
+filter:
+brightness(1.2);
+
+}
