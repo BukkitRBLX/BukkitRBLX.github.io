@@ -34,8 +34,10 @@ function animateCursor(){
     blurY += (mouseY - blurY) * 0.15;
 
     if(cursorBlur){
+
         cursorBlur.style.left = blurX + "px";
         cursorBlur.style.top = blurY + "px";
+
     }
 
     requestAnimationFrame(animateCursor);
@@ -115,6 +117,7 @@ document.querySelectorAll(
 
 const footer = document.querySelector("footer p");
 
+
 if(footer){
 
     footer.textContent =
@@ -140,252 +143,273 @@ fetch(workerURL)
 .then(data => {
 
 
-    console.log("Worker response:", data);
+console.log("Worker response:", data);
 
 
 
-    // New Worker format
-    const player = data.profile;
-    const stats = data.stats;
+const player = data.profile;
+const stats = data.stats;
 
 
 
-    if(!player){
+if(!player){
 
-        console.error(
-            "Worker did not return profile data",
-            data
-        );
+    console.error(
+        "No Steam profile data",
+        data
+    );
 
-        return;
+    return;
 
-    }
+}
 
 
 
-    /* Username */
+/* Username */
 
-    const username =
-    document.getElementById("username");
+const username =
+document.getElementById("username");
 
-    if(username){
 
-        username.textContent =
-        player.personaname;
+if(username){
 
-    }
+    username.textContent =
+    player.personaname;
 
+}
 
 
-    /* Avatar */
 
-    const avatar =
-    document.getElementById("avatar");
+/* Avatar */
 
-    if(avatar){
+const avatar =
+document.getElementById("avatar");
 
-        avatar.src =
-        player.avatarfull;
 
-    }
+if(avatar){
 
+    avatar.src =
+    player.avatarfull;
 
+}
 
-    /* Steam Button */
 
-    const steamButton =
-    document.getElementById("steamButton");
 
-    if(steamButton){
+/* Steam Button */
 
-        steamButton.href =
-        player.profileurl;
+const steamButton =
+document.getElementById("steamButton");
 
-    }
 
+if(steamButton){
 
+    steamButton.href =
+    player.profileurl;
 
-    /* Status */
+}
 
-    const status =
-    document.getElementById("status");
 
 
-    const online =
-    player.personastate > 0;
+/* Status */
 
+const online =
+player.personastate > 0;
 
-    if(status){
 
-        status.textContent =
-        online ? "● Online" : "● Offline";
+const status =
+document.getElementById("status");
 
-    }
 
+if(status){
 
+    status.textContent =
+    online ? "● Online" : "● Offline";
 
-    const liveStatus =
-    document.getElementById("liveStatus");
+}
 
 
-    if(liveStatus){
+const liveStatus =
+document.getElementById("liveStatus");
 
-        liveStatus.textContent =
-        online ? "Online" : "Offline";
 
-    }
+if(liveStatus){
 
+    liveStatus.textContent =
+    online ? "Online" : "Offline";
 
+}
 
-    /* Game */
 
-    const currentGame =
-    document.getElementById("currentGame");
 
+/* Current Game */
 
-    const liveGame =
-    document.getElementById("liveGame");
+const currentGame =
+document.getElementById("currentGame");
 
 
-    const game =
-    player.gameextrainfo || "Not Playing";
+const liveGame =
+document.getElementById("liveGame");
 
 
-    if(currentGame){
+const game =
+player.gameextrainfo || "Not Playing";
 
-        currentGame.textContent =
-        game === "Not Playing"
-        ? game
-        : "Playing: " + game;
 
-    }
+if(currentGame){
 
+    currentGame.textContent =
+    game === "Not Playing"
+    ? game
+    : "Playing: " + game;
 
-    if(liveGame){
+}
 
-        liveGame.textContent =
-        game;
 
-    }
+if(liveGame){
 
+    liveGame.textContent =
+    game;
 
+}
 
-    /* Stats */
 
-    if(stats){
 
+/* Stats */
 
-        const steamLevel =
-        document.getElementById("steamLevel");
+if(stats){
 
 
-        if(steamLevel){
+const steamLevel =
+document.getElementById("steamLevel");
 
-            steamLevel.textContent =
-            "Steam Level " + stats.level;
 
-        }
+if(steamLevel){
 
+    steamLevel.textContent =
+    "Steam Level " + stats.level;
 
+}
 
-        const games =
-        document.getElementById("gamesOwned");
 
 
-        if(games){
+const gamesOwned =
+document.getElementById("gamesOwned");
 
-            games.textContent =
-            stats.games;
 
-        }
+if(gamesOwned){
 
+    gamesOwned.textContent =
+    stats.games;
 
+}
 
-        const friends =
-        document.getElementById("friends");
 
 
-        if(friends){
+const friends =
+document.getElementById("friends");
 
-            friends.textContent =
-            stats.friends;
 
-        }
+if(friends){
 
+    friends.textContent =
+    stats.friends;
 
+}
 
-        const achievements =
-        document.getElementById("achievements");
 
 
-        if(achievements){
+const achievements =
+document.getElementById("achievements");
 
-            achievements.textContent =
-            stats.achievements;
 
-        }
+if(achievements){
 
-    }
+    achievements.textContent =
+    stats.achievements;
 
+}
 
 
-    /* Recently Played */
+}
 
-    const recentGames =
-    document.getElementById("recentGames");
 
 
-    if(recentGames && data.recentGames){
+/* ==========================================
+   RECENT GAMES WITH COVERS
+========================================== */
 
 
-        recentGames.innerHTML = "";
+const recentGames =
+document.getElementById("recentGames");
 
 
-        data.recentGames.forEach(game=>{
+if(recentGames && data.recentGames){
 
 
-            const card =
-            document.createElement("div");
+    recentGames.innerHTML = "";
 
 
-            card.className =
-            "gameCard";
+    data.recentGames.forEach(game=>{
 
 
-            card.innerHTML = `
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "gameCard";
+
+
+
+        const hours =
+        Math.floor(game.playtime_forever / 60);
+
+
+
+        card.innerHTML = `
+
+        <img 
+        src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg"
+        alt="${game.name}"
+        loading="lazy"
+        >
+
+
+        <div class="gameInfo">
 
             <h3>${game.name}</h3>
 
             <p>
-            ${Math.floor(game.playtime_forever / 60)}
-            hours played
+            ${hours} hours played
             </p>
 
-            `;
+        </div>
+
+        `;
 
 
-            recentGames.appendChild(card);
+        recentGames.appendChild(card);
 
 
-        });
+    });
 
 
-    }
+}
 
 
 
-    /* Refresh */
+/* Last Update */
 
-    const update =
-    document.getElementById("lastUpdate");
+const update =
+document.getElementById("lastUpdate");
 
 
-    if(update){
+if(update){
 
-        update.textContent =
-        new Date().toLocaleTimeString();
+    update.textContent =
+    new Date().toLocaleTimeString();
 
-    }
+}
 
 
 })
@@ -393,9 +417,9 @@ fetch(workerURL)
 
 .catch(error=>{
 
-    console.error(
-        "Worker error:",
-        error
-    );
+console.error(
+"Worker error:",
+error
+);
 
 });
