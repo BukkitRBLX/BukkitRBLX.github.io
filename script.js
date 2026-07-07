@@ -20,12 +20,9 @@ document.addEventListener("mousemove", (e)=>{
     mouseX = e.clientX;
     mouseY = e.clientY;
 
-
     if(cursor){
-
         cursor.style.left = mouseX + "px";
         cursor.style.top = mouseY + "px";
-
     }
 
 });
@@ -36,19 +33,14 @@ function animateCursor(){
     blurX += (mouseX - blurX) * 0.15;
     blurY += (mouseY - blurY) * 0.15;
 
-
     if(cursorBlur){
-
         cursorBlur.style.left = blurX + "px";
         cursorBlur.style.top = blurY + "px";
-
     }
-
 
     requestAnimationFrame(animateCursor);
 
 }
-
 
 animateCursor();
 
@@ -57,7 +49,6 @@ animateCursor();
 /* ==========================================
    PARTICLES
 ========================================== */
-
 
 const particles = document.getElementById("particles");
 
@@ -73,10 +64,10 @@ if(particles){
         star.style.left = Math.random()*100 + "%";
         star.style.top = Math.random()*100 + "%";
 
-        const size = Math.random()*3+1;
+        const size = Math.random()*3 + 1;
 
-        star.style.width = size+"px";
-        star.style.height = size+"px";
+        star.style.width = size + "px";
+        star.style.height = size + "px";
 
         particles.appendChild(star);
 
@@ -89,7 +80,6 @@ if(particles){
 /* ==========================================
    SCROLL REVEAL
 ========================================== */
-
 
 const observer = new IntersectionObserver(entries=>{
 
@@ -120,62 +110,10 @@ document.querySelectorAll(
 
 
 /* ==========================================
-   CARD TILT
+   FOOTER
 ========================================== */
-
-
-document.addEventListener("mousemove",(e)=>{
-
-
-document.querySelectorAll(
-".statCard,.repoCard,.gameCard"
-)
-.forEach(card=>{
-
-
-const rect = card.getBoundingClientRect();
-
-
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-
-
-if(
-x < 0 ||
-x > rect.width ||
-y < 0 ||
-y > rect.height
-){
-
-card.style.transform="";
-
-return;
-
-}
-
-
-card.style.transform =
-`
-perspective(900px)
-rotateX(${(rect.height/2-y)/20}deg)
-rotateY(${(x-rect.width/2)/20}deg)
-scale(1.04)
-`;
-
-});
-
-
-});
-
-
-
-/* ==========================================
-   FOOTER YEAR
-========================================== */
-
 
 const footer = document.querySelector("footer p");
-
 
 if(footer){
 
@@ -187,7 +125,7 @@ if(footer){
 
 
 /* ==========================================
-   STEAM LIVE DATA
+   STEAM DATA
 ========================================== */
 
 
@@ -202,121 +140,123 @@ fetch(workerURL)
 .then(data => {
 
 
-console.log("Worker response:", data);
+    console.log("Worker response:", data);
 
 
 
-const player = data.profile;
-const stats = data.stats;
+    // New Worker format
+    const player = data.profile;
+    const stats = data.stats;
 
 
 
-if(!player){
+    if(!player){
 
-    console.error("No Steam profile data");
+        console.error(
+            "Worker did not return profile data",
+            data
+        );
 
-    return;
+        return;
 
-}
-
-
-
-/* Username */
-
-const username =
-document.getElementById("username");
-
-
-if(username){
-
-    username.textContent =
-    player.personaname;
-
-}
+    }
 
 
 
-/* Avatar */
+    /* Username */
 
-const avatar =
-document.getElementById("avatar");
+    const username =
+    document.getElementById("username");
 
+    if(username){
 
-if(avatar){
+        username.textContent =
+        player.personaname;
 
-    avatar.src =
-    player.avatarfull;
-
-}
-
-
-
-/* Steam Profile */
-
-const steamButton =
-document.getElementById("steamButton");
-
-
-if(steamButton){
-
-    steamButton.href =
-    player.profileurl;
-
-}
+    }
 
 
 
-/* Status */
+    /* Avatar */
 
-const status =
-document.getElementById("status");
+    const avatar =
+    document.getElementById("avatar");
 
+    if(avatar){
 
-const liveStatus =
-document.getElementById("liveStatus");
+        avatar.src =
+        player.avatarfull;
 
-
-const online =
-player.personastate > 0;
-
-
-
-if(status){
-
-    status.textContent =
-    online ? "● Online" : "● Offline";
-
-}
+    }
 
 
 
-if(liveStatus){
+    /* Steam Button */
 
-    liveStatus.textContent =
-    online ? "Online" : "Offline";
+    const steamButton =
+    document.getElementById("steamButton");
 
-}
+    if(steamButton){
 
+        steamButton.href =
+        player.profileurl;
 
-
-/* Current Game */
-
-const currentGame =
-document.getElementById("currentGame");
-
-
-const liveGame =
-document.getElementById("liveGame");
+    }
 
 
 
-if(player.gameextrainfo){
+    /* Status */
+
+    const status =
+    document.getElementById("status");
+
+
+    const online =
+    player.personastate > 0;
+
+
+    if(status){
+
+        status.textContent =
+        online ? "● Online" : "● Offline";
+
+    }
+
+
+
+    const liveStatus =
+    document.getElementById("liveStatus");
+
+
+    if(liveStatus){
+
+        liveStatus.textContent =
+        online ? "Online" : "Offline";
+
+    }
+
+
+
+    /* Game */
+
+    const currentGame =
+    document.getElementById("currentGame");
+
+
+    const liveGame =
+    document.getElementById("liveGame");
+
+
+    const game =
+    player.gameextrainfo || "Not Playing";
 
 
     if(currentGame){
 
         currentGame.textContent =
-        "Playing: " + player.gameextrainfo;
+        game === "Not Playing"
+        ? game
+        : "Playing: " + game;
 
     }
 
@@ -324,151 +264,128 @@ if(player.gameextrainfo){
     if(liveGame){
 
         liveGame.textContent =
-        player.gameextrainfo;
+        game;
 
     }
 
 
-}
 
-else{
+    /* Stats */
+
+    if(stats){
 
 
-    if(currentGame){
+        const steamLevel =
+        document.getElementById("steamLevel");
 
-        currentGame.textContent =
-        "Not Playing";
+
+        if(steamLevel){
+
+            steamLevel.textContent =
+            "Steam Level " + stats.level;
+
+        }
+
+
+
+        const games =
+        document.getElementById("gamesOwned");
+
+
+        if(games){
+
+            games.textContent =
+            stats.games;
+
+        }
+
+
+
+        const friends =
+        document.getElementById("friends");
+
+
+        if(friends){
+
+            friends.textContent =
+            stats.friends;
+
+        }
+
+
+
+        const achievements =
+        document.getElementById("achievements");
+
+
+        if(achievements){
+
+            achievements.textContent =
+            stats.achievements;
+
+        }
 
     }
 
 
-    if(liveGame){
 
-        liveGame.textContent =
-        "Not Playing";
+    /* Recently Played */
+
+    const recentGames =
+    document.getElementById("recentGames");
+
+
+    if(recentGames && data.recentGames){
+
+
+        recentGames.innerHTML = "";
+
+
+        data.recentGames.forEach(game=>{
+
+
+            const card =
+            document.createElement("div");
+
+
+            card.className =
+            "gameCard";
+
+
+            card.innerHTML = `
+
+            <h3>${game.name}</h3>
+
+            <p>
+            ${Math.floor(game.playtime_forever / 60)}
+            hours played
+            </p>
+
+            `;
+
+
+            recentGames.appendChild(card);
+
+
+        });
+
 
     }
 
 
-}
 
+    /* Refresh */
 
+    const update =
+    document.getElementById("lastUpdate");
 
-/* Stats */
 
+    if(update){
 
-const steamLevel =
-document.getElementById("steamLevel");
+        update.textContent =
+        new Date().toLocaleTimeString();
 
-
-if(steamLevel){
-
-    steamLevel.textContent =
-    "Steam Level " + stats.level;
-
-}
-
-
-
-const gamesOwned =
-document.getElementById("gamesOwned");
-
-
-if(gamesOwned){
-
-    gamesOwned.textContent =
-    stats.games;
-
-}
-
-
-
-const friends =
-document.getElementById("friends");
-
-
-if(friends){
-
-    friends.textContent =
-    stats.friends;
-
-}
-
-
-
-const achievements =
-document.getElementById("achievements");
-
-
-if(achievements){
-
-    achievements.textContent =
-    stats.achievements;
-
-}
-
-
-
-/* Recently Played Games */
-
-
-const recentGames =
-document.getElementById("recentGames");
-
-
-if(recentGames && data.recentGames){
-
-
-    recentGames.innerHTML = "";
-
-
-    data.recentGames.forEach(game=>{
-
-
-        const card =
-        document.createElement("div");
-
-
-        card.className =
-        "gameCard";
-
-
-        card.innerHTML = `
-
-        <h3>${game.name}</h3>
-
-        <p>
-        ${Math.floor(game.playtime_forever / 60)}
-        hours played
-        </p>
-
-        `;
-
-
-        recentGames.appendChild(card);
-
-
-    });
-
-
-}
-
-
-
-/* Last Update */
-
-
-const update =
-document.getElementById("lastUpdate");
-
-
-if(update){
-
-    update.textContent =
-    new Date().toLocaleTimeString();
-
-}
-
+    }
 
 
 })
@@ -476,9 +393,9 @@ if(update){
 
 .catch(error=>{
 
-console.error(
-"Worker error:",
-error
-);
+    console.error(
+        "Worker error:",
+        error
+    );
 
 });
