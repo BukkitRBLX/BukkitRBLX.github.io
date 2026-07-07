@@ -8,23 +8,23 @@ console.log("SCRIPT.JS IS RUNNING");
 const cursor = document.getElementById("cursor");
 const cursorBlur = document.getElementById("cursorBlur");
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+let mouseX = innerWidth / 2;
+let mouseY = innerHeight / 2;
 
 let blurX = mouseX;
 let blurY = mouseY;
 
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener("mousemove",e=>{
 
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+    mouseX=e.clientX;
+    mouseY=e.clientY;
 
 
     if(cursor){
 
-        cursor.style.left = mouseX+"px";
-        cursor.style.top = mouseY+"px";
+        cursor.style.left=mouseX+"px";
+        cursor.style.top=mouseY+"px";
 
     }
 
@@ -39,8 +39,8 @@ function animateCursor(){
 
     if(cursorBlur){
 
-        cursorBlur.style.left = blurX+"px";
-        cursorBlur.style.top = blurY+"px";
+        cursorBlur.style.left=blurX+"px";
+        cursorBlur.style.top=blurY+"px";
 
     }
 
@@ -54,10 +54,10 @@ animateCursor();
 
 
 
+
 /* ==========================================
    PARTICLES
 ========================================== */
-
 
 const particles =
 document.getElementById("particles");
@@ -65,40 +65,27 @@ document.getElementById("particles");
 
 if(particles){
 
-
     for(let i=0;i<150;i++){
 
-
-        const star =
-        document.createElement("div");
-
+        const star=document.createElement("div");
 
         star.className="star";
 
+        star.style.left=Math.random()*100+"%";
+        star.style.top=Math.random()*100+"%";
 
-        star.style.left =
-        Math.random()*100+"%";
-
-
-        star.style.top =
-        Math.random()*100+"%";
-
-
-        const size =
-        Math.random()*3+1;
-
+        const size=Math.random()*3+1;
 
         star.style.width=size+"px";
         star.style.height=size+"px";
 
-
         particles.appendChild(star);
-
 
     }
 
-
 }
+
+
 
 
 
@@ -110,19 +97,15 @@ if(particles){
 const observer =
 new IntersectionObserver(entries=>{
 
+entries.forEach(entry=>{
 
-    entries.forEach(entry=>{
+if(entry.isIntersecting){
 
+entry.target.classList.add("active");
 
-        if(entry.isIntersecting){
+}
 
-            entry.target.classList.add("active");
-
-        }
-
-
-    });
-
+});
 
 });
 
@@ -132,13 +115,13 @@ document.querySelectorAll(
 )
 .forEach(el=>{
 
+el.classList.add("reveal");
 
-    el.classList.add("reveal");
-
-    observer.observe(el);
-
+observer.observe(el);
 
 });
+
+
 
 
 
@@ -153,20 +136,23 @@ document.querySelector("footer p");
 
 if(footer){
 
-    footer.textContent =
-    `© ${new Date().getFullYear()} Bukk1t • Live Steam Dashboard`;
+footer.textContent =
+`© ${new Date().getFullYear()} Bukk1t • Live Steam + GitHub Dashboard`;
 
 }
 
 
 
+
+
 /* ==========================================
-   STEAM API
+   STEAM + GITHUB DATA
 ========================================== */
 
 
 const workerURL =
 "https://steam.shantiya1212.workers.dev/";
+
 
 
 fetch(workerURL)
@@ -180,54 +166,32 @@ console.log("Worker response:",data);
 
 
 
-const player =
-data.profile;
+const player=data.profile;
 
-
-const stats =
-data.stats;
+const stats=data.stats;
 
 
 
 if(!player){
 
-    console.error(
-    "No profile received",
-    data
-    );
+console.error("No Steam profile",data);
 
-    return;
+return;
 
 }
 
 
 
-/* Profile */
+
+/* PROFILE */
 
 
-const username =
-document.getElementById("username");
+document.getElementById("username").textContent =
+player.personaname;
 
 
-if(username){
-
-    username.textContent =
-    player.personaname;
-
-}
-
-
-
-const avatar =
-document.getElementById("avatar");
-
-
-if(avatar){
-
-    avatar.src =
-    player.avatarfull;
-
-}
+document.getElementById("avatar").src =
+player.avatarfull;
 
 
 
@@ -237,18 +201,21 @@ document.getElementById("steamButton");
 
 if(steamButton){
 
-    steamButton.href =
-    player.profileurl;
+steamButton.href =
+player.profileurl;
 
 }
 
 
 
-/* Status */
+
+
+/* STATUS */
 
 
 const online =
 player.personastate > 0;
+
 
 
 const status =
@@ -257,108 +224,65 @@ document.getElementById("status");
 
 if(status){
 
-    status.textContent =
-    online
-    ? "● Online"
-    : "● Offline";
+status.textContent =
+online ? "● Online":"● Offline";
 
 }
 
 
 
-const liveStatus =
-document.getElementById("liveStatus");
 
-
-if(liveStatus){
-
-    liveStatus.textContent =
-    online
-    ? "Online"
-    : "Offline";
-
-}
-
-
-
-/* Current Game */
-
-
-const currentGame =
-document.getElementById("currentGame");
-
-
-const liveGame =
-document.getElementById("liveGame");
+/* GAME */
 
 
 const game =
 player.gameextrainfo || "Not Playing";
 
 
+const currentGame =
+document.getElementById("currentGame");
+
+
 if(currentGame){
 
-    currentGame.textContent =
-    game === "Not Playing"
-    ? game
-    : "Playing: "+game;
+currentGame.textContent =
+game==="Not Playing"
+?
+game
+:
+"Playing: "+game;
 
 }
 
 
 
-if(liveGame){
-
-    liveGame.textContent =
-    game;
-
-}
 
 
-
-/* Stats */
+/* STATS */
 
 
 if(stats){
 
 
-const ids = {
-
-    steamLevel:
-    "Steam Level "+stats.level,
-
-    gamesOwned:
-    stats.games,
-
-    friends:
-    stats.friends,
-
-    achievements:
-    stats.achievements
-
-};
+document.getElementById("steamLevel").textContent =
+"Steam Level "+stats.level;
 
 
-
-Object.keys(ids).forEach(id=>{
-
-
-    const element =
-    document.getElementById(id);
+document.getElementById("gamesOwned").textContent =
+stats.games;
 
 
-    if(element){
-
-        element.textContent =
-        ids[id];
-
-    }
+document.getElementById("friends").textContent =
+stats.friends;
 
 
-});
+document.getElementById("achievements").textContent =
+stats.achievements;
 
 
 }
+
+
 
 
 
@@ -371,120 +295,74 @@ const recentGames =
 document.getElementById("recentGames");
 
 
-
-if(
-recentGames &&
-data.recentGames
-){
+if(recentGames && data.recentGames){
 
 
-    recentGames.innerHTML="";
+recentGames.innerHTML="";
 
 
-    data.recentGames.forEach(game=>{
+data.recentGames.forEach(game=>{
 
 
-        const hours =
-        Math.floor(
-        game.playtime_forever / 60
-        );
+const hours =
+Math.floor(game.playtime_forever/60);
 
 
-        const progress =
-        Math.min(hours,100);
+const card =
+document.createElement("div");
 
 
-
-        const card =
-        document.createElement("div");
+card.className="gameCard";
 
 
-        card.className =
-        "gameCard";
+card.innerHTML=`
+
+<img src="
+https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg">
 
 
+<div class="gameInfo">
 
-        card.innerHTML = `
-
-
-        <img
-
-        src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg"
-
-        alt="${game.name}"
-
-        loading="lazy"
-
-        >
+<h3>
+${game.name}
+</h3>
 
 
+<div class="playtime">
 
-        <div class="gameInfo">
+<div class="bar">
 
+<div class="fill"
+style="width:${Math.min(hours,100)}%">
+</div>
 
-            <h3>
-            ${game.name}
-            </h3>
-
-
-
-            <div class="playtime">
+</div>
 
 
-                <div class="bar">
-
-                    <div
-                    class="fill"
-                    style="width:${progress}%">
-                    </div>
+<p>
+${hours} hours played
+</p>
 
 
-                </div>
+</div>
+
+</div>
+
+`;
 
 
-
-                <p>
-                ${hours} hours played
-                </p>
+recentGames.appendChild(card);
 
 
-            </div>
-
-
-        </div>
-
-
-        `;
-
-
-
-        recentGames.appendChild(card);
-
-
-    });
+});
 
 
 }
 
 
 
-/* Update time */
 
 
-const update =
-document.getElementById("lastUpdate");
-
-
-if(update){
-
-    update.textContent =
-    new Date().toLocaleTimeString();
-
-}
-
-
-
-})
 
 
 /* ==========================================
@@ -499,70 +377,143 @@ document.getElementById("repos");
 if(repos && data.github){
 
 
-    repos.innerHTML = "";
+repos.innerHTML="";
 
 
-    data.github.forEach(repo=>{
+data.github.forEach(repo=>{
 
 
-        const card =
-        document.createElement("div");
+const card =
+document.createElement("div");
 
 
-        card.className =
-        "repoCard";
+card.className="repoCard";
 
 
-        card.innerHTML = `
+card.innerHTML=`
 
 
-        <h3>
-        ${repo.name}
-        </h3>
+<h3>
+${repo.name}
+</h3>
 
 
-        <p>
-        ${repo.description}
-        </p>
+<p>
+${repo.description}
+</p>
 
 
-        <div class="repoInfo">
+<div class="repoInfo">
+
+<span>
+💻 ${repo.language}
+</span>
 
 
-            <span>
-            💻 ${repo.language}
-            </span>
+<span>
+⭐ ${repo.stars}
+</span>
 
 
-            <span>
-            ⭐ ${repo.stars}
-            </span>
+<span>
+🍴 ${repo.forks}
+</span>
 
 
-            <span>
-            🍴 ${repo.forks}
-            </span>
+</div>
 
 
-        </div>
+
+<a href="${repo.url}" target="_blank">
+
+View Repository
+
+</a>
 
 
-        <a
-        href="${repo.url}"
-        target="_blank">
-
-        View Repository
-
-        </a>
+`;
 
 
-        `;
+repos.appendChild(card);
 
 
-        repos.appendChild(card);
-
-
-    });
+});
 
 
 }
+
+
+
+
+
+
+
+/* ==========================================
+   LIVE TIMELINE
+========================================== */
+
+
+const timelineStatus =
+document.getElementById("timelineStatus");
+
+
+const timelineGame =
+document.getElementById("timelineGame");
+
+
+const timelineGithub =
+document.getElementById("timelineGithub");
+
+
+const timelineUpdate =
+document.getElementById("timelineUpdate");
+
+
+
+if(timelineStatus){
+
+timelineStatus.textContent =
+online ? "Online on Steam":"Offline";
+
+}
+
+
+
+if(timelineGame){
+
+timelineGame.textContent =
+game;
+
+}
+
+
+
+if(timelineGithub){
+
+timelineGithub.textContent =
+data.github.length+" repositories";
+
+}
+
+
+
+if(timelineUpdate){
+
+timelineUpdate.textContent =
+new Date().toLocaleString();
+
+}
+
+
+
+})
+
+
+.catch(error=>{
+
+console.error(
+"Worker error:",
+error
+);
+
+});
