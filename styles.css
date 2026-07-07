@@ -1786,3 +1786,152 @@ transform:rotate(360deg);
 /* ===========================================
    END OF PART 3
 =========================================== */
+/* ==========================================
+   STEAM GAME CARDS
+========================================== */
+
+#recentGames{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.gameCard{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    padding:18px;
+
+
+    background:
+    rgba(255,255,255,0.07);
+
+
+    border:
+
+    1px solid
+    rgba(255,255,255,0.12);
+
+
+    border-radius:20px;
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    transition:
+    .3s ease;
+
+
+    overflow:hidden;
+
+}
+
+
+
+.gameCard:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.03);
+
+
+    box-shadow:
+
+    0 0 35px
+    rgba(102,192,244,.35);
+
+}
+
+
+
+.gameCard img{
+
+
+    width:160px;
+
+    height:75px;
+
+
+    object-fit:cover;
+
+
+    border-radius:12px;
+
+
+}
+
+
+
+.gameInfo h3{
+
+
+    margin:0 0 8px;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+.gameInfo p{
+
+
+    margin:0;
+
+
+    opacity:.7;
+
+
+}
+
+
+
+/* Animated shine */
+
+.gameCard::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+
+    height:300px;
+
+    background:
+    rgba(255,255,255,.15);
+
+
+    transform:
+    rotate(25deg)
+    translateX(-250px);
+
+
+    transition:.7s;
+
+}
+
+
+
+.gameCard:hover::before{
+
+    transform:
+    rotate(25deg)
+    translateX(400px);
+
+}
