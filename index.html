@@ -1,4 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Bukk1t</title><style>
+*{margin:0;box-sizing:border-box}body{font-family:Inter,Arial;background:#0b0f18;color:#eef;overflow-x:hidden}
+body:before,body:after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-2;animation:f 12s infinite ease-in-out}
+body:before{background:#00d4ff;left:-8rem;top:-8rem}body:after{background:#8b5cf6;right:-8rem;bottom:-8rem;animation-delay:5s}
+@keyframes f{50%{transform:translate(80px,60px) scale(1.2)}}
+.wrap{max-width:950px;margin:auto;padding:60px 24px}
+.profile{display:flex;gap:20px;align-items:center;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);padding:22px;border-radius:22px}
+img{width:90px;height:90px;border-radius:18px}
+h1{font-size:3rem;background:linear-gradient(90deg,#6cf,#8b5cf6,#ff4fd8,#ffd54a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn{display:inline-block;margin-top:14px;padding:12px 24px;border-radius:12px;background:linear-gradient(45deg,#00d4ff,#8b5cf6);color:#fff;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:32px 0}
+.card{background:rgba(255,255,255,.07);padding:20px;border-radius:18px;transition:.12s}
+.card:hover{box-shadow:0 0 30px #00d4ff55}
+.section{margin-top:28px;background:rgba(255,255,255,.05);padding:20px;border-radius:18px}
+.game{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff18}
+.game:last-child{border:0}
+</style></head><body><div class='wrap'>
+<div class='profile'><img src='https://avatars.fastly.steamstatic.com/0ead855aa60665660512bf934b5002a61f3e35c0_full.jpg'>
+<div><h1>Bukk1t</h1><p>Achievement Hunter • Steam Collector • CS2 Player</p>
+<a class='btn' href='https://steamcommunity.com/id/Bukk1t/'>Visit Steam</a></div></div>
+<div class='grid'>
+<div class='card'><h3>🎯 About</h3><p>Welcome to my corner of the internet. I enjoy collecting achievements, badges and discovering new games.</p></div>
+<div class='card'><h3>🏆 Stats</h3><p>Level 10<br>64 Perfect Games<br>4,783 Achievements<br>49 Friends</p></div>
+<div class='card'><h3>⭐ Goals</h3><p>Grow my library, collect rare badges, and reach a higher Steam level.</p></div>
+</div>
+<div class='section'><h2>Recently Played</h2>
+<div class='game'><span>Counter-Strike 2</span><span>110 hrs</span></div>
+<div class='game'><span>Crab Game</span><span>5.1 hrs</span></div>
+<div class='game'><span>Garry's Mod</span><span>13.1 hrs</span></div>
+</div></div>
+<script>
+document.querySelectorAll('.card').forEach(c=>{c.onmousemove=e=>{let r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.transform=`perspective(900px) rotateX(${(r.height/2-y)/10}deg) rotateY(${(x-r.width/2)/10}deg) scale(1.04)`};c.onmouseleave=()=>c.style.transform=''});
+</script></body></html><!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bukk1t | Steam</title>
 <style>
