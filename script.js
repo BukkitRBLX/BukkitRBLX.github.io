@@ -15,14 +15,17 @@ let blurX = mouseX;
 let blurY = mouseY;
 
 
-document.addEventListener("mousemove", (e)=>{
+document.addEventListener("mousemove",(e)=>{
 
     mouseX = e.clientX;
     mouseY = e.clientY;
 
+
     if(cursor){
-        cursor.style.left = mouseX + "px";
-        cursor.style.top = mouseY + "px";
+
+        cursor.style.left = mouseX+"px";
+        cursor.style.top = mouseY+"px";
+
     }
 
 });
@@ -30,19 +33,22 @@ document.addEventListener("mousemove", (e)=>{
 
 function animateCursor(){
 
-    blurX += (mouseX - blurX) * 0.15;
-    blurY += (mouseY - blurY) * 0.15;
+    blurX += (mouseX-blurX)*0.15;
+    blurY += (mouseY-blurY)*0.15;
+
 
     if(cursorBlur){
 
-        cursorBlur.style.left = blurX + "px";
-        cursorBlur.style.top = blurY + "px";
+        cursorBlur.style.left = blurX+"px";
+        cursorBlur.style.top = blurY+"px";
 
     }
+
 
     requestAnimationFrame(animateCursor);
 
 }
+
 
 animateCursor();
 
@@ -52,28 +58,45 @@ animateCursor();
    PARTICLES
 ========================================== */
 
-const particles = document.getElementById("particles");
+
+const particles =
+document.getElementById("particles");
 
 
 if(particles){
 
-    for(let i = 0; i < 150; i++){
 
-        const star = document.createElement("div");
+    for(let i=0;i<150;i++){
 
-        star.className = "star";
 
-        star.style.left = Math.random()*100 + "%";
-        star.style.top = Math.random()*100 + "%";
+        const star =
+        document.createElement("div");
 
-        const size = Math.random()*3 + 1;
 
-        star.style.width = size + "px";
-        star.style.height = size + "px";
+        star.className="star";
+
+
+        star.style.left =
+        Math.random()*100+"%";
+
+
+        star.style.top =
+        Math.random()*100+"%";
+
+
+        const size =
+        Math.random()*3+1;
+
+
+        star.style.width=size+"px";
+        star.style.height=size+"px";
+
 
         particles.appendChild(star);
 
+
     }
+
 
 }
 
@@ -83,9 +106,13 @@ if(particles){
    SCROLL REVEAL
 ========================================== */
 
-const observer = new IntersectionObserver(entries=>{
+
+const observer =
+new IntersectionObserver(entries=>{
+
 
     entries.forEach(entry=>{
+
 
         if(entry.isIntersecting){
 
@@ -93,7 +120,9 @@ const observer = new IntersectionObserver(entries=>{
 
         }
 
+
     });
+
 
 });
 
@@ -103,9 +132,11 @@ document.querySelectorAll(
 )
 .forEach(el=>{
 
+
     el.classList.add("reveal");
 
     observer.observe(el);
+
 
 });
 
@@ -115,7 +146,9 @@ document.querySelectorAll(
    FOOTER
 ========================================== */
 
-const footer = document.querySelector("footer p");
+
+const footer =
+document.querySelector("footer p");
 
 
 if(footer){
@@ -128,7 +161,7 @@ if(footer){
 
 
 /* ==========================================
-   STEAM DATA
+   STEAM API
 ========================================== */
 
 
@@ -138,25 +171,29 @@ const workerURL =
 
 fetch(workerURL)
 
-.then(response => response.json())
+.then(response=>response.json())
 
-.then(data => {
-
-
-console.log("Worker response:", data);
+.then(data=>{
 
 
+console.log("Worker response:",data);
 
-const player = data.profile;
-const stats = data.stats;
+
+
+const player =
+data.profile;
+
+
+const stats =
+data.stats;
 
 
 
 if(!player){
 
     console.error(
-        "No Steam profile data",
-        data
+    "No profile received",
+    data
     );
 
     return;
@@ -165,7 +202,8 @@ if(!player){
 
 
 
-/* Username */
+/* Profile */
+
 
 const username =
 document.getElementById("username");
@@ -180,8 +218,6 @@ if(username){
 
 
 
-/* Avatar */
-
 const avatar =
 document.getElementById("avatar");
 
@@ -194,8 +230,6 @@ if(avatar){
 }
 
 
-
-/* Steam Button */
 
 const steamButton =
 document.getElementById("steamButton");
@@ -212,6 +246,7 @@ if(steamButton){
 
 /* Status */
 
+
 const online =
 player.personastate > 0;
 
@@ -223,9 +258,12 @@ document.getElementById("status");
 if(status){
 
     status.textContent =
-    online ? "● Online" : "● Offline";
+    online
+    ? "● Online"
+    : "● Offline";
 
 }
+
 
 
 const liveStatus =
@@ -235,13 +273,16 @@ document.getElementById("liveStatus");
 if(liveStatus){
 
     liveStatus.textContent =
-    online ? "Online" : "Offline";
+    online
+    ? "Online"
+    : "Offline";
 
 }
 
 
 
 /* Current Game */
+
 
 const currentGame =
 document.getElementById("currentGame");
@@ -260,9 +301,10 @@ if(currentGame){
     currentGame.textContent =
     game === "Not Playing"
     ? game
-    : "Playing: " + game;
+    : "Playing: "+game;
 
 }
+
 
 
 if(liveGame){
@@ -276,58 +318,44 @@ if(liveGame){
 
 /* Stats */
 
+
 if(stats){
 
 
-const steamLevel =
-document.getElementById("steamLevel");
+const ids = {
 
+    steamLevel:
+    "Steam Level "+stats.level,
 
-if(steamLevel){
+    gamesOwned:
+    stats.games,
 
-    steamLevel.textContent =
-    "Steam Level " + stats.level;
+    friends:
+    stats.friends,
 
-}
+    achievements:
+    stats.achievements
 
-
-
-const gamesOwned =
-document.getElementById("gamesOwned");
-
-
-if(gamesOwned){
-
-    gamesOwned.textContent =
-    stats.games;
-
-}
+};
 
 
 
-const friends =
-document.getElementById("friends");
+Object.keys(ids).forEach(id=>{
 
 
-if(friends){
-
-    friends.textContent =
-    stats.friends;
-
-}
+    const element =
+    document.getElementById(id);
 
 
+    if(element){
 
-const achievements =
-document.getElementById("achievements");
+        element.textContent =
+        ids[id];
+
+    }
 
 
-if(achievements){
-
-    achievements.textContent =
-    stats.achievements;
-
-}
+});
 
 
 }
@@ -335,7 +363,7 @@ if(achievements){
 
 
 /* ==========================================
-   RECENT GAMES WITH COVERS
+   RECENT GAMES
 ========================================== */
 
 
@@ -343,13 +371,28 @@ const recentGames =
 document.getElementById("recentGames");
 
 
-if(recentGames && data.recentGames){
+
+if(
+recentGames &&
+data.recentGames
+){
 
 
-    recentGames.innerHTML = "";
+    recentGames.innerHTML="";
 
 
     data.recentGames.forEach(game=>{
+
+
+        const hours =
+        Math.floor(
+        game.playtime_forever / 60
+        );
+
+
+        const progress =
+        Math.min(hours,100);
+
 
 
         const card =
@@ -361,31 +404,58 @@ if(recentGames && data.recentGames){
 
 
 
-        const hours =
-        Math.floor(game.playtime_forever / 60);
-
-
-
         card.innerHTML = `
 
-        <img 
+
+        <img
+
         src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg"
+
         alt="${game.name}"
+
         loading="lazy"
+
         >
+
 
 
         <div class="gameInfo">
 
-            <h3>${game.name}</h3>
 
-            <p>
-            ${hours} hours played
-            </p>
+            <h3>
+            ${game.name}
+            </h3>
+
+
+
+            <div class="playtime">
+
+
+                <div class="bar">
+
+                    <div
+                    class="fill"
+                    style="width:${progress}%">
+                    </div>
+
+
+                </div>
+
+
+
+                <p>
+                ${hours} hours played
+                </p>
+
+
+            </div>
+
 
         </div>
 
+
         `;
+
 
 
         recentGames.appendChild(card);
@@ -398,7 +468,8 @@ if(recentGames && data.recentGames){
 
 
 
-/* Last Update */
+/* Update time */
+
 
 const update =
 document.getElementById("lastUpdate");
@@ -412,14 +483,17 @@ if(update){
 }
 
 
+
 })
 
 
 .catch(error=>{
 
+
 console.error(
 "Worker error:",
 error
 );
+
 
 });
