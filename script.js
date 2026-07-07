@@ -547,3 +547,23 @@ error
 
 
 });
+
+
+
+/* ==========================================
+   AUTO REFRESH
+========================================== */
+
+
+setInterval(()=>{
+
+
+console.log(
+"Refreshing live data..."
+);
+
+
+location.reload();
+
+
+},60000);
