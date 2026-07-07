@@ -243,7 +243,7 @@ if(footer){
 footer.innerHTML=`© ${new Date().getFullYear()} Bukk1t • Live Steam Dashboard`;
 
 } 
-fetch("https://steam.shantiya1212.workers.dev/") 
+
 const workerURL = "https://steam.shantiya1212.workers.dev/";
 
 fetch(workerURL)
