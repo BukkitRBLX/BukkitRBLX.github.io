@@ -487,13 +487,82 @@ if(update){
 })
 
 
-.catch(error=>{
+/* ==========================================
+   GITHUB PROJECTS
+========================================== */
 
 
-console.error(
-"Worker error:",
-error
-);
+const repos =
+document.getElementById("repos");
 
 
-});
+if(repos && data.github){
+
+
+    repos.innerHTML = "";
+
+
+    data.github.forEach(repo=>{
+
+
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "repoCard";
+
+
+        card.innerHTML = `
+
+
+        <h3>
+        ${repo.name}
+        </h3>
+
+
+        <p>
+        ${repo.description}
+        </p>
+
+
+        <div class="repoInfo">
+
+
+            <span>
+            💻 ${repo.language}
+            </span>
+
+
+            <span>
+            ⭐ ${repo.stars}
+            </span>
+
+
+            <span>
+            🍴 ${repo.forks}
+            </span>
+
+
+        </div>
+
+
+        <a
+        href="${repo.url}"
+        target="_blank">
+
+        View Repository
+
+        </a>
+
+
+        `;
+
+
+        repos.appendChild(card);
+
+
+    });
+
+
+}
