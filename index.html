@@ -1,10 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bukk1t | Steam Profile</title>
@@ -12,13 +11,11 @@
     <meta name="description" content="Live Steam profile of Bukk1t">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -26,8 +23,8 @@
 <div id="particles"></div>
 
 <div id="cursor"></div>
-
 <div id="cursorBlur"></div>
+
 
 <nav>
 
@@ -36,29 +33,24 @@
     </div>
 
     <ul>
-
         <li><a href="#hero">Home</a></li>
-
         <li><a href="#stats">Stats</a></li>
-
         <li><a href="#games">Games</a></li>
-
         <li><a href="#projects">Projects</a></li>
-
     </ul>
 
 </nav>
+
+
 
 <section id="hero">
 
     <div class="heroLeft">
 
-        <img
-            id="avatar"
-            src=""
-            alt="Steam Avatar">
+        <img id="avatar" src="" alt="Steam Avatar">
 
     </div>
+
 
     <div class="heroRight">
 
@@ -66,40 +58,36 @@
             Loading...
         </h1>
 
+
         <div id="status" class="offline">
             ● Loading...
         </div>
+
 
         <div id="currentGame">
             Not Playing
         </div>
 
+
         <div id="steamLevel">
             Steam Level --
         </div>
 
+
         <p>
-
             Steam Completionist • Counter-Strike Player • Linux Enthusiast
-
         </p>
+
 
         <div class="buttons">
 
-            <a
-                id="steamButton"
-                target="_blank">
-
+            <a id="steamButton" target="_blank">
                 Steam Profile
-
             </a>
 
-            <a
-                href="https://github.com/BukkitRBLX"
-                target="_blank">
 
+            <a href="https://github.com/BukkitRBLX" target="_blank">
                 GitHub
-
             </a>
 
         </div>
@@ -107,244 +95,197 @@
     </div>
 
 </section>
+
+
+
 
 <section id="stats">
 
-    <h2>
-        Steam Statistics
-    </h2>
+<h2>
+Steam Statistics
+</h2>
 
-    <div class="statsGrid">
 
-        <div class="statCard">
+<div class="statsGrid">
 
-            <span class="number" id="gamesOwned">
-                --
-            </span>
 
-            <span class="label">
-                Games
-            </span>
+<div class="statCard">
 
-        </div>
+<span class="number" id="gamesOwned">
+--
+</span>
 
-        <div class="statCard">
+<span class="label">
+Games
+</span>
 
-            <span class="number" id="perfectGames">
-                64
-            </span>
+</div>
 
-            <span class="label">
-                Perfect Games
-            </span>
 
-        </div>
 
-        <div class="statCard">
+<div class="statCard">
 
-            <span class="number" id="achievements">
-                4783
-            </span>
+<span class="number" id="perfectGames">
+64
+</span>
 
-            <span class="label">
-                Achievements
-            </span>
+<span class="label">
+Perfect Games
+</span>
 
-        </div>
+</div>
 
-        <div class="statCard">
 
-            <span class="number" id="friends">
-                --
-            </span>
 
-            <span class="label">
-                Friends
-            </span>
+<div class="statCard">
 
-        </div>
+<span class="number" id="achievements">
+4783
+</span>
 
-    </div>
+<span class="label">
+Achievements
+</span>
+
+</div>
+
+
+
+<div class="statCard">
+
+<span class="number" id="friends">
+--
+</span>
+
+<span class="label">
+Friends
+</span>
+
+</div>
+
+
+</div>
 
 </section>
+
+
+
 
 <section id="games">
 
-    <h2>
+<h2>
+Recently Played
+</h2>
 
-        Recently Played
 
-    </h2>
+<div id="recentGames">
 
-    <div id="recentGames">
+Loading games...
 
-        <!-- JavaScript inserts games here -->
+</div>
 
-    </div>
 
 </section>
+
+
+
 
 <section id="projects">
 
-    <h2>
+<h2>
+GitHub Projects
+</h2>
 
-        GitHub Projects
 
-    </h2>
+<div id="repos">
 
-    <div id="repos">
+Loading projects...
 
-        <!-- Loaded dynamically -->
+</div>
 
-    </div>
 
 </section>
+
+
+
 
 <section id="activity">
 
-    <h2>
+<h2>
+Live Activity
+</h2>
 
-        Live Activity
 
-    </h2>
 
-    <div class="activityCard">
+<div class="activityCard">
 
-        <div>
+<div>
+Status
+</div>
 
-            Status
+<div id="liveStatus">
+Loading...
+</div>
 
-        </div>
+</div>
 
-        <div id="liveStatus">
 
-            Loading...
 
-        </div>
 
-    </div>
+<div class="activityCard">
 
-    <div class="activityCard">
+<div>
+Current Game
+</div>
 
-        <div>
+<div id="liveGame">
+Loading...
+</div>
 
-            Current Game
+</div>
 
-        </div>
 
-        <div id="liveGame">
 
-            Loading...
 
-        </div>
+<div class="activityCard">
 
-    </div>
+<div>
+Last Refresh
+</div>
 
-    <div class="activityCard">
+<div id="lastUpdate">
+Never
+</div>
 
-        <div>
+</div>
 
-            Last Refresh
-
-        </div>
-
-        <div id="lastUpdate">
-
-            Never
-
-        </div>
-
-    </div>
 
 </section>
 
+
+
+
 <footer>
 
-    <h3>
+<h3>
+BUKK1T
+</h3>
 
-        BUKK1T
 
-    </h3>
+<p>
+Live Steam profile powered by Steam API
+</p>
 
-    <p>
-
-        Live Steam profile powered by Steam API
-
-    </p>
 
 </footer>
 
+
+
+
 <script src="script.js"></script>
+
 
 </body>
 
-</html><!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Bukk1t</title><style>
-*{margin:0;box-sizing:border-box}body{font-family:Inter,Arial;background:#0b0f18;color:#eef;overflow-x:hidden}
-body:before,body:after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-2;animation:f 12s infinite ease-in-out}
-body:before{background:#00d4ff;left:-8rem;top:-8rem}body:after{background:#8b5cf6;right:-8rem;bottom:-8rem;animation-delay:5s}
-@keyframes f{50%{transform:translate(80px,60px) scale(1.2)}}
-.wrap{max-width:950px;margin:auto;padding:60px 24px}
-.profile{display:flex;gap:20px;align-items:center;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);padding:22px;border-radius:22px}
-img{width:90px;height:90px;border-radius:18px}
-h1{font-size:3rem;background:linear-gradient(90deg,#6cf,#8b5cf6,#ff4fd8,#ffd54a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.btn{display:inline-block;margin-top:14px;padding:12px 24px;border-radius:12px;background:linear-gradient(45deg,#00d4ff,#8b5cf6);color:#fff;text-decoration:none}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:32px 0}
-.card{background:rgba(255,255,255,.07);padding:20px;border-radius:18px;transition:.12s}
-.card:hover{box-shadow:0 0 30px #00d4ff55}
-.section{margin-top:28px;background:rgba(255,255,255,.05);padding:20px;border-radius:18px}
-.game{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff18}
-.game:last-child{border:0}
-</style></head><body><div class='wrap'>
-<div class='profile'><img src='https://avatars.fastly.steamstatic.com/0ead855aa60665660512bf934b5002a61f3e35c0_full.jpg'>
-<div><h1>Bukk1t</h1><p>Achievement Hunter • Steam Collector • CS2 Player</p>
-<a class='btn' href='https://steamcommunity.com/id/Bukk1t/'>Visit Steam</a></div></div>
-<div class='grid'>
-<div class='card'><h3>🎯 About</h3><p>Welcome to my corner of the internet. I enjoy collecting achievements, badges and discovering new games.</p></div>
-<div class='card'><h3>🏆 Stats</h3><p>Level 10<br>64 Perfect Games<br>4,783 Achievements<br>49 Friends</p></div>
-<div class='card'><h3>⭐ Goals</h3><p>Grow my library, collect rare badges, and reach a higher Steam level.</p></div>
-</div>
-<div class='section'><h2>Recently Played</h2>
-<div class='game'><span>Counter-Strike 2</span><span>110 hrs</span></div>
-<div class='game'><span>Crab Game</span><span>5.1 hrs</span></div>
-<div class='game'><span>Garry's Mod</span><span>13.1 hrs</span></div>
-</div></div>
-<script>
-document.querySelectorAll('.card').forEach(c=>{c.onmousemove=e=>{let r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.transform=`perspective(900px) rotateX(${(r.height/2-y)/10}deg) rotateY(${(x-r.width/2)/10}deg) scale(1.04)`};c.onmouseleave=()=>c.style.transform=''});
-</script></body></html><!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bukk1t | Steam</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0b1020,#171a21,#1b3a6b);color:#fff;overflow-x:hidden}
-.bg,.bg2{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;animation:f 12s ease-in-out infinite}
-.bg{width:300px;height:300px;background:#00c8ff;top:-80px;left:-80px}
-.bg2{width:350px;height:350px;background:#8b5cf6;bottom:-120px;right:-120px;animation-delay:4s}
-@keyframes f{50%{transform:translate(60px,40px) scale(1.2)}}
-header{text-align:center;padding:60px 20px}
-h1{font-size:64px;background:linear-gradient(90deg,#66c0f4,#7cf,#9f7cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.btn{display:inline-block;padding:14px 28px;background:#66c0f4;color:#111;text-decoration:none;border-radius:12px;font-weight:bold;box-shadow:0 0 20px #66c0f4}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1100px;margin:40px auto;padding:20px}
-.card{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;transition:transform .1s linear,box-shadow .2s}
-.card:hover{box-shadow:0 0 30px rgba(102,192,244,.5)}
-h2{color:#66c0f4}
-footer{text-align:center;padding:30px;color:#9bb}
-</style></head><body>
-<div class="bg"></div><div class="bg2"></div>
-<header><h1>BUKK1T</h1><p>Steam Gamer • Achievement Hunter • Collector</p>
-<a class="btn" href="https://steamcommunity.com/id/Bukk1t/" target="_blank">Visit My Steam Profile</a></header>
-<div class="grid">
-<div class="card"><h2>🎯 About Me</h2><p>I enjoy grinding achievements, collecting badges, trading items and exploring new games.</p></div>
-<div class="card"><h2>🔥 Favorite Games</h2><p>• Counter-Strike 2<br>• Roblox<br>• Fortnite<br>• Whatever I'm grinding next!</p></div>
-<div class="card"><h2>🏆 Steam Goals</h2><p>⭐ Reach higher Steam level<br>⭐ Grow my game library<br>⭐ Collect rare badges<br>⭐ Complete more achievements</p></div>
-</div>
-<footer>Made with ❤️ using GitHub Pages</footer>
-<script>
-document.querySelectorAll('.card').forEach(c=>{
- c.addEventListener('mousemove',e=>{
-  const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
-  const rx=(r.height/2-y)/10,ry=(x-r.width/2)/10;
-  c.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
- });
- c.addEventListener('mouseleave',()=>c.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)');
-});
-</script></body></html>
+</html>
+```
