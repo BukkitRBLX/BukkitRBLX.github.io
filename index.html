@@ -1,4 +1,284 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bukk1t | Steam Profile</title>
+
+    <meta name="description" content="Live Steam profile of Bukk1t">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<div id="cursor"></div>
+
+<div id="cursorBlur"></div>
+
+<nav>
+
+    <div class="logo">
+        BUKK1T
+    </div>
+
+    <ul>
+
+        <li><a href="#hero">Home</a></li>
+
+        <li><a href="#stats">Stats</a></li>
+
+        <li><a href="#games">Games</a></li>
+
+        <li><a href="#projects">Projects</a></li>
+
+    </ul>
+
+</nav>
+
+<section id="hero">
+
+    <div class="heroLeft">
+
+        <img
+            id="avatar"
+            src=""
+            alt="Steam Avatar">
+
+    </div>
+
+    <div class="heroRight">
+
+        <h1 id="username">
+            Loading...
+        </h1>
+
+        <div id="status" class="offline">
+            ● Loading...
+        </div>
+
+        <div id="currentGame">
+            Not Playing
+        </div>
+
+        <div id="steamLevel">
+            Steam Level --
+        </div>
+
+        <p>
+
+            Steam Completionist • Counter-Strike Player • Linux Enthusiast
+
+        </p>
+
+        <div class="buttons">
+
+            <a
+                id="steamButton"
+                target="_blank">
+
+                Steam Profile
+
+            </a>
+
+            <a
+                href="https://github.com/BukkitRBLX"
+                target="_blank">
+
+                GitHub
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="stats">
+
+    <h2>
+        Steam Statistics
+    </h2>
+
+    <div class="statsGrid">
+
+        <div class="statCard">
+
+            <span class="number" id="gamesOwned">
+                --
+            </span>
+
+            <span class="label">
+                Games
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <span class="number" id="perfectGames">
+                64
+            </span>
+
+            <span class="label">
+                Perfect Games
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <span class="number" id="achievements">
+                4783
+            </span>
+
+            <span class="label">
+                Achievements
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <span class="number" id="friends">
+                --
+            </span>
+
+            <span class="label">
+                Friends
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="games">
+
+    <h2>
+
+        Recently Played
+
+    </h2>
+
+    <div id="recentGames">
+
+        <!-- JavaScript inserts games here -->
+
+    </div>
+
+</section>
+
+<section id="projects">
+
+    <h2>
+
+        GitHub Projects
+
+    </h2>
+
+    <div id="repos">
+
+        <!-- Loaded dynamically -->
+
+    </div>
+
+</section>
+
+<section id="activity">
+
+    <h2>
+
+        Live Activity
+
+    </h2>
+
+    <div class="activityCard">
+
+        <div>
+
+            Status
+
+        </div>
+
+        <div id="liveStatus">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+    <div class="activityCard">
+
+        <div>
+
+            Current Game
+
+        </div>
+
+        <div id="liveGame">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+    <div class="activityCard">
+
+        <div>
+
+            Last Refresh
+
+        </div>
+
+        <div id="lastUpdate">
+
+            Never
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h3>
+
+        BUKK1T
+
+    </h3>
+
+    <p>
+
+        Live Steam profile powered by Steam API
+
+    </p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html><!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>Bukk1t</title><style>
 *{margin:0;box-sizing:border-box}body{font-family:Inter,Arial;background:#0b0f18;color:#eef;overflow-x:hidden}
 body:before,body:after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-2;animation:f 12s infinite ease-in-out}
