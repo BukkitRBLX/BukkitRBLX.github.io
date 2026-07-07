@@ -243,4 +243,14 @@ if(footer){
 footer.innerHTML=`© ${new Date().getFullYear()} Bukk1t • Live Steam Dashboard`;
 
 } 
-fetch("https://your-worker.workers.dev/api/steam") 
+fetch("https://steam.shantiya1212.workers.dev/") 
+const workerURL = "https://steam.shantiya1212.workers.dev/";
+
+fetch(workerURL)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Worker response:", data);
+    })
+    .catch(error => {
+        console.error("Worker error:", error);
+    });
