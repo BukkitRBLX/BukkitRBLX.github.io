@@ -1,1 +1,1788 @@
+/* ===========================================
+   BUKK1T WEBSITE
+   PART 1
+=========================================== */
 
+:root{
+
+--bg:#090d14;
+--bg2:#0f1724;
+
+--card:rgba(255,255,255,.06);
+
+--glass:rgba(255,255,255,.08);
+
+--border:rgba(255,255,255,.12);
+
+--text:#edf4ff;
+
+--muted:#9db2c8;
+
+--blue:#66C0F4;
+
+--cyan:#00d4ff;
+
+--purple:#8b5cf6;
+
+--shadow:0 20px 60px rgba(0,0,0,.45);
+
+--radius:22px;
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:var(--text);
+
+font-family:Inter,sans-serif;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* ===========================================
+   Animated Background
+=========================================== */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:900px;
+height:900px;
+
+left:-350px;
+top:-350px;
+
+background:radial-gradient(circle,var(--cyan),transparent 70%);
+
+opacity:.18;
+
+filter:blur(120px);
+
+animation:floatOne 18s ease-in-out infinite;
+
+z-index:-5;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:850px;
+height:850px;
+
+right:-300px;
+bottom:-300px;
+
+background:radial-gradient(circle,var(--purple),transparent 70%);
+
+opacity:.18;
+
+filter:blur(120px);
+
+animation:floatTwo 22s ease-in-out infinite;
+
+z-index:-5;
+
+}
+
+.gradient{
+
+position:fixed;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+opacity:.18;
+
+pointer-events:none;
+
+z-index:-4;
+
+}
+
+.gradient-one{
+
+width:500px;
+
+height:500px;
+
+background:#00d4ff;
+
+top:20%;
+
+left:40%;
+
+animation:floatThree 20s infinite ease-in-out;
+
+}
+
+.gradient-two{
+
+width:420px;
+
+height:420px;
+
+background:#66C0F4;
+
+bottom:10%;
+
+right:30%;
+
+animation:floatFour 16s infinite ease-in-out;
+
+}
+
+/* ===========================================
+   PARTICLES
+=========================================== */
+
+#particles{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-3;
+
+overflow:hidden;
+
+}
+
+.star{
+
+position:absolute;
+
+width:2px;
+
+height:2px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.5;
+
+animation:twinkle 5s infinite ease-in-out;
+
+}
+
+/* ===========================================
+   CURSOR
+=========================================== */
+
+#cursor{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:var(--cyan);
+
+position:fixed;
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+z-index:9999;
+
+box-shadow:
+
+0 0 20px var(--cyan),
+
+0 0 40px var(--cyan);
+
+}
+
+#cursorBlur{
+
+width:280px;
+
+height:280px;
+
+position:fixed;
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+
+rgba(102,192,244,.18),
+
+transparent 70%);
+
+filter:blur(25px);
+
+z-index:-1;
+
+}
+
+/* ===========================================
+   NAVBAR
+=========================================== */
+
+nav{
+
+position:fixed;
+
+top:18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1100px,92%);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 30px;
+
+background:rgba(18,24,36,.65);
+
+backdrop-filter:blur(18px);
+
+border:1px solid var(--border);
+
+border-radius:18px;
+
+box-shadow:var(--shadow);
+
+z-index:100;
+
+}
+
+.logo{
+
+font-size:26px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+background:linear-gradient(90deg,
+
+#fff,
+
+var(--blue),
+
+var(--purple));
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+nav ul{
+
+display:flex;
+
+gap:28px;
+
+list-style:none;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+color:var(--muted);
+
+font-weight:600;
+
+transition:.3s;
+
+position:relative;
+
+}
+
+nav a:hover{
+
+color:white;
+
+}
+
+nav a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-6px;
+
+width:0;
+
+height:2px;
+
+background:var(--blue);
+
+transition:.3s;
+
+}
+
+nav a:hover::after{
+
+width:100%;
+
+}
+
+/* ===========================================
+   HERO
+=========================================== */
+
+#hero{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:70px;
+
+padding:140px 8%;
+
+}
+
+.heroLeft{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+#avatar{
+
+width:220px;
+
+height:220px;
+
+border-radius:30px;
+
+object-fit:cover;
+
+border:4px solid rgba(255,255,255,.08);
+
+box-shadow:
+
+0 0 50px rgba(102,192,244,.3),
+
+0 30px 60px rgba(0,0,0,.5);
+
+transition:.35s;
+
+}
+
+#avatar:hover{
+
+transform:
+
+rotate(-3deg)
+
+scale(1.05);
+
+}
+
+.heroRight{
+
+max-width:600px;
+
+}
+
+.heroRight h1{
+
+font-size:70px;
+
+line-height:1;
+
+font-weight:800;
+
+margin-bottom:18px;
+
+}
+
+.heroRight h1 span{
+
+background:
+
+linear-gradient(90deg,
+
+#fff,
+
+var(--blue),
+
+var(--purple));
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+#status{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.1);
+
+margin-bottom:20px;
+
+font-weight:600;
+
+}
+
+.online{
+
+color:#63ff8d;
+
+}
+
+.offline{
+
+color:#ff7272;
+
+}
+
+#currentGame{
+
+font-size:28px;
+
+font-weight:700;
+
+margin-bottom:12px;
+
+color:var(--blue);
+
+}
+
+#steamLevel{
+
+font-size:20px;
+
+color:var(--muted);
+
+margin-bottom:24px;
+
+}
+
+.heroRight p{
+
+font-size:18px;
+
+line-height:1.8;
+
+color:var(--muted);
+
+margin-bottom:35px;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.buttons a{
+
+padding:16px 30px;
+
+border-radius:14px;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.buttons a:first-child{
+
+background:linear-gradient(135deg,
+
+var(--blue),
+
+var(--cyan));
+
+color:#08111b;
+
+}
+
+.buttons a:last-child{
+
+border:1px solid rgba(255,255,255,.1);
+
+background:rgba(255,255,255,.04);
+
+color:white;
+
+}
+
+.buttons a:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 15px 40px rgba(102,192,244,.3);
+
+}
+
+/* ===========================================
+   ANIMATIONS
+=========================================== */
+
+@keyframes floatOne{
+
+50%{
+
+transform:
+
+translate(120px,80px)
+
+scale(1.15);
+
+}
+
+}
+
+@keyframes floatTwo{
+
+50%{
+
+transform:
+
+translate(-120px,-90px)
+
+scale(1.2);
+
+}
+
+}
+
+@keyframes floatThree{
+
+50%{
+
+transform:
+
+translateY(-80px)
+
+translateX(60px);
+
+}
+
+}
+
+@keyframes floatFour{
+
+50%{
+
+transform:
+
+translateX(-80px)
+
+translateY(80px);
+
+}
+
+}
+
+@keyframes twinkle{
+
+50%{
+
+opacity:1;
+
+transform:scale(1.8);
+
+}
+
+}
+/* ===========================================
+   SECTION STYLING
+=========================================== */
+
+section{
+
+width:min(1200px,92%);
+
+margin:120px auto;
+
+}
+
+section h2{
+
+font-size:42px;
+
+font-weight:800;
+
+margin-bottom:50px;
+
+position:relative;
+
+display:inline-block;
+
+}
+
+section h2::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-12px;
+
+width:80px;
+
+height:4px;
+
+border-radius:999px;
+
+background:linear-gradient(90deg,
+var(--blue),
+var(--purple));
+
+box-shadow:
+0 0 20px var(--blue);
+
+}
+
+/* ===========================================
+   STATS GRID
+=========================================== */
+
+.statsGrid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+}
+
+/* ===========================================
+   PREMIUM CARD
+=========================================== */
+
+.statCard,
+.card,
+.activityCard{
+
+position:relative;
+
+overflow:hidden;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(16px);
+
+transition:
+transform .35s,
+box-shadow .35s,
+border .35s;
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.25);
+
+}
+
+/* glowing border */
+
+.statCard::before,
+.card::before,
+.activityCard::before{
+
+content:"";
+
+position:absolute;
+
+inset:-1px;
+
+padding:1px;
+
+border-radius:inherit;
+
+background:
+
+linear-gradient(
+135deg,
+
+rgba(102,192,244,.8),
+
+rgba(139,92,246,.7),
+
+rgba(0,212,255,.8)
+
+);
+
+mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+
+mask-composite:exclude;
+
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+
+-webkit-mask-composite:xor;
+
+opacity:0;
+
+transition:.35s;
+
+}
+
+.statCard:hover::before,
+.card:hover::before,
+.activityCard:hover::before{
+
+opacity:1;
+
+}
+
+.statCard:hover,
+.card:hover,
+.activityCard:hover{
+
+transform:
+translateY(-12px)
+rotateX(5deg)
+rotateY(-4deg);
+
+box-shadow:
+
+0 30px 70px rgba(0,0,0,.45),
+
+0 0 50px rgba(102,192,244,.2);
+
+}
+
+/* shine animation */
+
+.statCard::after,
+.card::after,
+.activityCard::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-50%;
+
+width:50%;
+
+height:300%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.18),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:.8s;
+
+}
+
+.statCard:hover::after,
+.card:hover::after,
+.activityCard:hover::after{
+
+left:160%;
+
+}
+
+/* ===========================================
+   NUMBERS
+=========================================== */
+
+.number{
+
+display:block;
+
+font-size:58px;
+
+font-weight:800;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#fff,
+
+var(--blue)
+
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+margin-bottom:10px;
+
+}
+
+.label{
+
+color:var(--muted);
+
+font-size:16px;
+
+letter-spacing:.5px;
+
+}
+
+/* ===========================================
+   RECENT GAMES
+=========================================== */
+
+#recentGames{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:28px;
+
+}
+
+.gameCard{
+
+position:relative;
+
+padding:26px;
+
+border-radius:24px;
+
+overflow:hidden;
+
+background:
+
+rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(16px);
+
+transition:.35s;
+
+}
+
+.gameCard:hover{
+
+transform:
+
+translateY(-10px);
+
+box-shadow:
+
+0 20px 60px rgba(102,192,244,.25);
+
+}
+
+.gameBanner{
+
+width:100%;
+
+height:160px;
+
+border-radius:18px;
+
+object-fit:cover;
+
+margin-bottom:20px;
+
+}
+
+.gameTitle{
+
+font-size:24px;
+
+font-weight:700;
+
+margin-bottom:12px;
+
+}
+
+.gameHours{
+
+color:var(--blue);
+
+font-size:18px;
+
+font-weight:700;
+
+margin-bottom:6px;
+
+}
+
+.lastPlayed{
+
+color:var(--muted);
+
+}
+
+/* ===========================================
+   PROJECTS
+=========================================== */
+
+#repos{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+gap:28px;
+
+}
+
+.repoCard{
+
+position:relative;
+
+padding:28px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+overflow:hidden;
+
+transition:.35s;
+
+}
+
+.repoCard:hover{
+
+transform:
+
+translateY(-10px);
+
+box-shadow:
+
+0 20px 60px rgba(139,92,246,.25);
+
+}
+
+.repoTitle{
+
+font-size:24px;
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+.repoDescription{
+
+color:var(--muted);
+
+line-height:1.8;
+
+margin-bottom:22px;
+
+}
+
+.repoBottom{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.language{
+
+padding:8px 14px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+
+font-size:14px;
+
+}
+
+.repoLink{
+
+text-decoration:none;
+
+color:var(--blue);
+
+font-weight:700;
+
+}
+
+/* ===========================================
+   ACTIVITY
+=========================================== */
+
+.activityCard{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:22px;
+
+}
+
+.activityCard div:first-child{
+
+color:var(--muted);
+
+font-weight:600;
+
+}
+
+.activityCard div:last-child{
+
+font-size:22px;
+
+font-weight:700;
+
+}
+
+/* ===========================================
+   FOOTER
+=========================================== */
+
+footer{
+
+margin-top:160px;
+
+padding:80px 20px;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+background:
+
+linear-gradient(
+
+180deg,
+
+transparent,
+
+rgba(255,255,255,.03)
+
+);
+
+}
+
+footer h3{
+
+font-size:34px;
+
+margin-bottom:15px;
+
+font-weight:800;
+
+background:
+
+linear-gradient(
+90deg,
+#fff,
+var(--blue),
+var(--purple)
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+footer p{
+
+color:var(--muted);
+
+line-height:1.8;
+
+}
+
+/* ===========================================
+   SCROLLBAR
+=========================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#08111b;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:
+
+linear-gradient(
+180deg,
+var(--blue),
+var(--purple)
+);
+
+border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:var(--cyan);
+
+} 
+/* ===========================================
+   RESPONSIVE DESIGN
+=========================================== */
+
+@media (max-width:1100px){
+
+#hero{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:45px;
+
+}
+
+.heroRight{
+
+max-width:750px;
+
+}
+
+.buttons{
+
+justify-content:center;
+
+}
+
+nav{
+
+padding:16px 20px;
+
+}
+
+}
+
+@media (max-width:850px){
+
+nav{
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+nav ul{
+
+gap:18px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.heroRight h1{
+
+font-size:54px;
+
+}
+
+#avatar{
+
+width:180px;
+
+height:180px;
+
+}
+
+section h2{
+
+font-size:34px;
+
+}
+
+.number{
+
+font-size:46px;
+
+}
+
+}
+
+@media (max-width:600px){
+
+body{
+
+cursor:auto;
+
+}
+
+#cursor,
+#cursorBlur{
+
+display:none;
+
+}
+
+#hero{
+
+padding-top:170px;
+
+}
+
+.heroRight h1{
+
+font-size:42px;
+
+}
+
+#currentGame{
+
+font-size:22px;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+width:100%;
+
+}
+
+.buttons a{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.statsGrid,
+#recentGames,
+#repos{
+
+grid-template-columns:1fr;
+
+}
+
+section{
+
+margin:90px auto;
+
+}
+
+}
+
+/* ===========================================
+   SCROLL REVEAL
+=========================================== */
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:
+
+opacity .8s ease,
+
+transform .8s ease;
+
+}
+
+.reveal.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* ===========================================
+   FLOATING ANIMATION
+=========================================== */
+
+.float{
+
+animation:floatAnimation 6s ease-in-out infinite;
+
+}
+
+@keyframes floatAnimation{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/* ===========================================
+   GLOW EFFECTS
+=========================================== */
+
+.glow{
+
+box-shadow:
+
+0 0 25px rgba(102,192,244,.35),
+
+0 0 60px rgba(102,192,244,.18);
+
+}
+
+.glowPurple{
+
+box-shadow:
+
+0 0 25px rgba(139,92,246,.35),
+
+0 0 60px rgba(139,92,246,.18);
+
+}
+
+/* ===========================================
+   ONLINE STATUS
+=========================================== */
+
+.online{
+
+color:#58ff8a;
+
+animation:pulseOnline 2s infinite;
+
+}
+
+.offline{
+
+color:#ff6d6d;
+
+}
+
+.away{
+
+color:#ffcb5c;
+
+}
+
+.busy{
+
+color:#ff7d7d;
+
+}
+
+@keyframes pulseOnline{
+
+0%{
+
+text-shadow:0 0 0 rgba(88,255,138,0);
+
+}
+
+50%{
+
+text-shadow:
+
+0 0 10px rgba(88,255,138,.7),
+
+0 0 25px rgba(88,255,138,.5);
+
+}
+
+100%{
+
+text-shadow:0 0 0 rgba(88,255,138,0);
+
+}
+
+}
+
+/* ===========================================
+   LOADING SKELETON
+=========================================== */
+
+.loading{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.05);
+
+}
+
+.loading::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-150%;
+
+width:120%;
+
+height:100%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.08),
+
+transparent
+
+);
+
+animation:skeleton 1.3s linear infinite;
+
+}
+
+@keyframes skeleton{
+
+100%{
+
+left:150%;
+
+}
+
+}
+
+/* ===========================================
+   BADGES
+=========================================== */
+
+.badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.08);
+
+font-size:14px;
+
+font-weight:600;
+
+color:var(--muted);
+
+transition:.3s;
+
+}
+
+.badge:hover{
+
+transform:translateY(-3px);
+
+color:white;
+
+border-color:rgba(102,192,244,.5);
+
+}
+
+/* ===========================================
+   BUTTON HOVER
+=========================================== */
+
+button,
+.buttons a{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+button::before,
+.buttons a::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.25),
+
+transparent
+
+);
+
+transition:.6s;
+
+}
+
+button:hover::before,
+.buttons a:hover::before{
+
+left:130%;
+
+}
+
+/* ===========================================
+   IMAGE HOVER
+=========================================== */
+
+img{
+
+user-select:none;
+
+-webkit-user-drag:none;
+
+}
+
+.gameBanner{
+
+transition:
+
+transform .4s,
+
+filter .4s;
+
+}
+
+.gameCard:hover .gameBanner{
+
+transform:scale(1.05);
+
+filter:brightness(1.08);
+
+}
+
+/* ===========================================
+   SELECTION
+=========================================== */
+
+::selection{
+
+background:var(--blue);
+
+color:#08111b;
+
+}
+
+/* ===========================================
+   FOCUS
+=========================================== */
+
+a:focus,
+button:focus{
+
+outline:2px solid var(--blue);
+
+outline-offset:4px;
+
+}
+
+/* ===========================================
+   SPACING UTILITIES
+=========================================== */
+
+.mt1{margin-top:10px;}
+.mt2{margin-top:20px;}
+.mt3{margin-top:30px;}
+.mt4{margin-top:40px;}
+
+.mb1{margin-bottom:10px;}
+.mb2{margin-bottom:20px;}
+.mb3{margin-bottom:30px;}
+.mb4{margin-bottom:40px;}
+
+.center{
+
+text-align:center;
+
+}
+
+/* ===========================================
+   FADE ANIMATION
+=========================================== */
+
+.fade{
+
+animation:fadeIn .8s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================================
+   SPIN
+=========================================== */
+
+.spin{
+
+animation:spin 10s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ===========================================
+   END OF PART 3
+=========================================== */
