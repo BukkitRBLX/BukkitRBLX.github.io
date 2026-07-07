@@ -5,7 +5,6 @@ console.log("SCRIPT.JS IS RUNNING");
    CURSOR
 ========================================== */
 
-
 const cursor = document.getElementById("cursor");
 const cursorBlur = document.getElementById("cursorBlur");
 
@@ -17,49 +16,39 @@ let blurX = mouseX;
 let blurY = mouseY;
 
 
+document.addEventListener("mousemove", e => {
 
-document.addEventListener("mousemove",e=>{
-
-
-    mouseX=e.clientX;
-    mouseY=e.clientY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
 
     if(cursor){
-
-        cursor.style.left=mouseX+"px";
-        cursor.style.top=mouseY+"px";
-
+        cursor.style.left = mouseX + "px";
+        cursor.style.top = mouseY + "px";
     }
 
 });
 
 
-
 function animateCursor(){
 
-
-    blurX += (mouseX-blurX)*0.15;
-    blurY += (mouseY-blurY)*0.15;
-
+    blurX += (mouseX - blurX) * 0.15;
+    blurY += (mouseY - blurY) * 0.15;
 
 
     if(cursorBlur){
 
-        cursorBlur.style.left=blurX+"px";
-        cursorBlur.style.top=blurY+"px";
+        cursorBlur.style.left = blurX + "px";
+        cursorBlur.style.top = blurY + "px";
 
     }
 
 
     requestAnimationFrame(animateCursor);
 
-
 }
 
-
 animateCursor();
-
 
 
 
@@ -69,42 +58,28 @@ animateCursor();
 ========================================== */
 
 
-const particles =
-document.getElementById("particles");
-
+const particles = document.getElementById("particles");
 
 
 if(particles){
 
+    for(let i = 0; i < 150; i++){
 
-    for(let i=0;i<150;i++){
+        const star = document.createElement("div");
 
+        star.className = "star";
 
-        const star =
-        document.createElement("div");
-
-
-        star.className="star";
-
-
-        star.style.left =
-        Math.random()*100+"%";
+        star.style.left = Math.random()*100+"%";
+        star.style.top = Math.random()*100+"%";
 
 
-        star.style.top =
-        Math.random()*100+"%";
-
-
-        const size =
-        Math.random()*3+1;
-
+        const size = Math.random()*3+1;
 
         star.style.width=size+"px";
         star.style.height=size+"px";
 
 
         particles.appendChild(star);
-
 
     }
 
@@ -113,34 +88,30 @@ if(particles){
 
 
 
-
-
-
 /* ==========================================
-   SCROLL REVEAL
+   REVEAL SYSTEM
 ========================================== */
 
 
-const observer =
-new IntersectionObserver(entries=>{
+const observer = new IntersectionObserver(entries=>{
 
 
-entries.forEach(entry=>{
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("active");
+
+        }
+
+    });
 
 
-    if(entry.isIntersecting){
-
-        entry.target.classList.add("active");
-
-    }
+},{threshold:.15});
 
 
-});
 
-
-});
-
-
+function revealElements(){
 
 document.querySelectorAll(
 "section,.statCard,.repoCard,.gameCard,.activityCard"
@@ -148,15 +119,17 @@ document.querySelectorAll(
 .forEach(el=>{
 
 
-el.classList.add("reveal");
+    el.classList.add("reveal");
 
-
-observer.observe(el);
+    observer.observe(el);
 
 
 });
 
+}
 
+
+revealElements();
 
 
 
@@ -167,8 +140,7 @@ observer.observe(el);
 ========================================== */
 
 
-const footer =
-document.querySelector("footer p");
+const footer=document.querySelector("footer p");
 
 
 if(footer){
@@ -183,32 +155,29 @@ footer.textContent =
 
 
 
-
 /* ==========================================
-   COUNTER ANIMATION
+   COUNTERS
 ========================================== */
 
 
 function animateCounter(element,target){
 
 
+    if(!element) return;
+
+
     let current = 0;
 
 
     const increment =
-    Math.max(
-        Math.ceil(target / 80),
-        1
-    );
+    Math.max(Math.ceil(target/80),1);
 
 
 
-    const timer =
-    setInterval(()=>{
+    const timer=setInterval(()=>{
 
 
         current += increment;
-
 
 
         if(current >= target){
@@ -218,7 +187,6 @@ function animateCounter(element,target){
             clearInterval(timer);
 
         }
-
 
 
         element.textContent =
@@ -236,10 +204,8 @@ function animateCounter(element,target){
 
 
 
-
-
 /* ==========================================
-   STEAM + GITHUB DATA
+   STEAM + GITHUB
 ========================================== */
 
 
@@ -250,9 +216,7 @@ const workerURL =
 
 fetch(workerURL)
 
-
-.then(response=>response.json())
-
+.then(res=>res.json())
 
 .then(data=>{
 
@@ -261,13 +225,9 @@ console.log("Worker response:",data);
 
 
 
-const player =
-data.profile;
+const player=data.profile;
 
-
-const stats =
-data.stats;
-
+const stats=data.stats || {};
 
 
 
@@ -275,7 +235,7 @@ data.stats;
 if(!player){
 
 console.error(
-"No Steam profile",
+"Missing Steam profile",
 data
 );
 
@@ -287,51 +247,27 @@ return;
 
 
 
-
-
 /* PROFILE */
 
 
-const username =
-document.getElementById("username");
+const username=document.getElementById("username");
 
-
-if(username){
-
-username.textContent =
-player.personaname;
-
-}
+if(username)
+username.textContent=player.personaname;
 
 
 
-const avatar =
-document.getElementById("avatar");
+const avatar=document.getElementById("avatar");
 
-
-if(avatar){
-
-avatar.src =
-player.avatarfull;
-
-}
+if(avatar)
+avatar.src=player.avatarfull;
 
 
 
+const steamButton=document.getElementById("steamButton");
 
-
-const steamButton =
-document.getElementById("steamButton");
-
-
-if(steamButton){
-
-steamButton.href =
-player.profileurl;
-
-}
-
-
+if(steamButton)
+steamButton.href=player.profileurl;
 
 
 
@@ -346,38 +282,26 @@ player.personastate > 0;
 
 
 
-const status =
-document.getElementById("status");
+const status=document.getElementById("status");
 
 
-if(status){
-
+if(status)
 status.textContent =
-online
-?
-"● Online"
-:
-"● Offline";
-
-}
+online ? "● Online" : "● Offline";
 
 
 
 
 
-
-
-/* CURRENT GAME */
+/* GAME */
 
 
 const game =
 player.gameextrainfo || "Not Playing";
 
 
-
 const currentGame =
 document.getElementById("currentGame");
-
 
 
 if(currentGame){
@@ -396,83 +320,37 @@ game
 
 
 
+/* STATS */
 
-/* ==========================================
-   STATS + ANIMATION
-========================================== */
-
-
-
-if(stats){
-
-
-
-const gamesElement =
-document.getElementById("gamesOwned");
-
-
-const friendsElement =
-document.getElementById("friends");
-
-
-const achievementsElement =
-document.getElementById("achievements");
-
-
-
-
-if(gamesElement){
 
 animateCounter(
-gamesElement,
-stats.games
+document.getElementById("gamesOwned"),
+stats.games || 0
 );
 
-}
-
-
-
-if(friendsElement){
 
 animateCounter(
-friendsElement,
-stats.friends
+document.getElementById("friends"),
+stats.friends || 0
 );
 
-}
-
-
-
-if(achievementsElement){
 
 animateCounter(
-achievementsElement,
-stats.achievements
+document.getElementById("achievements"),
+stats.achievements || 0
 );
 
-}
 
 
-
-
-
-const level =
-document.getElementById("steamLevel");
+const level=document.getElementById("steamLevel");
 
 
 if(level){
 
 level.textContent =
-"Steam Level "+stats.level;
+"Steam Level "+(stats.level || 0);
 
 }
-
-
-
-}
-
-
-
 
 
 
@@ -483,21 +361,19 @@ level.textContent =
 ========================================== */
 
 
-
 const recentGames =
 document.getElementById("recentGames");
 
 
 
-if(recentGames && data.recentGames){
-
+if(recentGames){
 
 
 recentGames.innerHTML="";
 
 
 
-data.recentGames.forEach(game=>{
+(data.recentGames || []).forEach(game=>{
 
 
 const hours =
@@ -505,57 +381,25 @@ Math.floor(game.playtime_forever/60);
 
 
 
-const card =
-document.createElement("div");
+const card=document.createElement("div");
+
+
+card.className="gameCard";
 
 
 
-card.className =
-"gameCard";
+card.innerHTML=`
 
-
-
-card.innerHTML = `
-
-
-<img src="
-https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg">
+<img src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg">
 
 
 <div class="gameInfo">
 
+<h3>${game.name}</h3>
 
-<h3>
-${game.name}
-</h3>
-
-
-
-<div class="playtime">
-
-
-<div class="bar">
-
-<div class="fill"
-style="width:${Math.min(hours,100)}%">
-</div>
-
+<p>${hours} hours played</p>
 
 </div>
-
-
-
-<p>
-${hours} hours played
-</p>
-
-
-
-</div>
-
-
-</div>
-
 
 `;
 
@@ -564,7 +408,6 @@ ${hours} hours played
 recentGames.appendChild(card);
 
 
-
 });
 
 
@@ -575,81 +418,52 @@ recentGames.appendChild(card);
 
 
 
-
-
-
 /* ==========================================
-   GITHUB PROJECTS
+   GITHUB
 ========================================== */
 
 
-const repos =
-document.getElementById("repos");
+const repos=document.getElementById("repos");
 
 
 
-if(repos && data.github){
+if(repos){
 
 
 repos.innerHTML="";
 
 
-
-data.github.forEach(repo=>{
-
-
-const card =
-document.createElement("div");
+(data.github || []).forEach(repo=>{
 
 
+const card=document.createElement("div");
 
-card.className =
-"repoCard";
+
+card.className="repoCard";
 
 
 
-card.innerHTML = `
+card.innerHTML=`
 
+<h3>${repo.name}</h3>
 
-<h3>
-${repo.name}
-</h3>
-
-
-
-<p>
-${repo.description}
-</p>
-
+<p>${repo.description}</p>
 
 
 <div class="repoInfo">
 
-<span>
-💻 ${repo.language}
-</span>
+<span>💻 ${repo.language}</span>
 
+<span>⭐ ${repo.stars}</span>
 
-<span>
-⭐ ${repo.stars}
-</span>
-
-
-<span>
-🍴 ${repo.forks}
-</span>
-
+<span>🍴 ${repo.forks}</span>
 
 </div>
 
 
-
 <a href="${repo.url}" target="_blank">
-
 View Repository
-
 </a>
-
 
 `;
 
@@ -658,7 +472,6 @@ View Repository
 repos.appendChild(card);
 
 
-
 });
 
 
@@ -669,11 +482,18 @@ repos.appendChild(card);
 
 
 
+/* Activate animations for new cards */
+
+revealElements();
+
+
+
+
+
 
 /* ==========================================
-   LIVE TIMELINE
+   TIMELINE
 ========================================== */
-
 
 
 const timelineStatus =
@@ -693,51 +513,29 @@ document.getElementById("timelineUpdate");
 
 
 
-
-
-if(timelineStatus){
-
+if(timelineStatus)
 timelineStatus.textContent =
-online
-?
-"Online on Steam"
-:
-"Offline";
+online ? "Online on Steam":"Offline";
 
-}
+
+if(timelineGame)
+timelineGame.textContent=game;
 
 
 
-if(timelineGame){
-
-timelineGame.textContent =
-game;
-
-}
-
-
-
-if(timelineGithub){
-
+if(timelineGithub)
 timelineGithub.textContent =
-data.github.length+
-" repositories";
-
-}
+(data.github || []).length+" repositories";
 
 
 
-if(timelineUpdate){
-
+if(timelineUpdate)
 timelineUpdate.textContent =
 new Date().toLocaleString();
-
-}
 
 
 
 })
-
 
 .catch(error=>{
 
