@@ -1,3 +1,4 @@
+console.log("script.js loaded");
 /* ==========================================
    BUKK1T WEBSITE
    PART 1
