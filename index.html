@@ -1,317 +1,37 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bukk1t | Steam Profile</title>
-
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bukk1t | Steam</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Poppins,sans-serif;
-    background:
-    radial-gradient(circle at top,#2d6fff55,transparent 35%),
-    radial-gradient(circle at bottom right,#00ffcc22,transparent 30%),
-    linear-gradient(135deg,#10131d,#171a21,#0b0d13);
-    color:white;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity:.15;
-    pointer-events:none;
-}
-
-header{
-    padding:70px 20px;
-    text-align:center;
-}
-
-h1{
-    font-family:Orbitron;
-    font-size:64px;
-    background:linear-gradient(90deg,#66c0f4,#00ffb7,#8d7dff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.subtitle{
-    margin-top:15px;
-    color:#b9dfff;
-    font-size:18px;
-}
-
-.button{
-    display:inline-block;
-    margin-top:30px;
-    padding:16px 40px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#66c0f4,#3b8eea);
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-    box-shadow:0 0 25px #66c0f466;
-}
-
-.button:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 0 40px #66c0f4;
-}
-
-.container{
-    width:min(1200px,95%);
-    margin:auto;
-}
-
-/* CARDS */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-    margin:60px 0;
-}
-
-.box{
-    background:rgba(30,35,50,.8);
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(12px);
-    padding:25px;
-    border-radius:18px;
-    transition:.3s;
-}
-
-.box:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 30px #00bfff44;
-}
-
-.box h2{
-    color:#66c0f4;
-    margin-bottom:15px;
-}
-
-/* STEAM CARD */
-
-.steam-card{
-    width:330px;
-    margin:70px auto;
-    perspective:1200px;
-}
-
-.card{
-    position:relative;
-    border-radius:18px;
-    overflow:hidden;
-    background:linear-gradient(145deg,#25364f,#10151f);
-    transition:.4s;
-    transform-style:preserve-3d;
-    border:2px solid #66c0f4;
-    box-shadow:0 0 40px rgba(102,192,244,.25);
-}
-
-.steam-card:hover .card{
-    transform:rotateY(12deg) rotateX(8deg) scale(1.05);
-    box-shadow:0 0 70px #66c0f4;
-}
-
-.banner{
-    height:140px;
-    background:linear-gradient(120deg,#00c3ff,#006eff,#8b5cf6);
-}
-
-.avatar{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    border:5px solid #1b2838;
-    margin:-60px auto 0;
-    display:block;
-    object-fit:cover;
-}
-
-.card-content{
-    padding:20px;
-}
-
-.card-content h2{
-    text-align:center;
-    margin:10px 0;
-    font-family:Orbitron;
-}
-
-.rank{
-    text-align:center;
-    color:#66c0f4;
-    margin-bottom:20px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.stat{
-    background:#111827;
-    border-radius:10px;
-    padding:12px;
-    text-align:center;
-}
-
-.stat span{
-    display:block;
-    color:#66c0f4;
-    font-size:13px;
-}
-
-.stat strong{
-    font-size:20px;
-}
-
-.glow{
-    position:absolute;
-    width:200px;
-    height:200px;
-    background:#66c0f455;
-    filter:blur(70px);
-    top:-70px;
-    right:-70px;
-}
-
-footer{
-    margin:70px 0 25px;
-    text-align:center;
-    color:#8fa8bd;
-}
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<h1>BUKK1T</h1>
-
-<p class="subtitle">
-🎮 Steam Gamer • Achievement Hunter • Digital Collector
-</p>
-
-<a class="button"
-href="https://steamcommunity.com/id/Bukk1t/"
-target="_blank">
-Visit My Steam Profile
-</a>
-
-</header>
-
-<div class="container">
-
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0b1020,#171a21,#1b3a6b);color:#fff;overflow-x:hidden}
+.bg,.bg2{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;animation:f 12s ease-in-out infinite}
+.bg{width:300px;height:300px;background:#00c8ff;top:-80px;left:-80px}
+.bg2{width:350px;height:350px;background:#8b5cf6;bottom:-120px;right:-120px;animation-delay:4s}
+@keyframes f{50%{transform:translate(60px,40px) scale(1.2)}}
+header{text-align:center;padding:60px 20px}
+h1{font-size:64px;background:linear-gradient(90deg,#66c0f4,#7cf,#9f7cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn{display:inline-block;padding:14px 28px;background:#66c0f4;color:#111;text-decoration:none;border-radius:12px;font-weight:bold;box-shadow:0 0 20px #66c0f4}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1100px;margin:40px auto;padding:20px}
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;transition:transform .1s linear,box-shadow .2s}
+.card:hover{box-shadow:0 0 30px rgba(102,192,244,.5)}
+h2{color:#66c0f4}
+footer{text-align:center;padding:30px;color:#9bb}
+</style></head><body>
+<div class="bg"></div><div class="bg2"></div>
+<header><h1>BUKK1T</h1><p>Steam Gamer • Achievement Hunter • Collector</p>
+<a class="btn" href="https://steamcommunity.com/id/Bukk1t/" target="_blank">Visit My Steam Profile</a></header>
 <div class="grid">
-
-<div class="box">
-<h2>🎯 About Me</h2>
-<p>
-Welcome! I enjoy grinding achievements, collecting badges, trading items, and finding hidden gems on Steam.
-</p>
+<div class="card"><h2>🎯 About Me</h2><p>I enjoy grinding achievements, collecting badges, trading items and exploring new games.</p></div>
+<div class="card"><h2>🔥 Favorite Games</h2><p>• Counter-Strike 2<br>• Roblox<br>• Fortnite<br>• Whatever I'm grinding next!</p></div>
+<div class="card"><h2>🏆 Steam Goals</h2><p>⭐ Reach higher Steam level<br>⭐ Grow my game library<br>⭐ Collect rare badges<br>⭐ Complete more achievements</p></div>
 </div>
-
-<div class="box">
-<h2>🔥 Currently Playing</h2>
-<p>
-• Counter-Strike 2<br>
-• Elden Ring<br>
-• Terraria<br>
-• Whatever gets me hooked next.
-</p>
-</div>
-
-<div class="box">
-<h2>🏆 Goals</h2>
-<p>
-✔ 100% Achievements<br>
-✔ Level Up Steam<br>
-✔ Rare Item Collection<br>
-✔ Trading Cards
-</p>
-</div>
-
-<div class="box">
-<h2>💻 Gaming Setup</h2>
-<p>
-Customize this with your PC specs, peripherals and favorite hardware.
-</p>
-</div>
-
-</div>
-
-<div class="steam-card">
-
-<div class="card">
-
-<div class="glow"></div>
-
-<div class="banner"></div>
-
-<img class="avatar"
-src="https://avatars.githubusercontent.com/u/9919?v=4">
-
-<div class="card-content">
-
-<h2>Bukk1t</h2>
-
-<p class="rank">★ Steam Collector ★</p>
-
-<div class="stats">
-
-<div class="stat">
-<span>Games</span>
-<strong>???</strong>
-</div>
-
-<div class="stat">
-<span>Achievements</span>
-<strong>???</strong>
-</div>
-
-<div class="stat">
-<span>Level</span>
-<strong>???</strong>
-</div>
-
-<div class="stat">
-<span>Badges</span>
-<strong>???</strong>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-Made with ❤️ using GitHub Pages
-</footer>
-
-</body>
-</html>
-```
+<footer>Made with ❤️ using GitHub Pages</footer>
+<script>
+document.querySelectorAll('.card').forEach(c=>{
+ c.addEventListener('mousemove',e=>{
+  const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  const rx=(r.height/2-y)/10,ry=(x-r.width/2)/10;
+  c.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
+ });
+ c.addEventListener('mouseleave',()=>c.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)');
+});
+</script></body></html>
