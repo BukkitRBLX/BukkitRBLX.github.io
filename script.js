@@ -1,15 +1,17 @@
 /* ==========================================
    BUKK1T DASHBOARD SCRIPT
-   REBUILT STABLE VERSION
+   FINAL FIXED VERSION
 ========================================== */
 
 
 const CONFIG = {
 
     WORKER:
-    "https://steam.shantiya1212.workers.dev/"
+    "https://steam.shantiya1212.workers.dev"
 
 };
+
+
 
 
 
@@ -22,14 +24,24 @@ async function api(endpoint){
 
     try{
 
+
+        const url =
+        CONFIG.WORKER.replace(/\/+$/, "")
+        +
+        "/"
+        +
+        endpoint.replace(/^\/+/, "");
+
+
+
         const res =
-        await fetch(
-            CONFIG.WORKER + endpoint
-        );
+        await fetch(url);
+
 
 
         const data =
         await res.json();
+
 
 
         if(!res.ok){
@@ -51,16 +63,23 @@ async function api(endpoint){
     }
     catch(err){
 
+
         console.error(
+            "FETCH ERROR:",
             endpoint,
             err
         );
 
+
         return null;
+
 
     }
 
 }
+
+
+
 
 
 
@@ -72,6 +91,7 @@ async function api(endpoint){
 
 
 function setText(id,value){
+
 
     const el =
     document.getElementById(id);
@@ -90,6 +110,13 @@ function setText(id,value){
 
 
 
+
+
+
+const counters = {};
+
+
+
 function animateNumber(id,target){
 
 
@@ -97,45 +124,57 @@ function animateNumber(id,target){
     document.getElementById(id);
 
 
+
     if(!el)
     return;
+
+
+
+    if(counters[id]){
+
+        clearInterval(
+            counters[id]
+        );
+
+    }
+
 
 
     target =
     Number(target) || 0;
 
 
+
     let current = 0;
 
 
-    const duration = 1200;
 
-    const stepTime = 20;
-
-
-    const steps =
-    duration / stepTime;
-
-
-    const increment =
-    target / steps;
+    const speed =
+    Math.max(
+        1,
+        target / 60
+    );
 
 
 
-    const timer =
+    counters[id] =
     setInterval(()=>{
 
 
-        current += increment;
+        current += speed;
+
 
 
         if(current >= target){
 
             current = target;
 
-            clearInterval(timer);
+            clearInterval(
+                counters[id]
+            );
 
         }
+
 
 
         el.textContent =
@@ -144,10 +183,11 @@ function animateNumber(id,target){
 
 
 
-    },stepTime);
+    },20);
 
 
 }
+
 
 
 
@@ -165,9 +205,7 @@ async function loadSteamProfile(){
 
 
 const data =
-await api(
-"/steam/profile"
-);
+await api("/steam/profile");
 
 
 
@@ -189,10 +227,12 @@ document.getElementById(
 );
 
 
+
 if(avatar)
 
 avatar.src =
-data.avatarfull;
+data.avatarfull || "";
+
 
 
 
@@ -202,10 +242,13 @@ document.getElementById(
 );
 
 
+
 if(button)
 
 button.href =
-data.profileurl;
+data.profileurl ||
+"https://steamcommunity.com";
+
 
 
 
@@ -228,17 +271,17 @@ data.personastate > 0
 
 
 
+
 /* ================================
-   STEAM DATA
+   STEAM STATS
 ================================ */
 
 
 async function loadSteamStats(){
 
+
 const data =
-await api(
-"/steam/stats"
-);
+await api("/steam/stats");
 
 
 if(data)
@@ -248,6 +291,7 @@ animateNumber(
 data.games
 );
 
+
 }
 
 
@@ -256,10 +300,9 @@ data.games
 
 async function loadFriends(){
 
+
 const data =
-await api(
-"/steam/friends"
-);
+await api("/steam/friends");
 
 
 if(data)
@@ -278,10 +321,9 @@ data.friends
 
 async function loadSteamLevel(){
 
+
 const data =
-await api(
-"/steam/level"
-);
+await api("/steam/level");
 
 
 if(data)
@@ -311,10 +353,7 @@ async function loadRecentGames(){
 
 
 const data =
-await api(
-"/steam/recent"
-);
-
+await api("/steam/recent");
 
 
 const box =
@@ -329,7 +368,7 @@ return;
 
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
 
@@ -349,8 +388,7 @@ return;
 
 
 
-games
-.slice(0,6)
+games.slice(0,6)
 .forEach(game=>{
 
 
@@ -368,18 +406,17 @@ card.className =
 
 card.innerHTML = `
 
-<img src="
-https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
 
 
 <h3>
-${game.name}
+${game.name || "Unknown Game"}
 </h3>
 
 
 <p>
 ${Math.floor(
-game.playtime_forever/60
+(game.playtime_forever || 0)/60
 )}
 hours played
 </p>
@@ -406,6 +443,7 @@ cardTilt();
 
 
 
+
 /* ================================
    ACHIEVEMENTS
 ================================ */
@@ -415,9 +453,7 @@ async function loadAchievements(){
 
 
 const data =
-await api(
-"/steam/achievements"
-);
+await api("/steam/achievements");
 
 
 
@@ -428,14 +464,14 @@ return;
 
 animateNumber(
 "achievements",
-data.achievements || 0
+data.achievements
 );
 
 
 
 animateNumber(
 "perfectGames",
-data.perfectGames || 0
+data.perfectGames
 );
 
 
@@ -458,9 +494,7 @@ async function loadGitHubRepos(){
 
 
 const repos =
-await api(
-"/github/repos"
-);
+await api("/github/repos");
 
 
 
@@ -484,7 +518,8 @@ box.innerHTML="";
 
 
 
-repos.forEach(repo=>{
+repos.slice(0,6)
+.forEach(repo=>{
 
 
 const card =
@@ -505,12 +540,24 @@ card.innerHTML = `
 ${repo.name}
 </h3>
 
+
 <p>
 ${repo.description || "No description"}
 </p>
 
+
 <span>
 ⭐ ${repo.stargazers_count}
+</span>
+
+
+<span>
+🍴 ${repo.forks_count}
+</span>
+
+
+<span>
+${repo.language || "Code"}
 </span>
 
 `;
@@ -532,13 +579,14 @@ cardTilt();
 
 
 
+
+
+
 async function loadFeatured(){
 
 
 const repo =
-await api(
-"/github/featured"
-);
+await api("/github/featured");
 
 
 
@@ -553,16 +601,19 @@ repo.name
 );
 
 
+
 setText(
 "featuredRepoDescription",
 repo.description
 );
 
 
+
 animateNumber(
 "featuredStars",
 repo.stargazers_count
 );
+
 
 
 animateNumber(
@@ -582,7 +633,7 @@ repo.forks_count
 
 
 /* ================================
-   3D TILT
+   3D CARD TILT
 ================================ */
 
 
@@ -597,11 +648,12 @@ document
 
 
 card.onmousemove =
-(e)=>{
+e=>{
 
 
 const r =
 card.getBoundingClientRect();
+
 
 
 const x =
@@ -624,7 +676,6 @@ scale(1.04)
 };
 
 
-
 card.onmouseleave =
 ()=>{
 
@@ -637,6 +688,7 @@ card.style.transform="";
 
 
 }
+
 
 
 
@@ -673,12 +725,20 @@ cursor.id =
 "customCursor";
 
 
-document.body.appendChild(
-cursor
-);
+document.body.appendChild(cursor);
 
 
 }
+
+
+
+if(cursor.dataset.active)
+return;
+
+
+
+cursor.dataset.active =
+"true";
 
 
 
@@ -722,35 +782,29 @@ document.getElementById(
 
 
 
-if(!box){
-
-box =
-document.createElement(
-"div"
-);
-
-box.id =
-"particles";
-
-
-document.body.appendChild(
-box
-);
-
-
-}
+if(!box)
+return;
 
 
 
-for(
-let i=0;i<60;i++
-){
+if(box.dataset.created)
+return;
+
+
+
+box.dataset.created =
+"true";
+
+
+
+for(let i=0;i<60;i++){
 
 
 const p =
 document.createElement(
 "span"
 );
+
 
 
 p.className =
@@ -838,6 +892,7 @@ console.log(
 
 
 }
+
 
 
 
