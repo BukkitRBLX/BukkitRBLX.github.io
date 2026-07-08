@@ -1,134 +1,123 @@
-/* =====================================================
-   BUKK1T WEBSITE
-   Premium Steam Dashboard
-===================================================== */
+/* ==========================================
+   BUKK1T DASHBOARD v2
+   CORE STYLES
+========================================== */
 
-/* =====================================================
-   ROOT
-===================================================== */
 
 :root{
 
     --bg:#090d14;
-    --bg2:#101827;
+    --bg2:#111827;
+
+    --card:rgba(255,255,255,.06);
+    --glass:rgba(255,255,255,.08);
+
+    --border:rgba(255,255,255,.12);
 
     --text:#edf4ff;
     --muted:#9db2c8;
 
-    --blue:#66C0F4;
+    --blue:#66c0f4;
     --cyan:#00d4ff;
     --purple:#8b5cf6;
 
-    --glass:rgba(255,255,255,.06);
-    --border:rgba(255,255,255,.10);
-
-    --radius:22px;
+    --green:#58ff8a;
 
     --shadow:
-        0 20px 60px rgba(0,0,0,.45);
+    0 25px 70px rgba(0,0,0,.45);
+
+    --radius:24px;
 
 }
 
-/* =====================================================
-   RESET
-===================================================== */
+
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
 
+
+
 html{
+
     scroll-behavior:smooth;
+
 }
+
+
 
 body{
 
-    font-family:
-        Inter,
-        system-ui,
-        sans-serif;
+    min-height:100vh;
 
-    background:var(--bg);
+    background:
+    radial-gradient(
+        circle at top,
+        #162235,
+        var(--bg)
+    );
 
     color:var(--text);
 
+    font-family:
+    Inter,
+    sans-serif;
+
     overflow-x:hidden;
 
-    min-height:100vh;
+}
 
-    cursor:none;
+
+
+a{
+
+    color:inherit;
 
 }
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
 
-body::before{
 
-    content:"";
+section{
 
-    position:fixed;
+    width:min(1200px,92%);
 
-    left:-350px;
-    top:-350px;
-
-    width:900px;
-    height:900px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle,
-        var(--cyan),
-        transparent 70%);
-
-    opacity:.18;
-
-    filter:blur(120px);
-
-    animation:
-        floatOne 18s ease-in-out infinite;
-
-    z-index:-5;
+    margin:
+    120px auto;
 
 }
 
-body::after{
 
-    content:"";
 
-    position:fixed;
+h2{
 
-    right:-300px;
-    bottom:-300px;
+    font-size:42px;
 
-    width:850px;
-    height:850px;
+    font-weight:800;
 
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle,
-        var(--purple),
-        transparent 70%);
-
-    opacity:.18;
-
-    filter:blur(120px);
-
-    animation:
-        floatTwo 22s ease-in-out infinite;
-
-    z-index:-5;
+    margin-bottom:45px;
 
 }
 
-/* =====================================================
-   EXTRA GRADIENTS
-===================================================== */
+
+
+p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+}
+
+
+
+/* ==========================================
+   BACKGROUND EFFECTS
+========================================== */
+
 
 .gradient{
 
@@ -136,145 +125,69 @@ body::after{
 
     border-radius:50%;
 
-    filter:blur(120px);
+    filter:blur(130px);
 
-    pointer-events:none;
+    opacity:.2;
 
-    opacity:.18;
-
-    z-index:-4;
+    z-index:-2;
 
 }
+
+
 
 .gradient-one{
 
-    width:500px;
-    height:500px;
+    width:600px;
 
-    background:var(--cyan);
+    height:600px;
 
-    top:20%;
-    left:40%;
+    background:
+    var(--cyan);
 
-    animation:
-        floatThree 20s ease-in-out infinite;
+    top:-200px;
+
+    left:-200px;
 
 }
+
+
 
 .gradient-two{
 
-    width:420px;
-    height:420px;
+    width:600px;
 
-    background:var(--blue);
-
-    right:30%;
-    bottom:10%;
-
-    animation:
-        floatFour 16s ease-in-out infinite;
-
-}
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-#particles{
-
-    position:fixed;
-
-    inset:0;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:-3;
-
-}
-
-.star{
-
-    position:absolute;
-
-    border-radius:50%;
-
-    background:white;
-
-    opacity:.55;
-
-    animation:
-        twinkle 5s ease-in-out infinite;
-
-} 
-/* =====================================================
-   CUSTOM CURSOR
-===================================================== */
-
-#cursor{
-
-    position:fixed;
-
-    width:10px;
-    height:10px;
-
-    border-radius:50%;
-
-    background:var(--cyan);
-
-    pointer-events:none;
-
-    transform:translate(-50%,-50%);
-
-    z-index:9999;
-
-    box-shadow:
-        0 0 18px var(--cyan),
-        0 0 40px var(--cyan);
-
-}
-
-#cursorBlur{
-
-    position:fixed;
-
-    width:260px;
-    height:260px;
-
-    border-radius:50%;
-
-    transform:translate(-50%,-50%);
-
-    pointer-events:none;
+    height:600px;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(102,192,244,.18),
-            transparent 70%
-        );
+    var(--purple);
 
-    filter:blur(25px);
+    right:-200px;
 
-    z-index:-1;
+    bottom:-200px;
 
 }
 
-/* =====================================================
+
+
+/* ==========================================
    NAVBAR
-===================================================== */
+========================================== */
+
 
 nav{
 
     position:fixed;
 
     top:20px;
+
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+    translateX(-50%);
 
-    width:min(1150px,92%);
+
+    width:min(1100px,92%);
+
 
     display:flex;
 
@@ -282,60 +195,74 @@ nav{
 
     align-items:center;
 
-    padding:18px 30px;
+
+    padding:
+    18px 30px;
+
 
     background:
-        rgba(15,23,36,.72);
+    rgba(15,23,42,.65);
 
-    backdrop-filter:blur(20px);
+
+    backdrop-filter:
+    blur(20px);
+
 
     border:
-        1px solid var(--border);
+    1px solid var(--border);
 
-    border-radius:18px;
 
-    box-shadow:var(--shadow);
+    border-radius:20px;
 
-    z-index:1000;
+
+    z-index:100;
+
+    box-shadow:
+    var(--shadow);
 
 }
+
+
 
 .logo{
 
     font-size:28px;
 
-    font-weight:800;
+    font-weight:900;
 
-    letter-spacing:2px;
+    letter-spacing:3px;
+
 
     background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            var(--blue),
-            var(--purple)
-        );
+    linear-gradient(
+        90deg,
+        white,
+        var(--blue),
+        var(--purple)
+    );
+
 
     -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+
+    color:transparent;
 
 }
+
+
 
 nav ul{
 
     display:flex;
 
-    align-items:center;
-
-    gap:30px;
+    gap:25px;
 
     list-style:none;
 
 }
 
-nav a{
 
-    position:relative;
+
+nav a{
 
     text-decoration:none;
 
@@ -346,6 +273,8 @@ nav a{
     transition:.3s;
 
 }
+
+
 
 nav a:hover{
 
@@ -353,999 +282,1766 @@ nav a:hover{
 
 }
 
-nav a::after{
 
-    content:"";
 
-    position:absolute;
+/* ==========================================
+   HERO
+========================================== */
 
-    left:0;
-    bottom:-7px;
-
-    width:0;
-    height:2px;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--cyan)
-        );
-
-    transition:.3s;
-
-}
-
-nav a:hover::after{
-
-    width:100%;
-
-}
-
-/* =====================================================
-   NAVBAR SCROLL EFFECT
-===================================================== */
-
-nav.scrolled{
-
-    background:
-        rgba(10,16,25,.88);
-
-    border-color:
-        rgba(102,192,244,.25);
-
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.55);
-
-} 
-/* =====================================================
-   HERO SECTION
-===================================================== */
 
 #hero{
 
     min-height:100vh;
 
-    width:min(1200px,92%);
-
-    margin:0 auto;
-
-    padding:140px 0 80px;
-
-    display:grid;
-
-    grid-template-columns:320px 1fr;
+    display:flex;
 
     align-items:center;
-
-    gap:70px;
-
-}
-
-/* =====================================================
-   HERO LEFT
-===================================================== */
-
-.heroLeft{
-
-    display:flex;
 
     justify-content:center;
 
-    align-items:center;
+    gap:80px;
+
+    padding-top:120px;
 
 }
+
+
+
+.avatarWrapper{
+
+    position:relative;
+
+}
+
+
 
 #avatar{
 
-    width:240px;
-    height:240px;
+    width:230px;
+
+    height:230px;
+
+    border-radius:35px;
 
     object-fit:cover;
 
-    border-radius:28px;
 
-    border:4px solid rgba(255,255,255,.08);
+    border:
+    3px solid rgba(255,255,255,.1);
 
-    box-shadow:
-
-        0 0 50px rgba(102,192,244,.35),
-
-        0 25px 70px rgba(0,0,0,.55);
-
-    transition:
-        transform .35s,
-        box-shadow .35s;
-
-}
-
-#avatar:hover{
-
-    transform:
-        rotate(-2deg)
-        scale(1.04);
 
     box-shadow:
 
-        0 0 70px rgba(102,192,244,.45),
+    0 0 50px
+    rgba(102,192,244,.35);
 
-        0 30px 80px rgba(0,0,0,.6);
 
 }
 
-/* =====================================================
-   HERO RIGHT
-===================================================== */
+
 
 .heroRight{
 
-    max-width:700px;
+    max-width:650px;
 
 }
+
+
 
 .heroRight h1{
 
-    font-size:72px;
+    font-size:70px;
 
-    line-height:1;
+    font-weight:900;
 
-    font-weight:800;
+    margin:20px 0;
 
-    margin-bottom:18px;
-
-}
-
-.heroRight h1 span{
 
     background:
 
-        linear-gradient(
+    linear-gradient(
+        90deg,
+        white,
+        var(--blue),
+        var(--purple)
+    );
 
-            90deg,
-
-            #ffffff,
-
-            var(--blue),
-
-            var(--purple)
-
-        );
 
     -webkit-background-clip:text;
 
-    -webkit-text-fill-color:transparent;
+    color:transparent;
 
 }
 
-#status{
+
+
+.heroSubtitle{
+
+    font-size:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* ==========================================
+   BADGES
+========================================== */
+
+
+.badge{
 
     display:inline-flex;
 
-    align-items:center;
+    padding:
+    9px 16px;
 
-    gap:10px;
-
-    padding:10px 18px;
 
     border-radius:999px;
 
-    background:rgba(255,255,255,.05);
 
-    border:1px solid rgba(255,255,255,.08);
+    background:
+    rgba(255,255,255,.06);
 
-    margin-bottom:22px;
+
+    border:
+    1px solid var(--border);
+
+
+    color:var(--muted);
 
     font-weight:600;
 
 }
 
-#currentGame{
 
-    font-size:30px;
 
-    font-weight:700;
-
-    color:var(--blue);
-
-    margin-bottom:12px;
-
-}
-
-#steamLevel{
-
-    color:var(--muted);
-
-    font-size:20px;
-
-    margin-bottom:30px;
-
-}
-
-.heroRight p{
-
-    color:var(--muted);
-
-    line-height:1.8;
-
-    font-size:18px;
-
-    margin-bottom:35px;
-
-}
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.buttons{
+.heroBadges{
 
     display:flex;
 
     flex-wrap:wrap;
 
-    gap:18px;
+    gap:10px;
 
-}
-
-.buttons a{
-
-    position:relative;
-
-    overflow:hidden;
-
-    padding:16px 30px;
-
-    border-radius:14px;
-
-    text-decoration:none;
-
-    font-weight:700;
-
-    transition:
-        transform .3s,
-        box-shadow .3s;
-
-}
-
-.buttons a:first-child{
-
-    color:#08111b;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--blue),
-            var(--cyan)
-        );
-
-}
-
-.buttons a:last-child{
-
-    color:white;
-
-    background:
-
-        rgba(255,255,255,.05);
-
-    border:
-
-        1px solid rgba(255,255,255,.10);
-
-}
-
-.buttons a::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:-120%;
-
-    width:100%;
-    height:100%;
-
-    background:
-
-        linear-gradient(
-
-            90deg,
-
-            transparent,
-
-            rgba(255,255,255,.25),
-
-            transparent
-
-        );
-
-    transition:.6s;
-
-}
-
-.buttons a:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:
-
-        0 15px 40px rgba(102,192,244,.30);
-
-}
-
-.buttons a:hover::before{
-
-    left:130%;
+    margin:25px 0;
 
 } 
-/* =====================================================
-   SHARED SECTIONS
-===================================================== */
+/* ==========================================
+   HERO MINI CARDS
+========================================== */
 
-section{
 
-    width:min(1200px,92%);
+.heroCards{
 
-    margin:120px auto;
+    display:flex;
 
-}
+    gap:20px;
 
-section h2{
-
-    display:inline-block;
-
-    position:relative;
-
-    margin-bottom:50px;
-
-    font-size:42px;
-
-    font-weight:800;
+    margin:25px 0;
 
 }
 
-section h2::after{
 
-    content:"";
 
-    position:absolute;
+.miniCard{
 
-    left:0;
-    bottom:-12px;
+    flex:1;
 
-    width:80px;
-    height:4px;
+    padding:22px;
 
-    border-radius:999px;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple)
-        );
+    rgba(255,255,255,.06);
 
-    box-shadow:
-        0 0 18px var(--blue);
 
-}
+    border:
+    1px solid var(--border);
 
-/* =====================================================
-   SHARED GLASS CARD
-===================================================== */
 
-.statCard,
-.repoCard,
-.activityCard,
-.gameCard{
+    border-radius:20px;
 
-    position:relative;
 
-    overflow:hidden;
+    backdrop-filter:
+    blur(15px);
 
-    background:var(--glass);
-
-    border:1px solid var(--border);
-
-    border-radius:var(--radius);
-
-    backdrop-filter:blur(18px);
-
-    transition:
-        transform .35s,
-        box-shadow .35s,
-        border-color .35s;
-
-    box-shadow:var(--shadow);
-
-}
-
-/* Hover */
-
-.statCard:hover,
-.repoCard:hover,
-.activityCard:hover,
-.gameCard:hover{
-
-    transform:
-        translateY(-10px);
-
-    border-color:
-        rgba(102,192,244,.35);
-
-    box-shadow:
-
-        0 30px 70px rgba(0,0,0,.45),
-
-        0 0 45px rgba(102,192,244,.18);
-
-}
-
-/* Animated gradient border */
-
-.statCard::before,
-.repoCard::before,
-.activityCard::before,
-.gameCard::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-1px;
-
-    border-radius:inherit;
-
-    padding:1px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--blue),
-            var(--purple),
-            var(--cyan)
-        );
-
-    mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-
-    mask-composite:exclude;
-
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-
-    -webkit-mask-composite:xor;
-
-    opacity:0;
 
     transition:.35s;
 
 }
 
-.statCard:hover::before,
-.repoCard:hover::before,
-.activityCard:hover::before,
-.gameCard:hover::before{
 
-    opacity:1;
+
+.miniCard:hover{
+
+    transform:
+    translateY(-8px);
+
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.35);
 
 }
 
-/* Shine animation */
 
-.statCard::after,
-.repoCard::after,
-.activityCard::after,
-.gameCard::after{
 
-    content:"";
+.miniTitle{
 
-    position:absolute;
+    display:block;
 
-    top:-120%;
-    left:-40%;
+    font-size:12px;
 
-    width:40%;
-    height:300%;
+    color:var(--muted);
 
-    transform:rotate(25deg);
+    letter-spacing:1px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.miniCard strong{
+
+    font-size:22px;
+
+}
+
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+
+.statusBadge{
+
+    display:inline-flex;
+
+    padding:
+    10px 18px;
+
+
+    border-radius:999px;
+
+
+    background:
+    rgba(88,255,138,.1);
+
+
+    border:
+    1px solid rgba(88,255,138,.3);
+
+
+    color:var(--green);
+
+    font-weight:700;
+
+}
+
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+
+.buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+
+.buttons a,
+.primaryButton{
+
+    padding:
+    15px 28px;
+
+
+    border-radius:15px;
+
+
+    text-decoration:none;
+
+
+    font-weight:800;
+
 
     background:
 
-        linear-gradient(
+    linear-gradient(
+        135deg,
+        var(--blue),
+        var(--cyan)
+    );
 
-            90deg,
 
-            transparent,
+    color:#07111c;
 
-            rgba(255,255,255,.15),
 
-            transparent
-
-        );
-
-    transition:.8s;
+    transition:.3s;
 
 }
 
-.statCard:hover::after,
-.repoCard:hover::after,
-.activityCard:hover::after,
-.gameCard:hover::after{
 
-    left:170%;
+
+.buttons a:hover,
+.primaryButton:hover{
+
+    transform:
+    translateY(-5px);
+
+
+    box-shadow:
+
+    0 20px 40px
+    rgba(102,192,244,.35);
 
 }
 
-/* =====================================================
-   STATS
-===================================================== */
+
+
+/* ==========================================
+   FEATURED PROJECT
+========================================== */
+
+
+.featuredProject{
+
+    display:grid;
+
+    grid-template-columns:
+    1.2fr .8fr;
+
+
+    gap:30px;
+
+
+    padding:40px;
+
+
+    background:
+
+    rgba(255,255,255,.05);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:30px;
+
+
+    backdrop-filter:
+    blur(20px);
+
+}
+
+
+
+.featuredBadge{
+
+    display:inline-block;
+
+    padding:
+    8px 16px;
+
+
+    border-radius:999px;
+
+
+    background:
+    rgba(139,92,246,.2);
+
+
+    color:
+    #c4b5fd;
+
+
+    margin-bottom:20px;
+
+}
+
+
+
+.featuredLeft h3{
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.featuredStats{
+
+    display:flex;
+
+    gap:20px;
+
+    margin:30px 0;
+
+}
+
+
+
+.featuredStat{
+
+    padding:
+    20px;
+
+
+    border-radius:20px;
+
+
+    background:
+    rgba(255,255,255,.05);
+
+
+    text-align:center;
+
+}
+
+
+
+.featuredStat strong{
+
+    display:block;
+
+    font-size:26px;
+
+}
+
+
+
+.featuredStat small{
+
+    color:var(--muted);
+
+}
+
+
+
+.featuredRight{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+.featureCard{
+
+    padding:25px;
+
+
+    border-radius:22px;
+
+
+    background:
+    rgba(255,255,255,.06);
+
+
+    border:
+    1px solid var(--border);
+
+
+    transition:.3s;
+
+}
+
+
+
+.featureCard:hover{
+
+    transform:
+    translateY(-6px);
+
+}
+
+
+
+/* ==========================================
+   STEAM STATS
+========================================== */
+
 
 .statsGrid{
 
     display:grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(220px,1fr));
+    repeat(4,1fr);
+
 
     gap:25px;
 
 }
 
+
+
 .statCard{
 
-    padding:35px;
+    padding:30px;
+
 
     text-align:center;
 
+
+    border-radius:25px;
+
+
+    background:
+    rgba(255,255,255,.06);
+
+
+    border:
+    1px solid var(--border);
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    transition:.35s;
+
 }
+
+
+
+.statCard:hover{
+
+    transform:
+    translateY(-10px);
+
+
+    box-shadow:
+
+    0 20px 60px
+    rgba(102,192,244,.2);
+
+}
+
+
+
+.statIcon{
+
+    font-size:35px;
+
+    margin-bottom:15px;
+
+}
+
+
 
 .number{
 
     display:block;
 
-    margin-bottom:12px;
+    font-size:55px;
 
-    font-size:58px;
+    font-weight:900;
 
-    font-weight:800;
 
     background:
 
-        linear-gradient(
-            90deg,
-            white,
-            var(--blue)
-        );
+    linear-gradient(
+        90deg,
+        white,
+        var(--blue)
+    );
+
 
     -webkit-background-clip:text;
 
-    -webkit-text-fill-color:transparent;
+    color:transparent;
 
 }
+
+
 
 .label{
 
     color:var(--muted);
 
-    font-size:16px;
+}
 
-    letter-spacing:.5px;
 
-} 
-/* =====================================================
-   RECENT GAMES
-===================================================== */
 
-#recentGames{
+/* ==========================================
+   ACHIEVEMENTS
+========================================== */
+
+
+#achievementGrid{
 
     display:grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(320px,1fr));
+    repeat(auto-fit,minmax(260px,1fr));
+
+
+    gap:20px;
+
+}
+
+
+
+.achievementCard{
+
+    display:flex;
+
+    gap:20px;
+
+
+    padding:25px;
+
+
+    border-radius:22px;
+
+
+    background:
+    rgba(255,255,255,.06);
+
+
+    border:
+    1px solid var(--border);
+
+
+    transition:.3s;
+
+}
+
+
+
+.achievementCard:hover{
+
+    transform:
+    translateY(-8px);
+
+}
+
+
+
+.achievementIcon{
+
+    width:60px;
+
+    height:60px;
+
+
+    border-radius:18px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--blue),
+        var(--purple)
+    );
+
+}
+
+
+
+.achievementContent h3{
+
+    margin-bottom:8px;
+
+} 
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+
+.sectionHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.sectionSubtitle{
+
+    color:var(--muted);
+
+    margin-top:-30px;
+
+}
+
+
+
+/* ==========================================
+   RECENT GAMES
+========================================== */
+
+
+.gameGrid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(320px,1fr));
+
 
     gap:25px;
 
 }
+
+
 
 .gameCard{
 
     display:flex;
 
-    gap:18px;
+    gap:20px;
 
     align-items:center;
 
-    padding:20px;
 
-}
+    padding:25px;
 
-.gameCard img{
 
-    width:170px;
+    border-radius:25px;
 
-    height:80px;
 
-    object-fit:cover;
+    background:
 
-    border-radius:14px;
+    rgba(255,255,255,.06);
 
-    flex-shrink:0;
 
-    transition:
-        transform .35s,
-        filter .35s;
+    border:
 
-}
+    1px solid var(--border);
 
-.gameCard:hover img{
 
-    transform:scale(1.05);
+    backdrop-filter:
 
-    filter:brightness(1.08);
+    blur(15px);
 
-}
 
-.gameInfo{
+    transition:.35s;
 
-    flex:1;
 
-}
-
-.gameInfo h3{
-
-    font-size:20px;
-
-    margin-bottom:10px;
-
-    font-weight:700;
-
-}
-
-.playtime{
-
-    margin-top:10px;
-
-}
-
-.bar{
-
-    height:8px;
-
-    border-radius:999px;
+    position:relative;
 
     overflow:hidden;
 
-    background:
-        rgba(255,255,255,.10);
+}
+
+
+
+.gameCard:hover{
+
+    transform:
+
+    translateY(-10px);
+
+
+    box-shadow:
+
+    0 25px 60px
+    rgba(102,192,244,.25);
+
+}
+
+
+
+.gameCard img{
+
+    width:150px;
+
+    height:75px;
+
+
+    object-fit:cover;
+
+
+    border-radius:14px;
+
+}
+
+
+
+.gameInfo h3{
+
+    font-size:22px;
 
     margin-bottom:10px;
 
 }
+
+
+
+.gameInfo p{
+
+    font-size:14px;
+
+}
+
+
+
+.playtime{
+
+    margin-top:15px;
+
+}
+
+
+
+.bar{
+
+    width:100%;
+
+    height:7px;
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+    border-radius:20px;
+
+
+    overflow:hidden;
+
+}
+
+
 
 .fill{
 
     height:100%;
 
-    border-radius:999px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple),
-            var(--cyan)
-        );
-
-}
-
-.playtime p{
-
-    font-size:14px;
-
-    color:var(--muted);
-
-}
-
-.emptyMessage{
-
-    text-align:center;
-
-    color:var(--muted);
-
-    padding:40px;
 
     border-radius:20px;
 
-    background:var(--glass);
 
-    border:1px solid var(--border);
+    background:
 
-} 
-/* =====================================================
+    linear-gradient(
+        90deg,
+        var(--blue),
+        var(--purple)
+    );
+
+}
+
+
+
+/* ==========================================
    GITHUB REPOSITORIES
-===================================================== */
+========================================== */
 
-#repos{
+
+.repoGrid{
 
     display:grid;
 
+
     grid-template-columns:
-        repeat(auto-fit,minmax(320px,1fr));
+
+    repeat(auto-fit,minmax(280px,1fr));
+
 
     gap:25px;
 
 }
 
+
+
 .repoCard{
 
-    padding:24px;
+    padding:30px;
+
+
+    border-radius:25px;
+
+
+    background:
+
+    rgba(255,255,255,.06);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+    transition:.35s;
+
+
+    position:relative;
+
+    overflow:hidden;
 
 }
+
+
+
+.repoCard:hover{
+
+    transform:
+
+    translateY(-10px);
+
+
+    box-shadow:
+
+    0 25px 60px
+    rgba(139,92,246,.3);
+
+}
+
+
 
 .repoCard h3{
 
-    font-size:22px;
+    font-size:25px;
 
-    margin-bottom:12px;
+    margin-bottom:15px;
+
 
     color:var(--blue);
 
-    font-weight:700;
-
 }
+
+
 
 .repoCard p{
 
-    color:var(--muted);
-
-    line-height:1.7;
-
-    min-height:52px;
-
-    margin-bottom:20px;
+    min-height:60px;
 
 }
+
+
 
 .repoInfo{
 
     display:flex;
 
+    gap:12px;
+
     flex-wrap:wrap;
 
-    gap:10px;
 
-    margin-bottom:20px;
+    margin-top:20px;
 
 }
+
+
 
 .repoInfo span{
 
-    padding:8px 14px;
+    padding:
 
-    border-radius:999px;
+    7px 14px;
 
-    background:rgba(102,192,244,.12);
-
-    border:1px solid rgba(102,192,244,.20);
-
-    color:var(--text);
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.repoCard a{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-weight:700;
-
-    color:#08111b;
 
     background:
 
-        linear-gradient(
-            135deg,
-            var(--blue),
-            var(--cyan)
-        );
+    rgba(102,192,244,.15);
 
-    transition:
-        transform .25s,
-        box-shadow .25s;
+
+    border-radius:999px;
+
+
+    font-size:13px;
 
 }
 
-.repoCard a:hover{
 
-    transform:translateY(-2px);
 
-    box-shadow:
-        0 10px 25px rgba(102,192,244,.35);
+.repoCard a{
 
-} 
-/* =====================================================
-   FINAL POLISH
-===================================================== */
+    display:inline-block;
 
-/* Smooth floating cards */
 
-.statCard,
-.gameCard,
-.repoCard,
+    margin-top:25px;
+
+
+    padding:
+
+    12px 20px;
+
+
+    border-radius:14px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--blue),
+        var(--purple)
+    );
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-weight:700;
+
+}
+
+
+
+/* ==========================================
+   LIVE ACTIVITY
+========================================== */
+
+
+#timeline{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
 .activityCard{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+
+    padding:25px;
+
+
+    border-radius:22px;
+
+
+    background:
+
+    rgba(255,255,255,.06);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    transition:.35s;
+
+}
+
+
+
+.activityCard:hover{
+
+    transform:
+
+    translateX(10px);
+
+
+    box-shadow:
+
+    0 20px 50px
+    rgba(0,0,0,.3);
+
+}
+
+
+
+.activityIcon{
+
+    width:60px;
+
+    height:60px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    font-size:30px;
+
+
+    border-radius:18px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+}
+
+
+
+.activityContent h3{
+
+    margin-bottom:8px;
+
+}
+
+
+
+.activityContent p{
+
+    margin:0;
+
+}
+
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+
+footer{
+
+    margin-top:150px;
+
+
+    padding:80px 20px;
+
+
+    text-align:center;
+
+
+    border-top:
+
+    1px solid var(--border);
+
+
+    background:
+
+    rgba(255,255,255,.03);
+
+}
+
+
+
+footer h3{
+
+    font-size:40px;
+
+
+    font-weight:900;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        white,
+        var(--blue),
+        var(--purple)
+    );
+
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+
+    margin-bottom:15px;
+
+}
+
+
+
+/* ==========================================
+   LOADING SKELETONS
+========================================== */
+
+
+.loading{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.loading::after{
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.12),
+
+        transparent
+
+    );
+
+
+    transform:translateX(-100%);
+
+
     animation:
-        floatCard 8s ease-in-out infinite;
+
+    loading 1.5s infinite;
 
 }
 
-.statCard:nth-child(2),
-.gameCard:nth-child(2),
-.repoCard:nth-child(2){
 
-    animation-delay:1s;
 
-}
-
-.statCard:nth-child(3),
-.gameCard:nth-child(3),
-.repoCard:nth-child(3){
-
-    animation-delay:2s;
-
-}
-
-.statCard:nth-child(4){
-
-    animation-delay:3s;
-
-}
-
-@keyframes floatCard{
-
-    0%{
-
-        transform:translateY(0px);
-
-    }
-
-    50%{
-
-        transform:translateY(-6px);
-
-    }
+@keyframes loading{
 
     100%{
 
-        transform:translateY(0px);
+        transform:translateX(100%);
 
     }
 
-}
+} 
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
 
 
-/* Better section spacing */
+.reveal{
 
-section{
+    opacity:0;
 
-    scroll-margin-top:120px;
+    transform:
 
-}
+    translateY(40px);
 
-
-/* Better image rendering */
-
-img{
-
-    image-rendering:auto;
-
-}
-
-
-/* Nice fade for page */
-
-body{
-
-    animation:
-        pageFade .8s ease;
-
-}
-
-@keyframes pageFade{
-
-    from{
-
-        opacity:0;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
-
-
-/* Better text selection */
-
-::selection{
-
-    background:var(--blue);
-
-    color:#08111b;
-
-}
-
-
-/* Better transitions */
-
-*{
 
     transition:
 
-        background-color .25s,
+    opacity .8s ease,
 
-        border-color .25s,
-
-        color .25s;
+    transform .8s ease;
 
 }
 
 
-/* Hide ugly outline except keyboard users */
 
-:focus:not(:focus-visible){
+.reveal.active{
 
-    outline:none;
-
-}
+    opacity:1;
 
 
-/* Better buttons */
+    transform:
 
-.buttons a,
-.repoCard a{
-
-    will-change:transform;
+    translateY(0);
 
 }
 
 
-/* Better glass blur on supported browsers */
 
-@supports(backdrop-filter:blur(20px)){
+/* ==========================================
+   FLOATING ELEMENTS
+========================================== */
 
-    .statCard,
-    .repoCard,
-    .gameCard,
-    .activityCard{
 
-        backdrop-filter:blur(20px);
+.float{
+
+    animation:
+
+    floating 6s ease-in-out infinite;
+
+}
+
+
+
+@keyframes floating{
+
+
+    0%{
+
+        transform:
+
+        translateY(0);
 
     }
+
+
+    50%{
+
+        transform:
+
+        translateY(-15px);
+
+    }
+
+
+    100%{
+
+        transform:
+
+        translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+
+    pointer-events:none;
+
+
+    overflow:hidden;
+
+
+    z-index:-2;
+
+}
+
+
+
+.star{
+
+    position:absolute;
+
+
+    width:3px;
+
+    height:3px;
+
+
+    background:white;
+
+
+    border-radius:50%;
+
+
+    opacity:.5;
+
+
+    animation:
+
+    twinkle 4s infinite;
+
+}
+
+
+
+@keyframes twinkle{
+
+
+    50%{
+
+        opacity:1;
+
+        transform:
+
+        scale(2);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   CURSOR EFFECT
+========================================== */
+
+
+#cursor{
+
+    width:12px;
+
+    height:12px;
+
+
+    position:fixed;
+
+
+    background:
+
+    var(--cyan);
+
+
+    border-radius:50%;
+
+
+    pointer-events:none;
+
+
+    z-index:9999;
+
+
+    box-shadow:
+
+    0 0 25px var(--cyan),
+
+    0 0 60px var(--cyan);
+
+}
+
+
+
+#cursorBlur{
+
+    width:260px;
+
+    height:260px;
+
+
+    position:fixed;
+
+
+    border-radius:50%;
+
+
+    pointer-events:none;
+
+
+    background:
+
+    radial-gradient(
+
+    circle,
+
+    rgba(0,212,255,.2),
+
+    transparent 70%
+
+    );
+
+
+    filter:
+
+    blur(20px);
+
+
+    z-index:-1;
+
+}
+
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+    background:
+
+    #080c12;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+    background:
+
+    linear-gradient(
+
+    var(--blue),
+
+    var(--purple)
+
+    );
+
+
+    border-radius:20px;
+
+}
+
+
+
+/* ==========================================
+   LINKS
+========================================== */
+
+
+a{
+
+    transition:.3s;
+
+}
+
+
+
+a:hover{
+
+    filter:
+
+    brightness(1.15);
+
+}
+
+
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+
+::selection{
+
+    background:
+
+    var(--blue);
+
+
+    color:#06111d;
+
+}
+
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+
+@media(max-width:1000px){
+
+
+    #hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+
+    .heroRight{
+
+        max-width:700px;
+
+    }
+
+
+
+    .featuredProject{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .statsGrid{
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+
+    }
+
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+    nav{
+
+        width:94%;
+
+
+        padding:15px;
+
+
+    }
+
+
+
+    nav ul{
+
+        gap:12px;
+
+
+        flex-wrap:wrap;
+
+
+        justify-content:center;
+
+    }
+
+
+
+    #hero{
+
+        padding-top:160px;
+
+    }
+
+
+
+    #avatar{
+
+        width:160px;
+
+        height:160px;
+
+    }
+
+
+
+    .heroCards{
+
+        flex-direction:column;
+
+    }
+
+
+
+    .buttons{
+
+        flex-direction:column;
+
+    }
+
+
+
+    .buttons a{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+
+
+    .statsGrid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .featuredProject{
+
+        padding:25px;
+
+    }
+
+
+
+    .featuredStats{
+
+        flex-direction:column;
+
+    }
+
+
+
+    .gameCard{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+
+    .gameCard img{
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+
+
+}
+
+
+
+/* ==========================================
+   REDUCED MOTION SUPPORT
+========================================== */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+    *{
+
+        animation:none!important;
+
+        transition:none!important;
+
+    }
+
 
 } 
