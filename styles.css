@@ -504,7 +504,24 @@ LOADING SCREEN
         );
 
     animation:
-        loaderProgress 1.4s ease forwards;
+        loadingProgress 1.4s ease forwards;
+
+}
+
+
+@keyframes loadingProgress {
+
+    from {
+
+        width:0%;
+
+    }
+
+    to {
+
+        width:100%;
+
+    }
 
 }
 
