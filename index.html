@@ -2,49 +2,122 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bukk1t | Live Dashboard</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Live Steam and GitHub dashboard of Bukk1t">
+    <title>BUKK1T • Steam & GitHub Dashboard</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="description"
+        content="Live Steam profile, GitHub repositories, gaming statistics and developer portfolio of BUKK1T.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta
+        name="theme-color"
+        content="#090d14">
 
-    <link rel="stylesheet" href="styles.css">
+    <meta
+        property="og:title"
+        content="BUKK1T Dashboard">
+
+    <meta
+        property="og:description"
+        content="Live Steam & GitHub dashboard.">
+
+    <meta
+        property="og:type"
+        content="website">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="styles.css">
+
 </head>
 
 <body>
 
-    <!-- Background -->
+    <!-- Animated Background -->
+
     <div id="particles"></div>
+
     <div id="cursor"></div>
+
     <div id="cursorBlur"></div>
 
+    <div class="gradient gradient-one"></div>
+
+    <div class="gradient gradient-two"></div>
+
     <!-- Navigation -->
+
     <nav>
 
         <div class="logo">
+
             BUKK1T
+
         </div>
 
         <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#stats">Stats</a></li>
-            <li><a href="#games">Games</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#activity">Activity</a></li>
+
+            <li>
+                <a href="#hero">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#featured">
+                    Featured
+                </a>
+            </li>
+
+            <li>
+                <a href="#stats">
+                    Steam
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects">
+                    GitHub
+                </a>
+            </li>
+
+            <li>
+                <a href="#activity">
+                    Activity
+                </a>
+            </li>
+
         </ul>
 
     </nav>
+    <!-- ==========================================
+     HERO
+========================================== -->
 
-    <!-- Hero -->
-    <section id="hero">
+<section id="hero">
 
-        <div class="heroLeft">
+    <div class="heroLeft">
+
+        <div class="avatarWrapper">
 
             <img
                 id="avatar"
@@ -52,161 +125,703 @@
                 alt="Steam Avatar"
                 loading="lazy">
 
+            <div class="avatarGlow"></div>
+
         </div>
 
-        <div class="heroRight">
+    </div>
 
-            <h1 id="username">
-                Loading...
-            </h1>
+    <div class="heroRight">
 
-            <div id="status">
-                ● Loading...
+        <span class="badge fade">
+
+            👋 Welcome
+
+        </span>
+
+        <h1 id="username">
+
+            Loading...
+
+        </h1>
+
+        <p class="heroSubtitle">
+
+            Steam Completionist • Open Source Developer • Linux Enthusiast
+
+        </p>
+
+        <div id="status" class="statusBadge">
+
+            ● Loading Steam Status...
+
+        </div>
+
+        <div class="heroCards">
+
+            <div class="miniCard">
+
+                <span class="miniTitle">
+
+                    🎮 CURRENT GAME
+
+                </span>
+
+                <strong id="currentGame">
+
+                    Not Playing
+
+                </strong>
+
             </div>
 
-            <div id="currentGame">
-                Not Playing
+            <div class="miniCard">
+
+                <span class="miniTitle">
+
+                    ⭐ STEAM LEVEL
+
+                </span>
+
+                <strong id="steamLevel">
+
+                    --
+
+                </strong>
+
             </div>
 
-            <div id="steamLevel">
-                Steam Level --
+        </div>
+
+        <div class="heroBadges">
+
+            <span class="badge">
+
+                💻 HTML
+
+            </span>
+
+            <span class="badge">
+
+                🎨 CSS
+
+            </span>
+
+            <span class="badge">
+
+                ⚡ JavaScript
+
+            </span>
+
+            <span class="badge">
+
+                🐧 Linux
+
+            </span>
+
+            <span class="badge">
+
+                🎮 Steam
+
+            </span>
+
+        </div>
+
+        <div class="buttons">
+
+            <a
+                id="steamButton"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                🎮 Steam Profile
+
+            </a>
+
+            <a
+                href="https://github.com/BukkitRBLX"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                💻 GitHub
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section> 
+    <!-- ==========================================
+     FEATURED PROJECT
+========================================== -->
+
+<section id="featured">
+
+    <h2>Featured Project</h2>
+
+    <div class="featuredProject">
+
+        <div class="featuredLeft">
+
+            <div class="featuredBadge">
+                ⭐ FEATURED
             </div>
 
-            <p>
-                Steam Completionist • Counter-Strike Player • Linux Enthusiast
+            <h3 id="featuredRepoName">
+                BukkitRBLX
+            </h3>
+
+            <p id="featuredRepoDescription">
+
+                Modern Roblox development tools, utilities and open-source projects.
+
             </p>
 
-            <div class="buttons">
+            <div class="featuredStats">
 
-                <a
-                    id="steamButton"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Steam Profile
-                </a>
+                <div class="featuredStat">
 
-                <a
-                    href="https://github.com/BukkitRBLX"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                    <span>⭐</span>
+
+                    <strong id="featuredStars">
+                        --
+                    </strong>
+
+                    <small>Stars</small>
+
+                </div>
+
+                <div class="featuredStat">
+
+                    <span>🍴</span>
+
+                    <strong id="featuredForks">
+                        --
+                    </strong>
+
+                    <small>Forks</small>
+
+                </div>
+
+                <div class="featuredStat">
+
+                    <span>💻</span>
+
+                    <strong id="featuredLanguage">
+                        --
+                    </strong>
+
+                    <small>Language</small>
+
+                </div>
+
+            </div>
+
+            <a
+
+                id="featuredRepoButton"
+
+                href="https://github.com/BukkitRBLX"
+
+                target="_blank"
+
+                class="primaryButton">
+
+                View Repository →
+
+            </a>
+
+        </div>
+
+        <div class="featuredRight">
+
+            <div class="featureCard">
+
+                <h4>🚀 Live Repository</h4>
+
+                <p>
+
+                    Automatically updates from GitHub API with repository
+                    information, stars, forks and language.
+
+                </p>
+
+            </div>
+
+            <div class="featureCard">
+
+                <h4>⚡ Built With</h4>
+
+                <p>
+
+                    HTML • CSS • JavaScript • Cloudflare Workers • Steam API • GitHub API
+
+                </p>
+
+            </div>
+
+            <div class="featureCard">
+
+                <h4>💙 Open Source</h4>
+
+                <p>
+
+                    Everything shown on this dashboard is updated live without
+                    needing a backend server.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+     STEAM STATISTICS
+========================================== -->
+
+<section id="stats">
+
+    <h2>Steam Statistics</h2>
+
+    <div class="statsGrid">
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                🎮
+            </div>
+
+            <span
+                class="number"
+                id="gamesOwned">
+
+                --
+
+            </span>
+
+            <span class="label">
+
+                Games Owned
+
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                🏆
+            </div>
+
+            <span
+                class="number"
+                id="perfectGames">
+
+                --
+
+            </span>
+
+            <span class="label">
+
+                Perfect Games
+
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                ⭐
+            </div>
+
+            <span
+                class="number"
+                id="achievements">
+
+                --
+
+            </span>
+
+            <span class="label">
+
+                Total Achievements
+
+            </span>
+
+        </div>
+
+        <div class="statCard">
+
+            <div class="statIcon">
+                👥
+            </div>
+
+            <span
+                class="number"
+                id="friends">
+
+                --
+
+            </span>
+
+            <span class="label">
+
+                Steam Friends
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section> 
+    <!-- ==========================================
+     ACHIEVEMENT SHOWCASE
+========================================== -->
+
+<section id="achievementsSection">
+
+    <h2>Achievement Showcase</h2>
+
+    <div id="achievementGrid">
+
+        <div class="achievementCard loading">
+
+            <div class="achievementIcon"></div>
+
+            <div class="achievementContent">
+
+                <h3>Loading...</h3>
+
+                <p>Fetching Steam achievements...</p>
+
+            </div>
+
+        </div>
+
+        <div class="achievementCard loading">
+
+            <div class="achievementIcon"></div>
+
+            <div class="achievementContent">
+
+                <h3>Loading...</h3>
+
+                <p>Fetching Steam achievements...</p>
+
+            </div>
+
+        </div>
+
+        <div class="achievementCard loading">
+
+            <div class="achievementIcon"></div>
+
+            <div class="achievementContent">
+
+                <h3>Loading...</h3>
+
+                <p>Fetching Steam achievements...</p>
+
+            </div>
+
+        </div>
+
+        <div class="achievementCard loading">
+
+            <div class="achievementIcon"></div>
+
+            <div class="achievementContent">
+
+                <h3>Loading...</h3>
+
+                <p>Fetching Steam achievements...</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+     RECENTLY PLAYED
+========================================== -->
+
+<section id="games">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>Recently Played</h2>
+
+            <p class="sectionSubtitle">
+
+                Games you've been enjoying lately.
+
+            </p>
+
+        </div>
+
+        <span class="badge">
+
+            Live Steam Data
+
+        </span>
+
+    </div>
+
+    <div
+        id="recentGames"
+        class="gameGrid">
+
+        <div class="loading gameCard">
+
+            <div class="gameSkeletonImage"></div>
+
+            <div class="gameInfo">
+
+                <div class="gameSkeletonTitle"></div>
+
+                <div class="gameSkeletonText"></div>
+
+                <div class="gameSkeletonBar"></div>
+
+            </div>
+
+        </div>
+
+        <div class="loading gameCard">
+
+            <div class="gameSkeletonImage"></div>
+
+            <div class="gameInfo">
+
+                <div class="gameSkeletonTitle"></div>
+
+                <div class="gameSkeletonText"></div>
+
+                <div class="gameSkeletonBar"></div>
+
+            </div>
+
+        </div>
+
+        <div class="loading gameCard">
+
+            <div class="gameSkeletonImage"></div>
+
+            <div class="gameInfo">
+
+                <div class="gameSkeletonTitle"></div>
+
+                <div class="gameSkeletonText"></div>
+
+                <div class="gameSkeletonBar"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+     GITHUB PROJECTS
+========================================== -->
+
+<section id="projects">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>GitHub Projects</h2>
+
+            <p class="sectionSubtitle">
+
+                Open-source projects updated live from GitHub.
+
+            </p>
+
+        </div>
+
+        <span class="badge">
+
+            Live GitHub API
+
+        </span>
+
+    </div>
+
+    <div
+        id="repos"
+        class="repoGrid">
+
+        <div class="repoCard loading">
+
+            <div class="repoSkeletonTitle"></div>
+
+            <div class="repoSkeletonText"></div>
+
+            <div class="repoSkeletonText short"></div>
+
+            <div class="repoSkeletonButtons"></div>
+
+        </div>
+
+        <div class="repoCard loading">
+
+            <div class="repoSkeletonTitle"></div>
+
+            <div class="repoSkeletonText"></div>
+
+            <div class="repoSkeletonText short"></div>
+
+            <div class="repoSkeletonButtons"></div>
+
+        </div>
+
+        <div class="repoCard loading">
+
+            <div class="repoSkeletonTitle"></div>
+
+            <div class="repoSkeletonText"></div>
+
+            <div class="repoSkeletonText short"></div>
+
+            <div class="repoSkeletonButtons"></div>
+
+        </div>
+
+    </div>
+
+</section> 
+    <!-- ==========================================
+     LIVE ACTIVITY
+========================================== -->
+
+<section id="activity">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>Live Activity</h2>
+
+            <p class="sectionSubtitle">
+                Real-time Steam and GitHub updates.
+            </p>
+
+        </div>
+
+        <span class="badge">
+            🟢 Live
+        </span>
+
+    </div>
+
+
+    <div id="timeline">
+
+
+        <div class="activityCard">
+
+            <div class="activityIcon">
+                🟢
+            </div>
+
+            <div class="activityContent">
+
+                <h3>
+                    Steam Status
+                </h3>
+
+                <p id="timelineStatus">
+                    Loading...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="activityCard">
+
+            <div class="activityIcon">
+                🎮
+            </div>
+
+            <div class="activityContent">
+
+                <h3>
+                    Current Game
+                </h3>
+
+                <p id="timelineGame">
+                    Loading...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="activityCard">
+
+            <div class="activityIcon">
+                💻
+            </div>
+
+            <div class="activityContent">
+
+                <h3>
                     GitHub
-                </a>
+                </h3>
+
+                <p id="timelineGithub">
+                    Loading...
+                </p>
 
             </div>
 
         </div>
 
-    </section>
 
-    <!-- Steam Stats -->
-    <section id="stats">
 
-        <h2>Steam Statistics</h2>
+        <div class="activityCard">
 
-        <div class="statsGrid">
-
-            <div class="statCard">
-                <span class="number" id="gamesOwned">--</span>
-                <span class="label">Games</span>
+            <div class="activityIcon">
+                🔄
             </div>
 
-            <div class="statCard">
-                <span class="number" id="perfectGames">--</span>
-                <span class="label">Perfect Games</span>
-            </div>
+            <div class="activityContent">
 
-            <div class="statCard">
-                <span class="number" id="achievements">--</span>
-                <span class="label">Achievements</span>
-            </div>
+                <h3>
+                    Last Update
+                </h3>
 
-            <div class="statCard">
-                <span class="number" id="friends">--</span>
-                <span class="label">Friends</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Recent Games -->
-    <section id="games">
-
-        <h2>Recently Played</h2>
-
-        <div id="recentGames" class="gameGrid">
-            <p class="loading">Loading games...</p>
-        </div>
-
-    </section>
-
-    <!-- GitHub -->
-    <section id="projects">
-
-        <h2>GitHub Projects</h2>
-
-        <div id="repos" class="repoGrid">
-            <p class="loading">Loading projects...</p>
-        </div>
-
-    </section>
-
-    <!-- Activity -->
-    <section id="activity">
-
-        <h2>Live Activity</h2>
-
-        <div id="timeline">
-
-            <div class="activityCard">
-
-                <div class="icon">🟢</div>
-
-                <div>
-                    <h3>Steam Status</h3>
-                    <p id="timelineStatus">Loading...</p>
-                </div>
-
-            </div>
-
-            <div class="activityCard">
-
-                <div class="icon">🎮</div>
-
-                <div>
-                    <h3>Current Game</h3>
-                    <p id="timelineGame">Loading...</p>
-                </div>
-
-            </div>
-
-            <div class="activityCard">
-
-                <div class="icon">💻</div>
-
-                <div>
-                    <h3>GitHub Projects</h3>
-                    <p id="timelineGithub">Loading...</p>
-                </div>
-
-            </div>
-
-            <div class="activityCard">
-
-                <div class="icon">🔄</div>
-
-                <div>
-                    <h3>Last Updated</h3>
-                    <p id="timelineUpdate">Loading...</p>
-                </div>
+                <p id="timelineUpdate">
+                    Loading...
+                </p>
 
             </div>
 
         </div>
 
-    </section>
 
+    </div>
+
+</section>
     <!-- Footer -->
     <footer>
 
