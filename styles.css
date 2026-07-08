@@ -395,55 +395,6 @@ CUSTOM CURSOR
     }
 
 } 
-/*==============================
-LOADING SCREEN
-==============================*/
-
-#loader {
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:99999;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#05070d;
-
-    transition:opacity .5s ease;
-
-}
-
-
-.loaderContent {
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:20px;
-
-}
-
-
-.loaderText {
-
-    color:var(--muted);
-
-    font-size:14px;
-
-    letter-spacing:3px;
-
-}
 
 /*==============================
 NAVIGATION
