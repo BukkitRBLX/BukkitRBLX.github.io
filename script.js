@@ -393,3 +393,62 @@ function updateGitHub(data) {
     revealElements();
 
 }
+/* ==========================================
+   LIVE ACTIVITY
+========================================== */
+
+function updateTimeline(data) {
+
+    const player = data.profile || {};
+
+    const online = player.personastate > 0;
+
+    const game =
+        player.gameextrainfo || "Not Playing";
+
+    const timelineStatus =
+        document.getElementById("timelineStatus");
+
+    const timelineGame =
+        document.getElementById("timelineGame");
+
+    const timelineGithub =
+        document.getElementById("timelineGithub");
+
+    const timelineUpdate =
+        document.getElementById("timelineUpdate");
+
+
+    if (timelineStatus) {
+
+        timelineStatus.textContent =
+            online
+                ? "🟢 Online on Steam"
+                : "⚫ Offline";
+
+    }
+
+
+    if (timelineGame) {
+
+        timelineGame.textContent = game;
+
+    }
+
+
+    if (timelineGithub) {
+
+        timelineGithub.textContent =
+            `${(data.github || []).length} repositories`;
+
+    }
+
+
+    if (timelineUpdate) {
+
+        timelineUpdate.textContent =
+            new Date().toLocaleString();
+
+    }
+
+} 
