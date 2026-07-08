@@ -472,60 +472,6 @@ LOADING SCREEN
 
 }
 
-
-.loaderBar {
-
-    width:280px;
-
-    height:6px;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.08);
-
-}
-
-
-.loaderProgress {
-
-    height:100%;
-
-    width:0%;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--cyan),
-            var(--purple)
-        );
-
-    animation:
-        loadingProgress 1.4s ease forwards;
-
-}
-
-
-@keyframes loadingProgress {
-
-    from {
-
-        width:0%;
-
-    }
-
-    to {
-
-        width:100%;
-
-    }
-
-}
-
-
 @keyframes loaderProgress {
 
     0% {
