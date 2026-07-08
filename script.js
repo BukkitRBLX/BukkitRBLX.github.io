@@ -1,35 +1,18 @@
 /* ==========================================
    BUKK1T DASHBOARD SCRIPT
-   COMPLETE FIXED VERSION
+   CLEAN FIX VERSION
 ========================================== */
-
-
-/*
-==========================================
-CONFIG
-==========================================
-*/
 
 
 const CONFIG = {
 
     WORKER:
-    "https://steam.shantiya1212.workers.dev/",
-
-    GITHUB:
-    "BukkitRBLX"
+    "https://steam.shantiya1212.workers.dev"
 
 };
 
 
 
-
-
-/*
-==========================================
-API HELPER
-==========================================
-*/
 
 
 async function api(endpoint){
@@ -48,9 +31,13 @@ async function api(endpoint){
 
         if(!response.ok){
 
-            throw new Error(
-                data.error || "API Error"
+            console.error(
+                "API FAILED:",
+                endpoint,
+                data
             );
+
+            return null;
 
         }
 
@@ -67,7 +54,6 @@ async function api(endpoint){
             error
         );
 
-
         return null;
 
     }
@@ -78,93 +64,97 @@ async function api(endpoint){
 
 
 
-/*
-==========================================
-STEAM PROFILE
-==========================================
-*/
+
+function setText(id,value){
+
+    const element =
+    document.getElementById(id);
+
+
+    if(element){
+
+        element.textContent =
+        value ?? "--";
+
+    }
+
+}
+
+
+
+
+
 
 
 async function loadSteamProfile(){
 
 
-    const data =
-    await api("/steam/profile");
+const data =
+await api("/steam/profile");
 
 
-    if(!data)
-    return;
-
-
-
-    const username =
-    document.getElementById("username");
-
-
-    const avatar =
-    document.getElementById("avatar");
-
-
-    const status =
-    document.getElementById("status");
-
-
-    const button =
-    document.getElementById("steamButton");
+if(!data)
+return;
 
 
 
-
-    if(username)
-
-    username.textContent =
-    data.personaname || "Unknown";
-
+setText(
+"username",
+data.personaname || "Unknown"
+);
 
 
 
-    if(avatar && data.avatarfull)
-
-    avatar.src =
-    data.avatarfull;
-
-
-
-
-    if(button && data.steamid)
-
-    button.href =
-    "https://steamcommunity.com/profiles/"
-    +
-    data.steamid;
+const avatar =
+document.getElementById(
+"avatar"
+);
 
 
 
+if(avatar){
 
-    if(status){
+avatar.src =
+data.avatarfull || "";
+
+}
 
 
-        if(data.personastate > 0){
 
-            status.textContent =
-            "🟢 Online";
+const button =
+document.getElementById(
+"steamButton"
+);
 
-            status.className =
-            "statusBadge online";
 
-        }
 
-        else{
+if(button){
 
-            status.textContent =
-            "⚫ Offline";
+button.href =
+data.profileurl ||
+"https://steamcommunity.com";
 
-            status.className =
-            "statusBadge offline";
+}
 
-        }
 
-    }
+
+const status =
+document.getElementById(
+"status"
+);
+
+
+
+if(status){
+
+status.textContent =
+data.personastate > 0
+?
+"🟢 Online"
+:
+"⚫ Offline";
+
+}
 
 
 }
@@ -175,37 +165,23 @@ async function loadSteamProfile(){
 
 
 
-/*
-==========================================
-STEAM STATS
-==========================================
-*/
 
 
 async function loadSteamStats(){
 
 
-    const data =
-    await api("/steam/stats");
+const data =
+await api("/steam/stats");
 
 
-    if(!data)
-    return;
+if(data){
 
+setText(
+"gamesOwned",
+data.games || 0
+);
 
-
-    const element =
-    document.getElementById(
-        "gamesOwned"
-    );
-
-
-    if(element)
-
-    animateNumber(
-        element,
-        data.games || 0
-    );
+}
 
 
 }
@@ -214,38 +190,23 @@ async function loadSteamStats(){
 
 
 
-
-
-/*
-==========================================
-STEAM FRIENDS
-==========================================
-*/
 
 
 async function loadFriends(){
 
 
-    const data =
-    await api("/steam/friends");
+const data =
+await api("/steam/friends");
 
 
-    if(!data)
-    return;
+if(data){
 
+setText(
+"friends",
+data.friends || 0
+);
 
-    const element =
-    document.getElementById(
-        "friends"
-    );
-
-
-    if(element)
-
-    animateNumber(
-        element,
-        data.friends || 0
-    );
+}
 
 
 }
@@ -254,37 +215,23 @@ async function loadFriends(){
 
 
 
-
-
-/*
-==========================================
-STEAM LEVEL
-==========================================
-*/
 
 
 async function loadSteamLevel(){
 
 
-    const data =
-    await api("/steam/level");
+const data =
+await api("/steam/level");
 
 
-    if(!data)
-    return;
+if(data){
 
+setText(
+"steamLevel",
+data.level || 0
+);
 
-
-    const level =
-    document.getElementById(
-        "steamLevel"
-    );
-
-
-    if(level)
-
-    level.textContent =
-    data.level || 0;
+}
 
 
 }
@@ -293,113 +240,75 @@ async function loadSteamLevel(){
 
 
 
-
-
-/*
-==========================================
-RECENT GAMES
-==========================================
-*/
 
 
 async function loadRecentGames(){
 
 
-    const data =
-    await api("/steam/recent");
+const data =
+await api("/steam/recent");
 
 
-    const container =
-    document.getElementById(
-        "recentGames"
-    );
-
-
-    if(!container)
-    return;
+const box =
+document.getElementById(
+"recentGames"
+);
 
 
 
-    container.innerHTML="";
+if(!box)
+return;
 
 
 
-    if(
-        !data ||
-        !Array.isArray(data.games) ||
-        data.games.length === 0
-    ){
-
-
-        container.innerHTML = `
-
-        <p class="loading">
-        No recently played games found.
-        </p>
-
-        `;
-
-
-        return;
-
-    }
+const games =
+data?.games || [];
 
 
 
-
-    data.games
-    .slice(0,6)
-    .forEach(game=>{
-
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-
-        card.className =
-        "gameCard";
+box.innerHTML="";
 
 
 
-        card.innerHTML = `
+if(!games.length){
 
+box.innerHTML =
+"<p>No recent games.</p>";
 
-        <img
+return;
 
-        src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg"
-
-        loading="lazy">
-
-
-        <div class="gameInfo">
-
-
-        <h3>
-        ${game.name || "Unknown Game"}
-        </h3>
-
-
-        <p>
-        ${Math.floor(
-            (game.playtime_forever || 0)/60
-        )}
-        hours played
-        </p>
-
-
-        </div>
-
-
-        `;
+}
 
 
 
-        container.appendChild(card);
+games.slice(0,6)
+.forEach(game=>{
 
 
-    });
+box.innerHTML += `
+
+<div class="gameCard">
+
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
+
+<div class="gameInfo">
+
+<h3>
+${game.name}
+</h3>
+
+<p>
+${Math.floor(game.playtime_forever/60)} hours played
+</p>
+
+</div>
+
+</div>
+
+`;
+
+
+});
 
 
 }
@@ -408,155 +317,56 @@ async function loadRecentGames(){
 
 
 
-
-
-
-/*
-==========================================
-ACHIEVEMENTS
-==========================================
-*/
-
-
-async function loadAchievements(){
-
-
-    const data =
-    await api("/steam/achievements");
-
-
-    if(!data)
-    return;
-
-
-
-    const achievements =
-    document.getElementById(
-        "achievements"
-    );
-
-
-    const perfect =
-    document.getElementById(
-        "perfectGames"
-    );
-
-
-
-    if(achievements)
-
-    animateNumber(
-        achievements,
-        data.achievements || 0
-    );
-
-
-
-    if(perfect)
-
-    animateNumber(
-        perfect,
-        data.perfectGames || 0
-    );
-
-
-}
-
-
-
-
-
-
-
-
-/*
-==========================================
-GITHUB REPOS
-==========================================
-*/
 
 
 async function loadGitHubRepos(){
 
 
-    const repos =
-    await api("/github/repos");
+const repos =
+await api("/github/repos");
 
 
-    const container =
-    document.getElementById(
-        "repos"
-    );
-
-
-    if(
-        !container ||
-        !Array.isArray(repos)
-    )
-    return;
+const box =
+document.getElementById(
+"repos"
+);
 
 
 
-    container.innerHTML="";
+if(!box || !Array.isArray(repos))
+return;
 
 
 
-    repos
-    .slice(0,6)
-    .forEach(repo=>{
-
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-
-        card.className =
-        "repoCard";
+box.innerHTML="";
 
 
 
-        card.innerHTML = `
+repos.slice(0,6)
+.forEach(repo=>{
 
 
-        <h3>
-        ${repo.name}
-        </h3>
+box.innerHTML += `
 
+<div class="repoCard">
 
-        <p>
-        ${repo.description || "No description"}
-        </p>
+<h3>
+${repo.name}
+</h3>
 
+<p>
+${repo.description || "No description"}
+</p>
 
-        <div class="repoInfo">
+<span>
+⭐ ${repo.stargazers_count}
+</span>
 
-        ⭐ ${repo.stargazers_count}
+</div>
 
-        🍴 ${repo.forks_count}
+`;
 
-        ${repo.language || "Code"}
-
-        </div>
-
-
-        <a href="${repo.html_url}"
-        target="_blank">
-
-        View Project
-
-        </a>
-
-
-        `;
-
-
-
-        container.appendChild(card);
-
-
-    });
+});
 
 
 }
@@ -565,68 +375,48 @@ async function loadGitHubRepos(){
 
 
 
-
-
-/*
-==========================================
-FEATURED PROJECT
-==========================================
-*/
 
 
 async function loadFeatured(){
 
 
-    const repo =
-    await api("/github/featured");
+const repo =
+await api("/github/featured");
 
 
-    if(!repo)
-    return;
-
-
-
-    const set =
-    (id,value)=>{
-
-        const el =
-        document.getElementById(id);
-
-        if(el)
-        el.textContent=value;
-
-    };
+if(!repo)
+return;
 
 
 
-    set(
-        "featuredRepoName",
-        repo.name || "BukkitRBLX"
-    );
+setText(
+"featuredRepoName",
+repo.name
+);
 
 
-    set(
-        "featuredRepoDescription",
-        repo.description || "No description"
-    );
+setText(
+"featuredRepoDescription",
+repo.description
+);
 
 
-    set(
-        "featuredStars",
-        repo.stargazers_count || 0
-    );
+setText(
+"featuredStars",
+repo.stargazers_count
+);
 
 
-    set(
-        "featuredForks",
-        repo.forks_count || 0
-    );
+setText(
+"featuredForks",
+repo.forks_count
+);
 
 
-    set(
-        "featuredLanguage",
-        repo.language || "Unknown"
-    );
+setText(
+"featuredLanguage",
+repo.language
+);
 
 
 }
@@ -636,29 +426,15 @@ async function loadFeatured(){
 
 
 
-
-/*
-==========================================
-ACTIVITY
-==========================================
-*/
 
 
 function updateActivity(){
 
 
-    const time =
-    document.getElementById(
-        "timelineUpdate"
-    );
-
-
-    if(time)
-
-    time.textContent =
-    new Date()
-    .toLocaleString();
-
+setText(
+"timelineUpdate",
+new Date().toLocaleString()
+);
 
 
 }
@@ -668,26 +444,18 @@ function updateActivity(){
 
 
 
-
-
-/*
-==========================================
-START
-==========================================
-*/
 
 
 async function startDashboard(){
 
 
 console.log(
-"🚀 Loading BUKK1T Dashboard"
+"🚀 Starting dashboard"
 );
 
 
 
 await Promise.all([
-
 
 loadSteamProfile(),
 
@@ -699,12 +467,9 @@ loadSteamLevel(),
 
 loadRecentGames(),
 
-loadAchievements(),
-
 loadGitHubRepos(),
 
 loadFeatured()
-
 
 ]);
 
@@ -715,7 +480,7 @@ updateActivity();
 
 
 console.log(
-"✅ Dashboard Loaded"
+"✅ Dashboard finished"
 );
 
 
@@ -730,245 +495,3 @@ document.addEventListener(
 "DOMContentLoaded",
 startDashboard
 );
-
-
-
-
-
-
-
-
-
-/*
-==========================================
-PREMIUM EFFECTS
-==========================================
-*/
-
-
-function animateNumber(element,target){
-
-
-if(!element)
-return;
-
-
-let current=0;
-
-
-const step =
-Math.max(
-1,
-Math.ceil(target/50)
-);
-
-
-
-const timer =
-setInterval(()=>{
-
-
-current += step;
-
-
-if(current>=target){
-
-current=target;
-
-clearInterval(timer);
-
-}
-
-
-element.textContent =
-current.toLocaleString();
-
-
-
-},25);
-
-
-}
-
-
-
-
-
-
-
-function setupReveal(){
-
-
-const elements =
-document.querySelectorAll(
-"section,.statCard,.gameCard,.repoCard,.activityCard"
-);
-
-
-
-elements.forEach(
-e=>e.classList.add("reveal")
-);
-
-
-
-const observer =
-new IntersectionObserver(
-entries=>{
-
-
-entries.forEach(
-entry=>{
-
-
-if(entry.isIntersecting){
-
-entry.target.classList.add(
-"active"
-);
-
-}
-
-});
-
-
-},
-{
-threshold:.15
-}
-);
-
-
-
-elements.forEach(
-e=>observer.observe(e)
-);
-
-
-}
-
-
-
-
-
-
-
-function cursorEffect(){
-
-
-const cursor =
-document.getElementById("cursor");
-
-
-const blur =
-document.getElementById("cursorBlur");
-
-
-
-if(!cursor || !blur)
-return;
-
-
-
-document.addEventListener(
-"mousemove",
-e=>{
-
-
-cursor.style.left =
-e.clientX+"px";
-
-
-cursor.style.top =
-e.clientY+"px";
-
-
-blur.style.left =
-e.clientX+"px";
-
-
-blur.style.top =
-e.clientY+"px";
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-function createParticles(){
-
-
-const container =
-document.getElementById(
-"particles"
-);
-
-
-if(!container ||
-container.children.length)
-return;
-
-
-
-for(let i=0;i<80;i++){
-
-
-const star =
-document.createElement(
-"span"
-);
-
-
-star.className="star";
-
-
-star.style.left =
-Math.random()*100+"%";
-
-
-star.style.top =
-Math.random()*100+"%";
-
-
-star.style.opacity =
-Math.random();
-
-
-
-container.appendChild(star);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-window.addEventListener(
-"load",
-()=>{
-
-setupReveal();
-
-cursorEffect();
-
-createParticles();
-
-console.log(
-"✨ Effects Loaded"
-);
-
-});
