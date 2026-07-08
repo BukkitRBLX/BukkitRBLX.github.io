@@ -1,13 +1,13 @@
 /* ==========================================
    BUKK1T DASHBOARD SCRIPT
-   COMPLETE FIX VERSION
+   FINAL STABLE VERSION
 ========================================== */
 
 
 const CONFIG = {
 
     WORKER:
-    "https://steam.shantiya1212.workers.dev"
+    "https://steam.shantiya1212.workers.dev/"
 
 };
 
@@ -34,6 +34,7 @@ async function api(endpoint){
         await response.json();
 
 
+
         if(!response.ok){
 
             console.error(
@@ -51,7 +52,6 @@ async function api(endpoint){
 
 
     }
-
     catch(error){
 
         console.error(
@@ -72,7 +72,7 @@ async function api(endpoint){
 
 
 // ================================
-// TEXT HELPER
+// TEXT
 // ================================
 
 
@@ -82,12 +82,9 @@ function setText(id,value){
     document.getElementById(id);
 
 
-    if(el){
-
-        el.textContent =
-        value ?? "--";
-
-    }
+    if(el)
+    el.textContent =
+    value ?? "--";
 
 }
 
@@ -98,29 +95,54 @@ function setText(id,value){
 
 
 // ================================
-// NUMBER ANIMATION
+// NUMBER COUNTER
 // ================================
 
 
-function animateNumber(element,target){
+const activeCounters = {};
 
 
-    if(!element)
+function animateNumber(id,target){
+
+
+    const el =
+    document.getElementById(id);
+
+
+
+    if(!el)
     return;
+
+
+
+    target =
+    Number(target) || 0;
+
+
+
+    if(activeCounters[id]){
+
+        clearInterval(
+            activeCounters[id]
+        );
+
+    }
+
 
 
     let current = 0;
 
 
+
     const step =
     Math.max(
         1,
-        Math.ceil(target / 40)
+        Math.ceil(target / 50)
     );
 
 
 
-    const timer =
+    activeCounters[id] =
     setInterval(()=>{
 
 
@@ -132,43 +154,23 @@ function animateNumber(element,target){
 
             current = target;
 
-            clearInterval(timer);
+            clearInterval(
+                activeCounters[id]
+            );
 
         }
 
 
 
-        element.textContent =
+        el.textContent =
         current.toLocaleString();
 
 
 
-    },25);
+    },20);
 
 
 }
-
-
-
-
-
-function setAnimated(id,value){
-
-    const el =
-    document.getElementById(id);
-
-
-    if(el){
-
-        animateNumber(
-            el,
-            Number(value)||0
-        );
-
-    }
-
-}
-
 
 
 
@@ -186,6 +188,7 @@ async function loadSteamProfile(){
 
 const data =
 await api("/steam/profile");
+
 
 
 if(!data)
@@ -208,9 +211,9 @@ document.getElementById(
 
 
 if(avatar)
+
 avatar.src =
 data.avatarfull || "";
-
 
 
 
@@ -231,24 +234,14 @@ data.profileurl ||
 
 
 
-
-const status =
-document.getElementById(
-"status"
-);
-
-
-
-if(status){
-
-status.textContent =
+setText(
+"status",
 data.personastate > 0
 ?
 "🟢 Online"
 :
-"⚫ Offline";
-
-}
+"⚫ Offline"
+);
 
 
 }
@@ -267,13 +260,14 @@ data.personastate > 0
 
 async function loadSteamStats(){
 
+
 const data =
 await api("/steam/stats");
 
 
 if(data)
 
-setAnimated(
+animateNumber(
 "gamesOwned",
 data.games
 );
@@ -287,13 +281,14 @@ data.games
 
 async function loadFriends(){
 
+
 const data =
 await api("/steam/friends");
 
 
 if(data)
 
-setAnimated(
+animateNumber(
 "friends",
 data.friends
 );
@@ -307,19 +302,22 @@ data.friends
 
 async function loadSteamLevel(){
 
+
 const data =
 await api("/steam/level");
 
 
 if(data)
 
-setAnimated(
+animateNumber(
 "steamLevel",
 data.level
 );
 
 
 }
+
+
 
 
 
@@ -369,30 +367,35 @@ return;
 
 
 
-
 games.slice(0,6)
 .forEach(game=>{
 
 
-box.innerHTML += `
+const card =
+document.createElement(
+"div"
+);
 
-<div class="gameCard">
 
-<img src="
-https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg
-">
+card.className =
+"gameCard";
+
+
+card.innerHTML = `
+
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
 
 
 <div class="gameInfo">
 
 <h3>
-${game.name}
+${game.name || "Unknown"}
 </h3>
 
 
 <p>
 ${Math.floor(
-game.playtime_forever/60
+(game.playtime_forever || 0)/60
 )}
 hours played
 </p>
@@ -400,10 +403,11 @@ hours played
 
 </div>
 
-
-</div>
-
 `;
+
+
+
+box.appendChild(card);
 
 
 });
@@ -411,7 +415,10 @@ hours played
 
 cardTilt();
 
+
 }
+
+
 
 
 
@@ -431,24 +438,27 @@ const data =
 await api("/steam/achievements");
 
 
+
 if(!data)
 return;
 
 
 
-setAnimated(
+animateNumber(
 "achievements",
 data.achievements
 );
 
 
-setAnimated(
+
+animateNumber(
 "perfectGames",
 data.perfectGames
 );
 
 
 }
+
 
 
 
@@ -466,6 +476,7 @@ async function loadGitHubRepos(){
 
 const repos =
 await api("/github/repos");
+
 
 
 const box =
@@ -488,10 +499,19 @@ repos.slice(0,6)
 .forEach(repo=>{
 
 
-box.innerHTML += `
+const card =
+document.createElement(
+"div"
+);
 
-<div class="repoCard">
 
+
+card.className =
+"repoCard";
+
+
+
+card.innerHTML = `
 
 <h3>
 ${repo.name}
@@ -507,14 +527,14 @@ ${repo.description || "No description"}
 ⭐ ${repo.stargazers_count}
 </span>
 
-
-</div>
-
 `;
 
 
-});
 
+box.appendChild(card);
+
+
+});
 
 
 cardTilt();
@@ -555,14 +575,14 @@ repo.description
 
 
 
-setAnimated(
+animateNumber(
 "featuredStars",
 repo.stargazers_count
 );
 
 
 
-setAnimated(
+animateNumber(
 "featuredForks",
 repo.forks_count
 );
@@ -583,8 +603,10 @@ repo.language
 
 
 
+
+
 // ================================
-// EFFECTS
+// 3D CARD TILT
 // ================================
 
 
@@ -598,35 +620,37 @@ document
 .forEach(card=>{
 
 
-card.onmousemove=e=>{
+card.onmousemove =
+e=>{
 
 
-const r =
+const rect =
 card.getBoundingClientRect();
 
 
+
 const x =
-e.clientX-r.left;
+e.clientX - rect.left;
 
 
 const y =
-e.clientY-r.top;
+e.clientY - rect.top;
 
 
 
 card.style.transform =
 `
-perspective(700px)
-rotateX(${-(y-r.height/2)/15}deg)
-rotateY(${(x-r.width/2)/15}deg)
+perspective(800px)
+rotateX(${-(y-rect.height/2)/20}deg)
+rotateY(${(x-rect.width/2)/20}deg)
 scale(1.04)
 `;
 
 };
 
 
-
-card.onmouseleave=()=>{
+card.onmouseleave =
+()=>{
 
 card.style.transform="";
 
@@ -643,7 +667,23 @@ card.style.transform="";
 
 
 
+
+
+// ================================
+// CURSOR
+// ================================
+
+
 function cursorEffect(){
+
+
+if(
+document.getElementById(
+"customCursor"
+)
+)
+return;
+
 
 
 const cursor =
@@ -652,8 +692,10 @@ document.createElement(
 );
 
 
+
 cursor.id =
 "customCursor";
+
 
 
 document.body.appendChild(
@@ -686,6 +728,11 @@ e.clientY+"px";
 
 
 
+// ================================
+// PARTICLES
+// ================================
+
+
 function createParticles(){
 
 
@@ -701,6 +748,11 @@ return;
 
 
 
+if(box.children.length)
+return;
+
+
+
 for(let i=0;i<50;i++){
 
 
@@ -710,7 +762,9 @@ document.createElement(
 );
 
 
-p.className="star";
+
+p.className =
+"star";
 
 
 p.style.left =
@@ -778,11 +832,11 @@ new Date().toLocaleString()
 
 
 
-cardTilt();
-
 cursorEffect();
 
 createParticles();
+
+cardTilt();
 
 
 
@@ -792,6 +846,7 @@ console.log(
 
 
 }
+
 
 
 
