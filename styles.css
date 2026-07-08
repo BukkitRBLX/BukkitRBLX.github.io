@@ -435,33 +435,6 @@ LOADING SCREEN
 }
 
 
-.loaderLogo {
-
-    font-size:64px;
-
-    font-weight:900;
-
-    letter-spacing:12px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            white,
-            var(--blue),
-            var(--purple)
-        );
-
-    -webkit-background-clip:text;
-
-    color:transparent;
-
-    animation:
-        loaderPulse 2s infinite;
-
-}
-
-
 .loaderText {
 
     color:var(--muted);
