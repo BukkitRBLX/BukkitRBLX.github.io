@@ -497,7 +497,6 @@ LOADING SCREEN
     border-radius:999px;
 
     background:
-
         linear-gradient(
             90deg,
             var(--cyan),
@@ -505,31 +504,21 @@ LOADING SCREEN
         );
 
     animation:
-        loaderProgress 2s ease infinite;
-
-}
-
-
-@keyframes loaderPulse {
-
-    50% {
-
-        opacity:.6;
-
-    }
+        loaderProgress 1.4s ease forwards;
 
 }
 
 
 @keyframes loaderProgress {
 
-    from {
+    0% {
 
         width:0%;
 
     }
 
-    to {
+
+    100% {
 
         width:100%;
 
