@@ -1,6 +1,6 @@
 /* ==========================================
    BUKK1T DASHBOARD SCRIPT
-   CLEAN FIX VERSION
+   COMPLETE FIX VERSION
 ========================================== */
 
 
@@ -13,6 +13,11 @@ const CONFIG = {
 
 
 
+
+
+// ================================
+// API
+// ================================
 
 
 async function api(endpoint){
@@ -32,7 +37,7 @@ async function api(endpoint){
         if(!response.ok){
 
             console.error(
-                "API FAILED:",
+                "API ERROR:",
                 endpoint,
                 data
             );
@@ -65,15 +70,21 @@ async function api(endpoint){
 
 
 
+
+// ================================
+// TEXT HELPER
+// ================================
+
+
 function setText(id,value){
 
-    const element =
+    const el =
     document.getElementById(id);
 
 
-    if(element){
+    if(el){
 
-        element.textContent =
+        el.textContent =
         value ?? "--";
 
     }
@@ -84,6 +95,90 @@ function setText(id,value){
 
 
 
+
+
+// ================================
+// NUMBER ANIMATION
+// ================================
+
+
+function animateNumber(element,target){
+
+
+    if(!element)
+    return;
+
+
+    let current = 0;
+
+
+    const step =
+    Math.max(
+        1,
+        Math.ceil(target / 40)
+    );
+
+
+
+    const timer =
+    setInterval(()=>{
+
+
+        current += step;
+
+
+
+        if(current >= target){
+
+            current = target;
+
+            clearInterval(timer);
+
+        }
+
+
+
+        element.textContent =
+        current.toLocaleString();
+
+
+
+    },25);
+
+
+}
+
+
+
+
+
+function setAnimated(id,value){
+
+    const el =
+    document.getElementById(id);
+
+
+    if(el){
+
+        animateNumber(
+            el,
+            Number(value)||0
+        );
+
+    }
+
+}
+
+
+
+
+
+
+
+
+// ================================
+// STEAM PROFILE
+// ================================
 
 
 async function loadSteamProfile(){
@@ -112,12 +207,11 @@ document.getElementById(
 
 
 
-if(avatar){
-
+if(avatar)
 avatar.src =
 data.avatarfull || "";
 
-}
+
 
 
 
@@ -128,13 +222,13 @@ document.getElementById(
 
 
 
-if(button){
+if(button)
 
 button.href =
 data.profileurl ||
 "https://steamcommunity.com";
 
-}
+
 
 
 
@@ -166,27 +260,26 @@ data.personastate > 0
 
 
 
+// ================================
+// STATS
+// ================================
+
 
 async function loadSteamStats(){
-
 
 const data =
 await api("/steam/stats");
 
 
-if(data){
+if(data)
 
-setText(
+setAnimated(
 "gamesOwned",
-data.games || 0
+data.games
 );
 
-}
-
 
 }
-
-
 
 
 
@@ -194,24 +287,19 @@ data.games || 0
 
 async function loadFriends(){
 
-
 const data =
 await api("/steam/friends");
 
 
-if(data){
+if(data)
 
-setText(
+setAnimated(
 "friends",
-data.friends || 0
+data.friends
 );
 
-}
-
 
 }
-
-
 
 
 
@@ -219,20 +307,17 @@ data.friends || 0
 
 async function loadSteamLevel(){
 
-
 const data =
 await api("/steam/level");
 
 
-if(data){
+if(data)
 
-setText(
+setAnimated(
 "steamLevel",
-data.level || 0
+data.level
 );
 
-}
-
 
 }
 
@@ -240,6 +325,9 @@ data.level || 0
 
 
 
+// ================================
+// RECENT GAMES
+// ================================
 
 
 async function loadRecentGames(){
@@ -281,6 +369,7 @@ return;
 
 
 
+
 games.slice(0,6)
 .forEach(game=>{
 
@@ -289,7 +378,10 @@ box.innerHTML += `
 
 <div class="gameCard">
 
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
+<img src="
+https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg
+">
+
 
 <div class="gameInfo">
 
@@ -297,11 +389,17 @@ box.innerHTML += `
 ${game.name}
 </h3>
 
+
 <p>
-${Math.floor(game.playtime_forever/60)} hours played
+${Math.floor(
+game.playtime_forever/60
+)}
+hours played
 </p>
 
+
 </div>
+
 
 </div>
 
@@ -311,12 +409,56 @@ ${Math.floor(game.playtime_forever/60)} hours played
 });
 
 
+cardTilt();
+
 }
 
 
 
 
 
+
+
+// ================================
+// ACHIEVEMENTS
+// ================================
+
+
+async function loadAchievements(){
+
+
+const data =
+await api("/steam/achievements");
+
+
+if(!data)
+return;
+
+
+
+setAnimated(
+"achievements",
+data.achievements
+);
+
+
+setAnimated(
+"perfectGames",
+data.perfectGames
+);
+
+
+}
+
+
+
+
+
+
+
+// ================================
+// GITHUB
+// ================================
 
 
 async function loadGitHubRepos(){
@@ -350,26 +492,36 @@ box.innerHTML += `
 
 <div class="repoCard">
 
+
 <h3>
 ${repo.name}
 </h3>
+
 
 <p>
 ${repo.description || "No description"}
 </p>
 
+
 <span>
 ⭐ ${repo.stargazers_count}
 </span>
+
 
 </div>
 
 `;
 
+
 });
 
 
+
+cardTilt();
+
+
 }
+
 
 
 
@@ -395,22 +547,26 @@ repo.name
 );
 
 
+
 setText(
 "featuredRepoDescription",
 repo.description
 );
 
 
-setText(
+
+setAnimated(
 "featuredStars",
 repo.stargazers_count
 );
 
 
-setText(
+
+setAnimated(
 "featuredForks",
 repo.forks_count
 );
+
 
 
 setText(
@@ -427,14 +583,99 @@ repo.language
 
 
 
+// ================================
+// EFFECTS
+// ================================
 
-function updateActivity(){
+
+function cardTilt(){
 
 
-setText(
-"timelineUpdate",
-new Date().toLocaleString()
+document
+.querySelectorAll(
+".statCard,.repoCard,.gameCard"
+)
+.forEach(card=>{
+
+
+card.onmousemove=e=>{
+
+
+const r =
+card.getBoundingClientRect();
+
+
+const x =
+e.clientX-r.left;
+
+
+const y =
+e.clientY-r.top;
+
+
+
+card.style.transform =
+`
+perspective(700px)
+rotateX(${-(y-r.height/2)/15}deg)
+rotateY(${(x-r.width/2)/15}deg)
+scale(1.04)
+`;
+
+};
+
+
+
+card.onmouseleave=()=>{
+
+card.style.transform="";
+
+};
+
+
+});
+
+
+}
+
+
+
+
+
+
+function cursorEffect(){
+
+
+const cursor =
+document.createElement(
+"div"
 );
+
+
+cursor.id =
+"customCursor";
+
+
+document.body.appendChild(
+cursor
+);
+
+
+
+document.addEventListener(
+"mousemove",
+e=>{
+
+
+cursor.style.left =
+e.clientX+"px";
+
+
+cursor.style.top =
+e.clientY+"px";
+
+
+});
 
 
 }
@@ -445,12 +686,65 @@ new Date().toLocaleString()
 
 
 
+function createParticles(){
+
+
+const box =
+document.getElementById(
+"particles"
+);
+
+
+
+if(!box)
+return;
+
+
+
+for(let i=0;i<50;i++){
+
+
+const p =
+document.createElement(
+"span"
+);
+
+
+p.className="star";
+
+
+p.style.left =
+Math.random()*100+"%";
+
+
+p.style.top =
+Math.random()*100+"%";
+
+
+box.appendChild(p);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+// ================================
+// START
+// ================================
+
 
 async function startDashboard(){
 
 
 console.log(
-"🚀 Starting dashboard"
+"🚀 Loading BUKK1T"
 );
 
 
@@ -467,6 +761,8 @@ loadSteamLevel(),
 
 loadRecentGames(),
 
+loadAchievements(),
+
 loadGitHubRepos(),
 
 loadFeatured()
@@ -475,17 +771,27 @@ loadFeatured()
 
 
 
-updateActivity();
+setText(
+"timelineUpdate",
+new Date().toLocaleString()
+);
+
+
+
+cardTilt();
+
+cursorEffect();
+
+createParticles();
 
 
 
 console.log(
-"✅ Dashboard finished"
+"✅ Dashboard Ready"
 );
 
 
 }
-
 
 
 
