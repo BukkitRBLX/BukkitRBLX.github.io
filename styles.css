@@ -553,37 +553,28 @@ nav {
 
     z-index:5000;
 
-
     display:flex;
 
     align-items:center;
 
-    gap:60px;
+    justify-content:center;
 
+    gap:35px;
 
-    padding:14px 30px;
-
+    padding:14px 25px;
 
     background:
-
         rgba(10,15,25,.75);
 
-
     backdrop-filter:
-
         blur(20px);
 
-
     border:
-
         1px solid rgba(255,255,255,.1);
-
 
     border-radius:999px;
 
-
     box-shadow:
-
         0 20px 60px rgba(0,0,0,.4);
 
 }
@@ -599,16 +590,15 @@ nav {
 
     letter-spacing:3px;
 
+    white-space:nowrap;
 
     background:
-
         linear-gradient(
             90deg,
             white,
             var(--blue),
             var(--purple)
         );
-
 
     -webkit-background-clip:text;
 
@@ -625,7 +615,7 @@ nav ul {
 
     align-items:center;
 
-    gap:35px;
+    gap:25px;
 
     list-style:none;
 
@@ -636,55 +626,43 @@ nav a {
 
     position:relative;
 
-
     color:var(--muted);
-
 
     font-size:15px;
 
     font-weight:600;
 
-
     transition:.3s ease;
 
 }
-
 
 
 nav a::after {
 
     content:"";
 
-
     position:absolute;
-
 
     left:50%;
 
-    bottom:-8px;
-
+    bottom:-7px;
 
     width:0;
 
     height:2px;
 
-
     background:
-
         linear-gradient(
             90deg,
             var(--cyan),
             var(--purple)
         );
 
-
     transform:translateX(-50%);
-
 
     transition:.3s ease;
 
 }
-
 
 
 nav a:hover,
@@ -693,7 +671,6 @@ nav a.active {
     color:white;
 
 }
-
 
 
 nav a:hover::after,
