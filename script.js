@@ -671,20 +671,23 @@ document.addEventListener(
     "DOMContentLoaded",
     startDashboard
 );
-window.addEventListener("load",()=>{
 
-    const loader=document.getElementById("loader");
+window.addEventListener("load", () => {
 
-    if(loader){
+    const loader = document.getElementById("loader");
 
-        loader.style.opacity="0";
+    if (!loader) return;
 
-        setTimeout(()=>{
+    setTimeout(() => {
 
-            loader.style.display="none";
+        loader.style.opacity = "0";
 
-        },500);
+        setTimeout(() => {
 
-    }
+            loader.style.display = "none";
+
+        }, 500);
+
+    }, 1000);
 
 });
