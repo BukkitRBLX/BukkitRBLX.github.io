@@ -118,41 +118,65 @@ BACKGROUND
 
     border-radius:50%;
 
-    filter:blur(140px);
+    filter:blur(120px);
 
-    opacity:.22;
+    pointer-events:none;
 
     z-index:-3;
+
+    animation: floatGradient 18s ease-in-out infinite alternate;
 
 }
 
 .gradient-one{
 
-    width:650px;
-    height:650px;
+    width:700px;
 
-    left:-220px;
+    height:700px;
+
+    background:#00d4ff;
+
     top:-220px;
 
-    background:var(--cyan);
+    left:-180px;
 
-    animation:
-    moveOne 18s infinite alternate ease-in-out;
+    opacity:.18;
 
 }
 
 .gradient-two{
 
-    width:600px;
-    height:600px;
+    width:650px;
 
-    right:-200px;
-    bottom:-200px;
+    height:650px;
 
-    background:var(--purple);
+    background:#8b5cf6;
 
-    animation:
-    moveTwo 20s infinite alternate ease-in-out;
+    bottom:-180px;
+
+    right:-180px;
+
+    opacity:.18;
+
+}
+
+@keyframes floatGradient{
+
+    from{
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+            translate(60px,-40px)
+            scale(1.15);
+
+    }
 
 }
 
@@ -208,51 +232,58 @@ z-index:-2;
 
 .star{
 
-position:absolute;
+    position:absolute;
 
-width:3px;
+    width:2px;
 
-height:3px;
+    height:2px;
 
-border-radius:50%;
+    border-radius:50%;
 
-background:white;
+    background:white;
 
-opacity:.5;
+    opacity:.35;
 
-animation:
-floatStar 8s infinite ease-in-out;
+    box-shadow:
+        0 0 10px white,
+        0 0 20px white;
 
-}
-
-@keyframes floatStar{
-
-0%{
-
-transform:translateY(0);
-
-opacity:.4;
+    animation:
+        starFloat linear infinite,
+        twinkle ease-in-out infinite;
 
 }
 
-50%{
+@keyframes starFloat{
 
-transform:translateY(-35px);
+    from{
 
-opacity:1;
+        transform:
+            translateY(0);
+
+    }
+
+    to{
+
+        transform:
+            translateY(-140px);
+
+    }
 
 }
 
-100%{
+@keyframes twinkle{
 
-transform:translateY(0);
+    50%{
 
-opacity:.4;
+        opacity:1;
+
+        transform:
+            scale(2);
+
+    }
 
 }
-
-}
-
 /*=============================
 CURSOR
 =============================*/
@@ -2170,5 +2201,77 @@ margin-bottom:20px;
 .mb40{
 
 margin-bottom:40px;
+
+}
+/* ==================================================
+   PHASE 1 — PREMIUM BACKGROUND
+================================================== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(102,192,244,.18), transparent 35%),
+        radial-gradient(circle at 85% 15%, rgba(139,92,246,.18), transparent 35%),
+        radial-gradient(circle at 50% 80%, rgba(0,212,255,.12), transparent 45%);
+
+    animation: backgroundMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove{
+
+    0%{
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+
+    }
+
+    100%{
+
+        transform:
+            translate3d(-40px,-20px,0)
+            scale(1.15);
+
+    }
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-4;
+
+    opacity:.18;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        );
+
+    background-size:70px 70px;
+
+    mask-image:
+        radial-gradient(circle at center, black 40%, transparent 100%);
 
 }
