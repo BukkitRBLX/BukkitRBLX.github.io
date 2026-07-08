@@ -400,116 +400,65 @@ CUSTOM CURSOR
 NAVIGATION
 ==============================*/
 
-nav{
+nav {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 
-    position:fixed;
+    padding: 12px 25px;
 
-    top:22px;
+    background: rgba(10, 15, 25, 0.65);
+    backdrop-filter: blur(15px);
 
-    left:50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
 
-    transform:translateX(-50%);
-
-    width:min(1150px,92%);
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:18px 30px;
-
-    background:
-        rgba(10,15,25,.72);
-
-    backdrop-filter:blur(18px);
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    box-shadow:var(--shadow-lg);
-
-    z-index:1000;
+    box-shadow:
+        0 0 30px rgba(0,255,255,0.08);
 
 }
 
-.logo{
 
-    font-size:30px;
+nav ul {
 
-    font-weight:900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    letter-spacing:3px;
+    gap: 35px;
 
-    background:
+    list-style: none;
 
-        linear-gradient(
-            90deg,
-            white,
-            var(--blue),
-            var(--purple)
-        );
-
-    -webkit-background-clip:text;
-
-    color:transparent;
+    margin: 0;
+    padding: 0;
 
 }
 
-nav ul{
 
-    display:flex;
+nav a {
 
-    gap:30px;
+    color: rgba(255,255,255,0.75);
 
-    list-style:none;
+    text-decoration: none;
 
-}
+    font-size: 15px;
+    font-weight: 600;
 
-nav a{
-
-    position:relative;
-
-    color:var(--muted);
-
-    font-weight:600;
-
-    transition:var(--transition);
+    transition: 0.3s ease;
 
 }
 
-nav a::after{
 
-    content:"";
+nav a:hover {
 
-    position:absolute;
+    color: white;
 
-    left:0;
-    bottom:-6px;
-
-    width:0;
-
-    height:2px;
-
-    background:var(--blue);
-
-    transition:var(--transition);
+    text-shadow:
+        0 0 10px cyan;
 
 }
-
-nav a:hover{
-
-    color:white;
-
-}
-
-nav a:hover::after{
-
-    width:100%;
-
-} 
 /*=====================================================
     BUKK1T Dashboard
     Part 2 / 4
