@@ -452,3 +452,39 @@ function updateTimeline(data) {
     }
 
 } 
+/* ==========================================
+   LIVE REFRESH
+========================================== */
+
+async function refreshDashboard() {
+
+    try {
+
+        const response = await fetch(workerURL);
+
+        if (!response.ok) {
+            throw new Error("Refresh failed.");
+        }
+
+        const data = await response.json();
+
+        updateProfile(data);
+        updateStats(data);
+        updateRecentGames(data);
+        updateGitHub(data);
+        updateTimeline(data);
+
+        console.log("Dashboard refreshed.");
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* Refresh every 60 seconds */
+
+setInterval(refreshDashboard, 60000);
