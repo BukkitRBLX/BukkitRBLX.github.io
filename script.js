@@ -1,6 +1,6 @@
 /* ==========================================
    BUKK1T DASHBOARD SCRIPT
-   FINAL FIXED VERSION
+   FINAL REBUILT VERSION
 ========================================== */
 
 
@@ -15,40 +15,40 @@ const CONFIG = {
 
 
 
-/* ================================
-   API
-================================ */
+// ================================
+// API
+// ================================
 
 
 async function api(endpoint){
 
+    const url =
+    CONFIG.WORKER
+    .replace(/\/+$/, "")
+    +
+    "/"
+    +
+    endpoint.replace(/^\/+/, "");
+
+
+
     try{
 
-
-        const url =
-        CONFIG.WORKER.replace(/\/+$/, "")
-        +
-        "/"
-        +
-        endpoint.replace(/^\/+/, "");
-
-
-
-        const res =
+        const response =
         await fetch(url);
 
 
 
         const data =
-        await res.json();
+        await response.json();
 
 
 
-        if(!res.ok){
+        if(!response.ok){
 
             console.error(
                 "API ERROR:",
-                endpoint,
+                url,
                 data
             );
 
@@ -57,22 +57,19 @@ async function api(endpoint){
         }
 
 
+
         return data;
 
 
     }
-    catch(err){
-
+    catch(error){
 
         console.error(
             "FETCH ERROR:",
-            endpoint,
-            err
+            error
         );
 
-
         return null;
-
 
     }
 
@@ -85,27 +82,26 @@ async function api(endpoint){
 
 
 
-/* ================================
-   HELPERS
-================================ */
+// ================================
+// HELPERS
+// ================================
 
 
 function setText(id,value){
 
-
-    const el =
+    const element =
     document.getElementById(id);
 
 
-    if(el){
 
-        el.textContent =
+    if(element){
+
+        element.textContent =
         value ?? "--";
 
     }
 
 }
-
 
 
 
@@ -120,13 +116,18 @@ const counters = {};
 function animateNumber(id,target){
 
 
-    const el =
+    const element =
     document.getElementById(id);
 
 
 
-    if(!el)
+    if(!element)
     return;
+
+
+
+    target =
+    Number(target) || 0;
 
 
 
@@ -137,11 +138,6 @@ function animateNumber(id,target){
         );
 
     }
-
-
-
-    target =
-    Number(target) || 0;
 
 
 
@@ -169,6 +165,7 @@ function animateNumber(id,target){
 
             current = target;
 
+
             clearInterval(
                 counters[id]
             );
@@ -177,7 +174,7 @@ function animateNumber(id,target){
 
 
 
-        el.textContent =
+        element.textContent =
         Math.floor(current)
         .toLocaleString();
 
@@ -186,81 +183,94 @@ function animateNumber(id,target){
     },20);
 
 
-}
-
-
-
-
-
-
-
-
-
-/* ================================
-   STEAM PROFILE
-================================ */
+} 
+// ================================
+// STEAM PROFILE
+// ================================
 
 
 async function loadSteamProfile(){
 
 
-const data =
-await api("/steam/profile");
+    const data =
+    await api("/steam/profile");
+
+
+    if(!data)
+    return;
 
 
 
-if(!data)
-return;
+    setText(
+        "username",
+        data.personaname || "Unknown"
+    );
 
 
 
-setText(
-"username",
-data.personaname || "Unknown"
-);
+    setText(
+        "status",
+        data.personastate > 0
+        ? "🟢 Online"
+        : "⚫ Offline"
+    );
 
 
 
-const avatar =
-document.getElementById(
-"avatar"
-);
+    setText(
+        "timelineStatus",
+        data.personastate > 0
+        ? "Online"
+        : "Offline"
+    );
 
 
 
-if(avatar)
-
-avatar.src =
-data.avatarfull || "";
+    const avatar =
+    document.getElementById("avatar");
 
 
+    if(avatar){
 
+        avatar.src =
+        data.avatarfull || "";
 
-const button =
-document.getElementById(
-"steamButton"
-);
+    }
 
 
 
-if(button)
-
-button.href =
-data.profileurl ||
-"https://steamcommunity.com";
+    const steamButton =
+    document.getElementById("steamButton");
 
 
+    if(steamButton){
+
+        steamButton.href =
+        data.profileurl ||
+        "https://steamcommunity.com";
+
+    }
 
 
-setText(
-"status",
-data.personastate > 0
-?
-"🟢 Online"
-:
-"⚫ Offline"
-);
 
+    const game =
+
+        data.gameextrainfo ||
+        "Not Playing";
+
+
+
+    setText(
+        "currentGame",
+        game
+    );
+
+
+
+    setText(
+        "timelineGame",
+        game
+    );
 
 }
 
@@ -269,30 +279,30 @@ data.personastate > 0
 
 
 
-
-
-
-/* ================================
-   STEAM STATS
-================================ */
+// ================================
+// STEAM STATS
+// ================================
 
 
 async function loadSteamStats(){
 
 
-const data =
-await api("/steam/stats");
+    const data =
+    await api("/steam/stats");
 
 
-if(data)
+    if(!data)
+    return;
 
-animateNumber(
-"gamesOwned",
-data.games
-);
 
+
+    animateNumber(
+        "gamesOwned",
+        data.games
+    );
 
 }
+
 
 
 
@@ -301,19 +311,22 @@ data.games
 async function loadFriends(){
 
 
-const data =
-await api("/steam/friends");
+    const data =
+    await api("/steam/friends");
 
 
-if(data)
+    if(!data)
+    return;
 
-animateNumber(
-"friends",
-data.friends
-);
 
+
+    animateNumber(
+        "friends",
+        data.friends
+    );
 
 }
+
 
 
 
@@ -322,117 +335,37 @@ data.friends
 async function loadSteamLevel(){
 
 
-const data =
-await api("/steam/level");
+    const data =
+    await api("/steam/level");
 
 
-if(data)
-
-animateNumber(
-"steamLevel",
-data.level
-);
-
-
-}
+    if(!data)
+    return;
 
 
 
+    animateNumber(
+        "steamLevel",
+        data.level
+    );
 
 
 
+    const stat =
+    document.getElementById(
+        "steamLevelStat"
+    );
 
 
 
-/* ================================
-   RECENT GAMES
-================================ */
+    if(stat){
 
+        animateNumber(
+            "steamLevelStat",
+            data.level
+        );
 
-async function loadRecentGames(){
-
-
-const data =
-await api("/steam/recent");
-
-
-const box =
-document.getElementById(
-"recentGames"
-);
-
-
-
-if(!box)
-return;
-
-
-
-box.innerHTML = "";
-
-
-
-const games =
-data?.games || [];
-
-
-
-if(!games.length){
-
-box.innerHTML =
-"<p>No recent games.</p>";
-
-return;
-
-}
-
-
-
-games.slice(0,6)
-.forEach(game=>{
-
-
-const card =
-document.createElement(
-"div"
-);
-
-
-
-card.className =
-"gameCard";
-
-
-
-card.innerHTML = `
-
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
-
-
-<h3>
-${game.name || "Unknown Game"}
-</h3>
-
-
-<p>
-${Math.floor(
-(game.playtime_forever || 0)/60
-)}
-hours played
-</p>
-
-`;
-
-
-
-box.appendChild(card);
-
-
-});
-
-
-cardTilt();
-
+    }
 
 }
 
@@ -441,39 +374,48 @@ cardTilt();
 
 
 
-
-
-
-/* ================================
-   ACHIEVEMENTS
-================================ */
+// ================================
+// ACHIEVEMENTS
+// ================================
 
 
 async function loadAchievements(){
 
 
-const data =
-await api("/steam/achievements");
+    const data =
+    await api("/steam/achievements");
+
+
+    if(!data)
+    return;
 
 
 
-if(!data)
-return;
+    animateNumber(
+        "achievements",
+        data.achievements || 0
+    );
 
 
 
-animateNumber(
-"achievements",
-data.achievements
-);
+    animateNumber(
+        "perfectGames",
+        data.perfectGames || 0
+    );
 
 
 
-animateNumber(
-"perfectGames",
-data.perfectGames
-);
+    setText(
+        "achievementText",
+        `${data.achievements || 0} achievements unlocked`
+    );
 
+
+
+    setText(
+        "perfectText",
+        `${data.perfectGames || 0} perfect games`
+    );
 
 }
 
@@ -482,210 +424,311 @@ data.perfectGames
 
 
 
+// ================================
+// RECENT GAMES
+// ================================
+
+
+async function loadRecentGames(){
+
+
+    const data =
+    await api("/steam/recent");
+
+
+    const box =
+    document.getElementById(
+        "recentGames"
+    );
+
+
+    if(!box)
+    return;
 
 
 
-/* ================================
-   GITHUB
-================================ */
+    box.innerHTML = "";
 
+
+
+    const games =
+    data?.games || [];
+
+
+
+    if(!games.length){
+
+        box.innerHTML =
+        "<p>No recent games found.</p>";
+
+        return;
+
+    }
+
+
+
+    games
+    .slice(0,6)
+    .forEach(game=>{
+
+
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "gameCard";
+
+
+        card.innerHTML = `
+
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg">
+
+        <div class="gameInfo">
+
+            <h3>${game.name}</h3>
+
+            <p>${Math.floor((game.playtime_forever||0)/60)} hours played</p>
+
+        </div>
+
+        `;
+
+
+        box.appendChild(card);
+
+
+    });
+
+
+
+    cardTilt();
+
+} 
+// ================================
+// GITHUB REPOSITORIES
+// ================================
 
 async function loadGitHubRepos(){
 
-
-const repos =
-await api("/github/repos");
-
+    const repos =
+    await api("/github/repos");
 
 
-const box =
-document.getElementById(
-"repos"
-);
+    const box =
+    document.getElementById("repos");
 
 
-
-if(
-!box ||
-!Array.isArray(repos)
-)
-
-return;
-
+    if(
+        !box ||
+        !Array.isArray(repos)
+    ){
+        return;
+    }
 
 
-box.innerHTML="";
+    box.innerHTML = "";
 
 
+    repos
+    .slice(0,6)
+    .forEach(repo=>{
 
-repos.slice(0,6)
-.forEach(repo=>{
-
-
-const card =
-document.createElement(
-"div"
-);
+        const card =
+        document.createElement("div");
 
 
-
-card.className =
-"repoCard";
-
+        card.className =
+        "repoCard";
 
 
-card.innerHTML = `
+        card.innerHTML = `
 
-<h3>
-${repo.name}
-</h3>
+        <h3>${repo.name}</h3>
 
+        <p>
+            ${repo.description || "No description provided."}
+        </p>
 
-<p>
-${repo.description || "No description"}
-</p>
+        <div class="repoStats">
 
+            <span>⭐ ${repo.stargazers_count}</span>
 
-<span>
-⭐ ${repo.stargazers_count}
-</span>
+            <span>🍴 ${repo.forks_count}</span>
 
+            <span>${repo.language || "Unknown"}</span>
 
-<span>
-🍴 ${repo.forks_count}
-</span>
+        </div>
 
-
-<span>
-${repo.language || "Code"}
-</span>
-
-`;
+        `;
 
 
+        box.appendChild(card);
 
-box.appendChild(card);
-
-
-});
+    });
 
 
-cardTilt();
+    setText(
+        "timelineGithub",
+        `${repos.length} repositories`
+    );
 
+
+    cardTilt();
 
 }
 
 
 
-
-
-
-
+// ================================
+// FEATURED REPOSITORY
+// ================================
 
 async function loadFeatured(){
 
-
-const repo =
-await api("/github/featured");
-
+    const repo =
+    await api("/github/featured");
 
 
-if(!repo)
-return;
+    if(!repo)
+    return;
 
 
-
-setText(
-"featuredRepoName",
-repo.name
-);
-
+    setText(
+        "featuredRepoName",
+        repo.name
+    );
 
 
-setText(
-"featuredRepoDescription",
-repo.description
-);
+    setText(
+        "featuredRepoDescription",
+        repo.description
+    );
 
 
-
-animateNumber(
-"featuredStars",
-repo.stargazers_count
-);
-
+    setText(
+        "featuredLanguage",
+        repo.language || "--"
+    );
 
 
-animateNumber(
-"featuredForks",
-repo.forks_count
-);
+    animateNumber(
+        "featuredStars",
+        repo.stargazers_count || 0
+    );
 
+
+    animateNumber(
+        "featuredForks",
+        repo.forks_count || 0
+    );
+
+
+    const button =
+    document.getElementById(
+        "featuredRepoButton"
+    );
+
+
+    if(
+        button &&
+        repo.html_url
+    ){
+
+        button.href =
+        repo.html_url;
+
+    }
 
 }
 
 
 
+// ================================
+// REFRESH TIMELINE
+// ================================
+
+function updateTimeline(){
+
+    setText(
+        "timelineUpdate",
+        new Date().toLocaleString()
+    );
+
+}
 
 
 
+// ================================
+// AUTO REFRESH
+// ================================
 
+setInterval(()=>{
 
+    loadSteamProfile();
 
-/* ================================
-   3D CARD TILT
-================================ */
+    loadSteamStats();
 
+    loadFriends();
+
+    loadSteamLevel();
+
+    loadAchievements();
+
+    loadRecentGames();
+
+    loadGitHubRepos();
+
+    loadFeatured();
+
+    updateTimeline();
+
+},60000); 
+// ================================
+// 3D CARD TILT
+// ================================
 
 function cardTilt(){
 
+    document
+    .querySelectorAll(
+        ".statCard,.repoCard,.gameCard,.featureCard,.activityCard"
+    )
+    .forEach(card=>{
 
-document
-.querySelectorAll(
-".statCard,.repoCard,.gameCard"
-)
-.forEach(card=>{
+        card.onmousemove = e=>{
 
+            const rect =
+            card.getBoundingClientRect();
 
-card.onmousemove =
-e=>{
+            const x =
+            e.clientX - rect.left;
 
+            const y =
+            e.clientY - rect.top;
 
-const r =
-card.getBoundingClientRect();
+            const rotateX =
+            -(y - rect.height / 2) / 18;
 
+            const rotateY =
+            (x - rect.width / 2) / 18;
 
+            card.style.transform =
+            `perspective(900px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             scale(1.03)`;
 
-const x =
-e.clientX-r.left;
+        };
 
+        card.onmouseleave = ()=>{
 
-const y =
-e.clientY-r.top;
+            card.style.transform =
+            "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
 
+        };
 
-
-card.style.transform =
-`
-perspective(900px)
-rotateX(${-(y-r.height/2)/18}deg)
-rotateY(${(x-r.width/2)/18}deg)
-scale(1.04)
-`;
-
-};
-
-
-card.onmouseleave =
-()=>{
-
-card.style.transform="";
-
-};
-
-
-});
-
+    });
 
 }
 
@@ -693,70 +736,32 @@ card.style.transform="";
 
 
 
-
-
-
-
-/* ================================
-   CURSOR
-================================ */
-
+// ================================
+// CUSTOM CURSOR
+// ================================
 
 function cursorEffect(){
 
+    const cursor =
+    document.getElementById(
+        "customCursor"
+    );
 
-let cursor =
-document.getElementById(
-"customCursor"
-);
+    if(!cursor)
+    return;
 
+    document.addEventListener(
+        "mousemove",
+        e=>{
 
+            cursor.style.left =
+            e.clientX + "px";
 
-if(!cursor){
+            cursor.style.top =
+            e.clientY + "px";
 
-
-cursor =
-document.createElement(
-"div"
-);
-
-
-cursor.id =
-"customCursor";
-
-
-document.body.appendChild(cursor);
-
-
-}
-
-
-
-if(cursor.dataset.active)
-return;
-
-
-
-cursor.dataset.active =
-"true";
-
-
-
-document.addEventListener(
-"mousemove",
-e=>{
-
-
-cursor.style.left =
-e.clientX+"px";
-
-
-cursor.style.top =
-e.clientY+"px";
-
-
-});
-
+        }
+    );
 
 }
 
@@ -764,66 +769,45 @@ e.clientY+"px";
 
 
 
-
-
-
-/* ================================
-   PARTICLES
-================================ */
-
+// ================================
+// PARTICLES
+// ================================
 
 function createParticles(){
 
+    const container =
+    document.getElementById(
+        "particles"
+    );
 
-let box =
-document.getElementById(
-"particles"
-);
+    if(!container)
+    return;
 
+    container.innerHTML = "";
 
+    for(let i=0;i<60;i++){
 
-if(!box)
-return;
+        const star =
+        document.createElement("span");
 
+        star.className =
+        "star";
 
+        star.style.left =
+        Math.random()*100 + "%";
 
-if(box.dataset.created)
-return;
+        star.style.top =
+        Math.random()*100 + "%";
 
+        star.style.animationDelay =
+        Math.random()*5 + "s";
 
+        star.style.animationDuration =
+        (4 + Math.random()*5) + "s";
 
-box.dataset.created =
-"true";
+        container.appendChild(star);
 
-
-
-for(let i=0;i<60;i++){
-
-
-const p =
-document.createElement(
-"span"
-);
-
-
-
-p.className =
-"star";
-
-
-p.style.left =
-Math.random()*100+"%";
-
-
-p.style.top =
-Math.random()*100+"%";
-
-
-box.appendChild(p);
-
-
-}
-
+    }
 
 }
 
@@ -831,73 +815,44 @@ box.appendChild(p);
 
 
 
-
-
-
-/* ================================
-   START
-================================ */
-
+// ================================
+// START DASHBOARD
+// ================================
 
 async function startDashboard(){
 
+    console.log(
+        "🚀 Starting Dashboard..."
+    );
 
-console.log(
-"🚀 Loading BUKK1T"
-);
+    cursorEffect();
 
+    createParticles();
 
+    await Promise.all([
 
-await Promise.all([
+        loadSteamProfile(),
+        loadSteamStats(),
+        loadFriends(),
+        loadSteamLevel(),
+        loadAchievements(),
+        loadRecentGames(),
+        loadGitHubRepos(),
+        loadFeatured()
 
-loadSteamProfile(),
+    ]);
 
-loadSteamStats(),
+    updateTimeline();
 
-loadFriends(),
+    cardTilt();
 
-loadSteamLevel(),
-
-loadRecentGames(),
-
-loadAchievements(),
-
-loadGitHubRepos(),
-
-loadFeatured()
-
-]);
-
-
-
-setText(
-"timelineUpdate",
-new Date()
-.toLocaleString()
-);
-
-
-
-cursorEffect();
-
-createParticles();
-
-cardTilt();
-
-
-
-console.log(
-"✅ Dashboard Ready"
-);
-
+    console.log(
+        "✅ Dashboard Ready"
+    );
 
 }
 
-
-
-
-
 document.addEventListener(
-"DOMContentLoaded",
-startDashboard
+    "DOMContentLoaded",
+    startDashboard
 );
