@@ -2045,3 +2045,34 @@ a:hover{
 
 
 } 
+.reveal{
+
+opacity:0;
+
+transform:
+translateY(40px);
+
+transition:
+.8s ease;
+
+}
+
+
+.reveal.active{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+
+.statCard,
+.repoCard,
+.gameCard,
+.activityCard{
+
+transform-style:preserve-3d;
+
+}
