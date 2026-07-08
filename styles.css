@@ -1918,13 +1918,13 @@ RESPONSIVE
 
 @media (max-width:1100px){
 
-    #hero{
+#hero{
 
-        flex-direction:column;
-        text-align:center;
-        gap:60px;
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:60px;
 
-    }
+}
 
     .heroCards{
 
@@ -2042,9 +2042,9 @@ RESPONSIVE
 
 @media (max-width:500px){
 
-    .logo{
+    .navLogo{
 
-        font-size:22px;
+        font-size:18px;
 
     }
 
