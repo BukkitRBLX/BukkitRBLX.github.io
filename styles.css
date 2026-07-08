@@ -118,13 +118,14 @@ BACKGROUND
 
     border-radius:50%;
 
-    filter:blur(120px);
-
     pointer-events:none;
+
+    filter:blur(150px);
 
     z-index:-3;
 
-    animation: floatGradient 18s ease-in-out infinite alternate;
+    animation:
+        gradientFloat 20s ease-in-out infinite alternate;
 
 }
 
@@ -136,31 +137,31 @@ BACKGROUND
 
     background:#00d4ff;
 
-    top:-220px;
+    top:-250px;
 
-    left:-180px;
+    left:-220px;
 
-    opacity:.18;
+    opacity:.22;
 
 }
 
 .gradient-two{
 
-    width:650px;
+    width:700px;
 
-    height:650px;
+    height:700px;
 
     background:#8b5cf6;
 
-    bottom:-180px;
+    bottom:-250px;
 
-    right:-180px;
+    right:-220px;
 
-    opacity:.18;
+    opacity:.20;
 
 }
 
-@keyframes floatGradient{
+@keyframes gradientFloat{
 
     from{
 
@@ -173,45 +174,12 @@ BACKGROUND
     to{
 
         transform:
-            translate(60px,-40px)
-            scale(1.15);
+            translate(80px,-40px)
+            scale(1.2);
 
     }
 
 }
-
-@keyframes moveOne{
-
-0%{
-
-transform:translate(0,0);
-
-}
-
-100%{
-
-transform:translate(90px,120px);
-
-}
-
-}
-
-@keyframes moveTwo{
-
-0%{
-
-transform:translate(0,0);
-
-}
-
-100%{
-
-transform:translate(-100px,-80px);
-
-}
-
-}
-
 /*=============================
 PARTICLES
 =============================*/
@@ -284,57 +252,90 @@ z-index:-2;
     }
 
 }
-/*=============================
-CURSOR
-=============================*/
+/*==================================================
+PREMIUM CURSOR
+==================================================*/
 
 body{
-
-cursor:none;
-
+    cursor:none;
 }
 
 #customCursor{
 
-position:fixed;
+    position:fixed;
 
-left:0;
+    left:0;
+    top:0;
 
-top:0;
+    width:18px;
+    height:18px;
 
-width:18px;
+    border-radius:50%;
 
-height:18px;
+    background:#ffffff;
 
-border-radius:50%;
+    pointer-events:none;
 
-background:white;
+    z-index:99999;
 
-mix-blend-mode:difference;
+    transform:translate(-50%,-50%);
 
-pointer-events:none;
+    mix-blend-mode:difference;
 
-z-index:99999;
-
-transform:
-translate(-50%,-50%);
-
-transition:
-
-width .2s,
-
-height .2s;
+    transition:
+        width .25s ease,
+        height .25s ease,
+        transform .15s ease;
 
 }
 
-a:hover ~ #customCursor{
+#cursorGlow{
 
-width:28px;
+    position:fixed;
 
-height:28px;
+    left:0;
+    top:0;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99998;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(102,192,244,.22),
+            rgba(102,192,244,.10),
+            transparent 72%
+        );
+
+    filter:blur(20px);
+
+    transition:
+        width .25s ease,
+        height .25s ease;
 
 }
 
+#customCursor.active{
+
+    width:34px;
+    height:34px;
+
+}
+
+#cursorGlow.active{
+
+    width:340px;
+    height:340px;
+
+}
 /*=============================
 NAVIGATION
 =============================*/
