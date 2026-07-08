@@ -1310,7 +1310,18 @@ font-size:46px;
 
 }
 
-@media (max-width:600px){
+@media (pointer: coarse){
+
+#cursor,
+#cursorBlur{
+display:none;
+}
+
+body{
+cursor:auto;
+}
+
+}
 
 body{
 
