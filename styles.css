@@ -3983,3 +3983,42 @@ scroll-behavior:auto!important;
 
 
 }
+/* ==========================================
+   BUKK1T RGB TITLE FIX
+========================================== */
+
+#bukkit,
+.bukkit,
+.logoText,
+.heroTitle,
+.heroRight h1{
+
+    background:
+    linear-gradient(
+        270deg,
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0066ff,
+        #9900ff,
+        #ff0000
+    );
+
+    background-size:800% 800%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:
+    rainbowTitle 6s linear infinite;
+
+    font-weight:1000;
+
+    text-shadow:
+    0 0 20px rgba(0,212,255,.25);
+
+}
