@@ -2060,3 +2060,227 @@ CARD LIGHT SWEEP FIX
     z-index:3;
 
 }
+/*=====================================================
+    BUKK1T VISUAL UPGRADE PACK 1
+    RGB GLASS CARD EFFECTS
+=====================================================*/
+
+
+/*==============================
+RGB CARD BORDER GLOW
+==============================*/
+
+.statCard,
+.repoCard,
+.gameCard,
+.featureCard,
+.miniCard,
+.activityCard,
+.featuredProject{
+
+    isolation:isolate;
+
+}
+
+
+.statCard::after,
+.repoCard::after,
+.gameCard::after,
+.featureCard::after,
+.miniCard::after,
+.activityCard::after,
+.featuredProject::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:inherit;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #00d4ff,
+            #8b5cf6,
+            #ff00cc,
+            #00ff99,
+            #00d4ff
+        );
+
+    background-size:300% 300%;
+
+    opacity:0;
+
+    z-index:-1;
+
+    transition:.5s ease;
+
+    animation:
+        rgbBorder 8s linear infinite;
+
+}
+
+
+.statCard:hover::after,
+.repoCard:hover::after,
+.gameCard:hover::after,
+.featureCard:hover::after,
+.miniCard:hover::after,
+.activityCard:hover::after,
+.featuredProject:hover::after{
+
+    opacity:.7;
+
+}
+
+
+
+@keyframes rgbBorder{
+
+    0%{
+
+        background-position:
+        0% 50%;
+
+    }
+
+
+    50%{
+
+        background-position:
+        100% 50%;
+
+    }
+
+
+    100%{
+
+        background-position:
+        0% 50%;
+
+    }
+
+}
+
+
+
+/*==============================
+GLASS REFLECTION
+==============================*/
+
+
+.statCard::before,
+.repoCard::before,
+.gameCard::before,
+.featureCard::before,
+.miniCard::before,
+.activityCard::before,
+.featuredProject::before{
+
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:inherit;
+
+
+    background:
+
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.13),
+            transparent 45%
+        );
+
+
+    transform:
+        translateX(-120%);
+
+
+    transition:
+        transform .9s ease;
+
+
+    pointer-events:none;
+
+
+    z-index:2;
+
+
+}
+
+
+
+.statCard:hover::before,
+.repoCard:hover::before,
+.gameCard:hover::before,
+.featureCard:hover::before,
+.miniCard:hover::before,
+.activityCard:hover::before,
+.featuredProject:hover::before{
+
+
+    transform:
+        translateX(120%);
+
+
+}
+
+
+
+/* keep content visible */
+
+.statCard > *,
+.repoCard > *,
+.gameCard > *,
+.featureCard > *,
+.miniCard > *,
+.activityCard > *,
+.featuredProject > *{
+
+    position:relative;
+
+    z-index:3;
+
+}
+
+
+
+
+/*==============================
+EXTRA HOVER DEPTH
+==============================*/
+
+
+.statCard:hover,
+.repoCard:hover,
+.gameCard:hover,
+.featureCard:hover,
+.miniCard:hover,
+.activityCard:hover,
+.featuredProject:hover{
+
+
+    transform:
+
+        translateY(-12px)
+        scale(1.015);
+
+
+    box-shadow:
+
+        0 35px 90px rgba(0,0,0,.45),
+
+        0 0 35px rgba(0,212,255,.25),
+
+        0 0 80px rgba(139,92,246,.18);
+
+
+}
