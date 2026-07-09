@@ -788,134 +788,59 @@ nav{
 
 .navLogo{
 
-    position:relative;
-
-    font-size:28px;
+    font-size:24px;
 
     font-weight:1000;
 
-    letter-spacing:5px;
+    letter-spacing:4px;
 
-    color:white;
 
     background:
 
     linear-gradient(
-        270deg,
-        #ff0000,
+        90deg,
+        #ff0055,
         #ff9900,
         #ffff00,
-        #00ff00,
+        #00ff66,
         #00ffff,
-        #0066ff,
+        #0088ff,
         #9900ff,
-        #ff0000
+        #ff0055
     );
 
 
-    background-size:800% 800%;
+    background-size:400%;
+
+
+    animation:
+    bukkitRGB 6s linear infinite;
 
 
     -webkit-background-clip:text;
-
     background-clip:text;
 
 
     -webkit-text-fill-color:transparent;
 
-
-    animation:
-
-    logoRGB 6s linear infinite;
-
-
-    filter:
-
-    drop-shadow(0 0 12px rgba(0,255,255,.8));
+    color:transparent;
 
 }
 
 
 
-.navLogo::before{
+@keyframes bukkitRGB{
 
+    from{
 
-    content:"BUKK1T";
-
-
-    position:absolute;
-
-
-    inset:0;
-
-
-    z-index:-1;
-
-
-    background:
-
-    linear-gradient(
-        270deg,
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        purple,
-        red
-    );
-
-
-    background-size:800% 800%;
-
-
-    -webkit-background-clip:text;
-
-
-    background-clip:text;
-
-
-    filter:
-
-    blur(18px);
-
-
-    opacity:.8;
-
-
-    animation:
-
-    logoRGB 6s linear infinite;
-
-
-}
-
-
-
-@keyframes logoRGB{
-
-
-    0%{
-
-        background-position:
-        0% 50%;
+        background-position:0%;
 
     }
 
 
-    50%{
+    to{
 
-        background-position:
-        100% 50%;
-
-    }
-
-
-    100%{
-
-        background-position:
-        0% 50%;
+        background-position:400%;
 
     }
 
@@ -1148,128 +1073,47 @@ nav{
 
 
 
-.heroRight h1{
+#username{
 
 
     font-size:76px;
 
-
-    margin:25px 0;
-
+    font-weight:1000;
 
 
     background:
 
     linear-gradient(
-
-        270deg,
-
-        #ff0000,
-
+        90deg,
+        #ff0055,
         #ff9900,
-
         #ffff00,
-
-        #00ff00,
-
+        #00ff66,
         #00ffff,
-
-        #0066ff,
-
+        #0088ff,
         #9900ff,
-
-        #ff0000
-
+        #ff0055
     );
 
 
+    background-size:400%;
 
-    background-size:
 
-    800% 800%;
-
+    animation:
+    bukkitRGB 6s linear infinite;
 
 
     -webkit-background-clip:text;
 
-
     background-clip:text;
 
 
+    color:transparent;
 
     -webkit-text-fill-color:transparent;
 
 
-
-    animation:
-
-    rainbowTitle 8s ease infinite;
-
-
 }
-
-
-
-
-
-
-
-@keyframes rainbowTitle{
-
-
-    0%{
-
-        background-position:
-
-        0% 50%;
-
-    }
-
-
-
-    50%{
-
-        background-position:
-
-        100% 50%;
-
-    }
-
-
-
-    100%{
-
-        background-position:
-
-        0% 50%;
-
-    }
-
-
-}
-
-
-
-
-
-.heroSubtitle{
-
-
-    font-size:20px;
-
-
-    margin-bottom:30px;
-
-
-}
-
-
-
-
-
-
-
-
 /* ==========================================
    BADGES
 ========================================== */
