@@ -1863,7 +1863,7 @@ RESPONSIVE
     .heroRight h1{
         font-size:54px;
         background-size:300% 300%;
-animation:heroGradient 8s linear infinite;
+        animation:heroGradient 8s linear infinite;
     }
     
 @keyframes heroGradient{
