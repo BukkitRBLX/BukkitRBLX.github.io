@@ -3765,3 +3765,42 @@ scroll-behavior:auto!important;
 
 
 }
+nav{
+
+    transition:
+    .35s cubic-bezier(.22,1,.36,1);
+
+}
+
+
+nav:hover{
+
+    transform:
+    translateX(-50%)
+    translateY(-8px)
+    scale(1.03);
+
+
+    box-shadow:
+    0 30px 90px rgba(0,0,0,.7),
+    0 0 40px rgba(102,192,244,.25);
+
+}
+
+
+nav a{
+
+    transition:
+    .25s ease;
+
+}
+
+
+nav a:hover{
+
+    color:white;
+
+    transform:
+    translateY(-3px);
+
+}
