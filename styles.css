@@ -2061,14 +2061,15 @@ CARD LIGHT SWEEP FIX
 
 }
 /*=====================================================
-    BUKK1T VISUAL UPGRADE PACK 1
-    RGB GLASS CARD EFFECTS
+    BUKK1T VISUAL UPGRADE PACK
+    PREMIUM DIM GLASS EFFECTS
 =====================================================*/
 
 
-/*==============================
-RGB CARD BORDER GLOW
-==============================*/
+/*================================
+GLOBAL CARD DEPTH
+================================*/
+
 
 .statCard,
 .repoCard,
@@ -2078,98 +2079,17 @@ RGB CARD BORDER GLOW
 .activityCard,
 .featuredProject{
 
+    position:relative;
+    overflow:hidden;
     isolation:isolate;
 
 }
 
 
-.statCard::after,
-.repoCard::after,
-.gameCard::after,
-.featureCard::after,
-.miniCard::after,
-.activityCard::after,
-.featuredProject::after{
 
-    content:"";
-
-    position:absolute;
-
-    inset:-2px;
-
-    border-radius:inherit;
-
-    background:
-
-        linear-gradient(
-            120deg,
-            #00d4ff,
-            #8b5cf6,
-            #ff00cc,
-            #00ff99,
-            #00d4ff
-        );
-
-    background-size:300% 300%;
-
-    opacity:0;
-
-    z-index:-1;
-
-    transition:.5s ease;
-
-    animation:
-        rgbBorder 8s linear infinite;
-
-}
-
-
-.statCard:hover::after,
-.repoCard:hover::after,
-.gameCard:hover::after,
-.featureCard:hover::after,
-.miniCard:hover::after,
-.activityCard:hover::after,
-.featuredProject:hover::after{
-
-    opacity:.7;
-
-}
-
-
-
-@keyframes rgbBorder{
-
-    0%{
-
-        background-position:
-        0% 50%;
-
-    }
-
-
-    50%{
-
-        background-position:
-        100% 50%;
-
-    }
-
-
-    100%{
-
-        background-position:
-        0% 50%;
-
-    }
-
-}
-
-
-
-/*==============================
-GLASS REFLECTION
-==============================*/
+/*================================
+SUBTLE GLASS REFLECTION
+================================*/
 
 
 .statCard::before,
@@ -2187,32 +2107,22 @@ GLASS REFLECTION
 
     inset:0;
 
-    border-radius:inherit;
-
-
     background:
-
-        linear-gradient(
-            120deg,
-            transparent 25%,
-            rgba(255,255,255,.13),
-            transparent 45%
-        );
-
-
-    transform:
-        translateX(-120%);
+    linear-gradient(
+        120deg,
+        transparent 35%,
+        rgba(255,255,255,.08),
+        transparent 65%
+    );
 
 
-    transition:
-        transform .9s ease;
+    transform:translateX(-120%);
 
+    transition:.8s ease;
 
     pointer-events:none;
 
-
     z-index:2;
-
 
 }
 
@@ -2227,36 +2137,16 @@ GLASS REFLECTION
 .featuredProject:hover::before{
 
 
-    transform:
-        translateX(120%);
-
-
-}
-
-
-
-/* keep content visible */
-
-.statCard > *,
-.repoCard > *,
-.gameCard > *,
-.featureCard > *,
-.miniCard > *,
-.activityCard > *,
-.featuredProject > *{
-
-    position:relative;
-
-    z-index:3;
+    transform:translateX(120%);
 
 }
 
 
 
 
-/*==============================
-EXTRA HOVER DEPTH
-==============================*/
+/*================================
+NORMAL CARD HOVER
+================================*/
 
 
 .statCard:hover,
@@ -2264,67 +2154,155 @@ EXTRA HOVER DEPTH
 .gameCard:hover,
 .featureCard:hover,
 .miniCard:hover,
-.activityCard:hover,
-.featuredProject:hover{
+.activityCard:hover{
 
 
     transform:
+    translateY(-8px);
 
-        translateY(-12px)
-        scale(1.015);
+
+    border-color:
+    rgba(102,192,244,.35);
 
 
     box-shadow:
 
-        0 35px 90px rgba(0,0,0,.45),
+    0 25px 60px rgba(0,0,0,.45),
 
-        0 0 35px rgba(0,212,255,.25),
-
-        0 0 80px rgba(139,92,246,.18);
+    0 0 20px rgba(102,192,244,.12);
 
 
 }
 
-/*=====================================================
-    BUKK1T VISUAL UPGRADE PACK 2
-    AURORA BACKGROUND
-=====================================================*/
 
 
-/*==============================
-AURORA LIGHT WAVES
-==============================*/
+
+/*================================
+FEATURED CARD PREMIUM GLOW
+================================*/
 
 
-body{
+.featuredProject{
 
-    background:
 
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(0,212,255,.20),
-            transparent 35%
-        ),
+    box-shadow:
 
-        radial-gradient(
-            circle at 80% 30%,
-            rgba(139,92,246,.22),
-            transparent 40%
-        ),
+    0 30px 90px rgba(0,0,0,.5),
 
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(255,0,204,.15),
-            transparent 45%
-        ),
-
-        #05070d;
+    0 0 40px rgba(102,192,244,.12);
 
 }
 
 
 
-/* floating aurora layer */
+.featuredProject:hover{
+
+
+    transform:
+    translateY(-10px);
+
+
+    box-shadow:
+
+    0 40px 100px rgba(0,0,0,.55),
+
+    0 0 60px rgba(102,192,244,.22),
+
+    0 0 90px rgba(139,92,246,.12);
+
+
+}
+
+
+
+/*================================
+STEAM STATS SPECIAL
+================================*/
+
+
+.statCard:hover{
+
+
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.5),
+
+    0 0 30px rgba(102,192,244,.18);
+
+
+}
+
+
+
+
+/*================================
+IMPORTANT BUTTON GLOW
+================================*/
+
+
+.primaryButton,
+.buttons a:first-child{
+
+
+    position:relative;
+
+    overflow:hidden;
+
+
+}
+
+
+
+.primaryButton:hover,
+.buttons a:first-child:hover{
+
+
+    box-shadow:
+
+    0 15px 45px rgba(102,192,244,.35);
+
+
+}
+
+
+
+/*================================
+AVATAR PREMIUM EFFECT
+================================*/
+
+
+#avatar{
+
+
+    transition:.5s ease;
+
+
+}
+
+
+
+#avatar:hover{
+
+
+    transform:
+
+    scale(1.04);
+
+
+    box-shadow:
+
+    0 0 100px rgba(102,192,244,.35),
+
+    0 40px 90px rgba(0,0,0,.5);
+
+
+}
+
+
+
+/*================================
+SOFT AURORA BACKGROUND
+================================*/
 
 
 body::after{
@@ -2336,7 +2314,7 @@ body::after{
     position:fixed;
 
 
-    inset:-50%;
+    inset:-40%;
 
 
     pointer-events:none;
@@ -2345,61 +2323,22 @@ body::after{
     z-index:-6;
 
 
-
     background:
 
 
-        conic-gradient(
-
-            from 0deg,
-
-            transparent,
-
-            rgba(0,212,255,.12),
-
-            rgba(139,92,246,.15),
-
-            rgba(255,0,204,.12),
-
-            transparent
-
-        );
+    radial-gradient(
+        circle,
+        rgba(102,192,244,.10),
+        transparent 35%
+    );
 
 
     filter:blur(120px);
 
 
-
     animation:
 
-        auroraSpin 40s linear infinite;
-
-
-
-}
-
-
-
-
-@keyframes auroraSpin{
-
-
-    from{
-
-        transform:
-        rotate(0deg)
-        scale(1);
-
-    }
-
-
-    to{
-
-        transform:
-        rotate(360deg)
-        scale(1.2);
-
-    }
+    slowAurora 45s linear infinite;
 
 
 }
@@ -2407,41 +2346,25 @@ body::after{
 
 
 
-
-/*==============================
-MOVING LIGHT DOTS
-==============================*/
+@keyframes slowAurora{
 
 
-.lightOrb{
+from{
+
+transform:
+rotate(0deg)
+scale(1);
+
+}
 
 
-    position:fixed;
+to{
 
+transform:
+rotate(360deg)
+scale(1.15);
 
-    width:300px;
-
-    height:300px;
-
-
-    border-radius:50%;
-
-
-    filter:blur(80px);
-
-
-    opacity:.25;
-
-
-    pointer-events:none;
-
-
-    z-index:-3;
-
-
-    animation:
-
-        orbMove 25s ease-in-out infinite alternate;
+}
 
 
 }
@@ -2449,94 +2372,25 @@ MOVING LIGHT DOTS
 
 
 
-.lightOrb.one{
+/*================================
+REDUCE MOTION SAFETY
+================================*/
 
 
-    background:#00d4ff;
+@media(prefers-reduced-motion:reduce){
 
 
-    top:10%;
+.statCard,
+.repoCard,
+.gameCard,
+.featureCard,
+.miniCard,
+.activityCard,
+.featuredProject{
 
-    left:5%;
-
-
-}
-
-
-
-.lightOrb.two{
-
-
-    background:#8b5cf6;
-
-
-    bottom:5%;
-
-    right:10%;
-
-
-    animation-delay:-10s;
-
+transition:none!important;
 
 }
-
-
-
-@keyframes orbMove{
-
-
-    from{
-
-
-        transform:
-
-        translate(0,0)
-        scale(1);
-
-
-    }
-
-
-    to{
-
-
-        transform:
-
-        translate(120px,-80px)
-        scale(1.3);
-
-
-    }
-
-
-}
-
-
-
-
-/*==============================
-SUBTLE SCREEN GLOW
-==============================*/
-
-
-body{
-
-    isolation:isolate;
-
-}
-
-
-
-body main,
-section,
-nav,
-footer{
-
-
-    position:relative;
-
-
-    z-index:1;
 
 
 }
