@@ -1,51 +1,63 @@
-/* ==========================================
-   BUKK1T Dashboard v4
-   PART 1 / 4
-   Core System + API + Helpers
-========================================== */
+/*=====================================================
+    BUKK1T Dashboard v5
+    JAVASCRIPT REBUILD
+
+    PART 1 / 4
+    Core System
+=====================================================*/
 
 
-/* ==========================================
-   CONFIG
-========================================== */
+/*=====================================================
+CONFIG
+=====================================================*/
+
 
 const CONFIG = {
+
 
     WORKER:
     "https://steam.shantiya1212.workers.dev"
 
+
 };
 
 
-/* ==========================================
-   API SYSTEM
-========================================== */
+
+
+
+
+/*=====================================================
+API HANDLER
+=====================================================*/
 
 
 async function api(endpoint){
 
+
     const url =
-        CONFIG.WORKER.replace(/\/$/, "")
-        +
-        "/"
-        +
-        endpoint.replace(/^\//,"");
+
+    CONFIG.WORKER.replace(/\/$/,"")
+
+    +
+
+    "/"
+
+    +
+
+    endpoint.replace(/^\//,"");
+
 
 
     try{
 
 
         const response =
-            await fetch(url,
-            {
-                method:"GET",
-                headers:{
-                    "Accept":"application/json"
-                }
-            });
+        await fetch(url);
+
 
 
         if(!response.ok){
+
 
             console.warn(
                 "API failed:",
@@ -53,111 +65,148 @@ async function api(endpoint){
                 response.status
             );
 
+
             return null;
 
+
         }
+
 
 
         return await response.json();
 
 
+
     }
+
     catch(error){
 
+
         console.error(
-            "API Error:",
+            "API error:",
             error
         );
 
+
         return null;
+
 
     }
 
-}
-
-
-/* ==========================================
-   DOM HELPERS
-========================================== */
-
-
-function $(id){
-
-    return document.getElementById(id);
 
 }
+
+
+
+
+
+
+
+/*=====================================================
+DOM HELPERS
+=====================================================*/
+
+
+const $ = id =>
+document.getElementById(id);
+
+
 
 
 
 function setText(id,value){
 
-    const element=$(id);
+
+    const el=$(id);
 
 
-    if(!element)
+    if(!el)
         return;
 
 
-    element.textContent =
-        value ?? "--";
+
+    el.textContent =
+    value ?? "--";
+
 
 }
 
 
 
-/* ==========================================
-   SAFE HTML
-========================================== */
 
 
-function escapeHTML(text){
 
-    if(!text)
+
+/*=====================================================
+SAFE HTML
+=====================================================*/
+
+
+function escapeHTML(value){
+
+
+    if(!value)
         return "";
 
 
-    return String(text)
 
-        .replaceAll("&","&amp;")
+    return String(value)
 
-        .replaceAll("<","&lt;")
 
-        .replaceAll(">","&gt;")
+    .replaceAll("&","&amp;")
 
-        .replaceAll('"',"&quot;")
 
-        .replaceAll("'","&#039;");
+    .replaceAll("<","&lt;")
+
+
+    .replaceAll(">","&gt;")
+
+
+    .replaceAll('"',"&quot;")
+
+
+    .replaceAll("'","&#039;");
+
+
 
 }
 
 
 
-/* ==========================================
-   NUMBER ANIMATION
-========================================== */
-
-
-const counterCache={};
 
 
 
-function animateNumber(id,value){
+
+/*=====================================================
+NUMBER COUNTER
+=====================================================*/
 
 
-    const element=$(id);
+const counters={};
 
 
-    if(!element)
+
+
+function animateNumber(id,target){
+
+
+
+    const el=$(id);
+
+
+
+    if(!el)
         return;
 
 
-    value =
-        Number(value) || 0;
+
+    target =
+    Number(target)||0;
 
 
 
     clearInterval(
-        counterCache[id]
+        counters[id]
     );
 
 
@@ -165,76 +214,67 @@ function animateNumber(id,value){
     let current=0;
 
 
-    const increment =
-        Math.max(
-            1,
-            value / 70
-        );
+
+    const step =
+    Math.max(
+        1,
+        target/60
+    );
 
 
 
-    counterCache[id]=
+    counters[id]=
     setInterval(()=>{
 
 
-        current += increment;
+        current += step;
 
 
 
-        if(current >= value){
+        if(current>=target){
 
-            current=value;
+
+            current=target;
+
 
             clearInterval(
-                counterCache[id]
+                counters[id]
             );
+
 
         }
 
 
 
-        element.textContent =
-            Math.floor(current)
-            .toLocaleString();
+        el.textContent =
+        Math.floor(current)
+        .toLocaleString();
 
 
 
-    },18);
+    },20);
 
 
 }
 
 
 
-/* ==========================================
-   TIME
-========================================== */
-
-
-function updateTimeline(){
-
-    setText(
-        "timelineUpdate",
-        new Date()
-        .toLocaleString()
-    );
-
-}
 
 
 
-/* ==========================================
-   DASHBOARD STATE
-========================================== */
+
+/*=====================================================
+DASHBOARD STATE
+=====================================================*/
 
 
-const Dashboard = {
+const Dashboard={
 
 
     loaded:false,
 
 
-    refreshing:false,
+    updating:false,
 
 
     lastUpdate:null
@@ -244,106 +284,183 @@ const Dashboard = {
 
 
 
-/* ==========================================
-   END PART 1
-========================================== */
-/* ==========================================
-   BUKK1T Dashboard v4
-   PART 2 / 4
-   Steam System
-========================================== */
 
 
-/* ==========================================
-   STEAM PROFILE
-========================================== */
+
+
+function updateTimestamp(){
+
+
+    Dashboard.lastUpdate =
+    new Date();
+
+
+
+    setText(
+
+        "timelineUpdate",
+
+        Dashboard.lastUpdate
+        .toLocaleString()
+
+    );
+
+
+}
+
+
+
+
+
+
+/*=====================================================
+END PART 1
+=====================================================
+/*=====================================================
+    BUKK1T Dashboard v5
+
+    PART 2 / 4
+    Steam System
+=====================================================*/
+
+
+
+/*=====================================================
+STEAM PROFILE
+=====================================================*/
 
 
 async function loadSteamProfile(){
 
 
     const profile =
-        await api("/steam/profile");
+    await api("/steam/profile");
 
 
 
     if(!profile){
+
 
         setText(
             "username",
             "Steam Offline"
         );
 
+
         return;
 
+
     }
+
 
 
 
     setText(
         "username",
-        profile.personaname
+        profile.personaname ||
+        "Unknown"
     );
+
+
 
 
 
     const online =
-        profile.personastate > 0;
+    profile.personastate > 0;
+
+
 
 
 
     setText(
+
         "status",
+
         online
+
         ?
+
         "🟢 Online"
+
         :
+
         "⚫ Offline"
+
     );
+
+
 
 
 
     setText(
+
         "timelineStatus",
+
         online
+
         ?
+
         "Online"
+
         :
+
         "Offline"
+
     );
 
 
 
-    const avatar=$("avatar");
 
 
-    if(avatar){
+
+    const avatar =
+    $("avatar");
+
+
+
+    if(avatar && profile.avatarfull){
+
 
         avatar.src =
-            profile.avatarfull;
+        profile.avatarfull;
+
 
     }
+
+
+
+
 
 
 
     const steamButton =
-        $("steamButton");
+    $("steamButton");
 
 
 
-    if(steamButton){
+    if(
+        steamButton &&
+        profile.profileurl
+    ){
+
 
         steamButton.href =
-            profile.profileurl;
+        profile.profileurl;
+
 
     }
 
 
 
+
+
+
+
     const game =
-        profile.gameextrainfo
-        ||
-        "Not Playing";
+    profile.gameextrainfo ||
+    "Not Playing";
+
+
 
 
 
@@ -360,21 +477,26 @@ async function loadSteamProfile(){
     );
 
 
+
 }
 
 
 
 
-/* ==========================================
-   STEAM STATISTICS
-========================================== */
+
+
+
+
+/*=====================================================
+STEAM STATS
+=====================================================*/
 
 
 async function loadSteamStats(){
 
 
     const stats =
-        await api("/steam/stats");
+    await api("/steam/stats");
 
 
 
@@ -383,9 +505,16 @@ async function loadSteamStats(){
 
 
 
+
+
     animateNumber(
+
         "gamesOwned",
-        stats.games || 0
+
+        stats.games ??
+        stats.gameCount ??
+        0
+
     );
 
 
@@ -394,21 +523,27 @@ async function loadSteamStats(){
 
 
 
-/* ==========================================
-   FRIEND COUNT
-========================================== */
+
+
+
+
+/*=====================================================
+STEAM FRIENDS
+=====================================================*/
 
 
 async function loadFriends(){
 
 
-    const friends =
-        await api("/steam/friends");
+    const data =
+    await api("/steam/friends");
 
 
 
-    if(!friends)
+    if(!data)
         return;
+
+
 
 
 
@@ -416,7 +551,9 @@ async function loadFriends(){
 
         "friends",
 
-        friends.friends || 0
+        data.friends ??
+        data.friendCount ??
+        0
 
     );
 
@@ -426,21 +563,34 @@ async function loadFriends(){
 
 
 
-/* ==========================================
-   STEAM LEVEL
-========================================== */
+
+
+
+
+/*=====================================================
+STEAM LEVEL
+=====================================================*/
 
 
 async function loadSteamLevel(){
 
 
-    const level =
-        await api("/steam/level");
+    const data =
+    await api("/steam/level");
 
 
 
-    if(!level)
+    if(!data)
         return;
+
+
+
+
+
+    const level =
+    data.level || 0;
+
+
 
 
 
@@ -448,7 +598,7 @@ async function loadSteamLevel(){
 
         "steamLevel",
 
-        level.level || 0
+        level
 
     );
 
@@ -458,9 +608,10 @@ async function loadSteamLevel(){
 
         "steamLevelStat",
 
-        level.level || 0
+        level
 
     );
+
 
 
 }
@@ -468,21 +619,44 @@ async function loadSteamLevel(){
 
 
 
-/* ==========================================
-   ACHIEVEMENTS
-========================================== */
+
+
+
+
+/*=====================================================
+ACHIEVEMENTS
+=====================================================*/
 
 
 async function loadAchievements(){
 
 
-    const achievements =
-        await api("/steam/achievements");
+    const data =
+    await api("/steam/achievements");
 
 
 
-    if(!achievements)
+    if(!data)
         return;
+
+
+
+
+
+    const total =
+    data.achievements ||
+    data.total ||
+    0;
+
+
+
+
+
+    const perfect =
+    data.perfectGames ||
+    data.perfect ||
+    0;
+
 
 
 
@@ -491,9 +665,10 @@ async function loadAchievements(){
 
         "achievements",
 
-        achievements.achievements || 0
+        total
 
     );
+
 
 
 
@@ -501,9 +676,11 @@ async function loadAchievements(){
 
         "perfectGames",
 
-        achievements.perfectGames || 0
+        perfect
 
     );
+
+
 
 
 
@@ -511,9 +688,11 @@ async function loadAchievements(){
 
         "achievementText",
 
-        `${achievements.achievements || 0} achievements unlocked`
+        `${total} achievements unlocked`
 
     );
+
+
 
 
 
@@ -521,7 +700,7 @@ async function loadAchievements(){
 
         "perfectText",
 
-        `${achievements.perfectGames || 0} perfect games`
+        `${perfect} perfect games`
 
     );
 
@@ -531,21 +710,20 @@ async function loadAchievements(){
 
 
 
-/* ==========================================
-   RECENTLY PLAYED GAMES
-========================================== */
+
+
+
+
+/*=====================================================
+RECENTLY PLAYED GAMES
+=====================================================*/
 
 
 async function loadRecentGames(){
 
 
-    const data =
-        await api("/steam/recent");
-
-
-
     const container =
-        $("recentGames");
+    $("recentGames");
 
 
 
@@ -554,16 +732,28 @@ async function loadRecentGames(){
 
 
 
+
+    const data =
+    await api("/steam/recent");
+
+
+
     container.innerHTML="";
 
 
 
+
+
     const games =
-        data?.games || [];
+    data?.games || [];
 
 
 
-    if(!games.length){
+
+
+    if(
+        games.length === 0
+    ){
 
 
         container.innerHTML=`
@@ -585,7 +775,10 @@ async function loadRecentGames(){
 
         return;
 
+
     }
+
+
 
 
 
@@ -596,35 +789,51 @@ async function loadRecentGames(){
     .forEach(game=>{
 
 
-        const totalHours =
-            Math.floor(
-                (game.playtime_forever || 0)
-                /
-                60
-            );
+
+        const hours =
+
+        Math.floor(
+
+        (game.playtime_forever || 0)
+        /
+        60
+
+        );
 
 
 
-        const recentHours =
-            Math.floor(
-                (game.playtime_2weeks || 0)
-                /
-                60
-            );
+
+
+        const recent =
+
+        Math.floor(
+
+        (game.playtime_2weeks || 0)
+        /
+        60
+
+        );
+
+
+
+
 
 
 
         const card =
-            document.createElement("div");
+        document.createElement("div");
 
 
 
         card.className =
-            "gameCard reveal";
+        "gameCard reveal";
 
 
 
-        card.innerHTML=`
+
+
+        card.innerHTML = `
+
 
         <img
 
@@ -638,44 +847,49 @@ async function loadRecentGames(){
         <div class="gameInfo">
 
 
-        <h3>
+            <h3>
 
-        ${escapeHTML(game.name)}
+                ${escapeHTML(game.name)}
 
-        </h3>
-
-
-        <p>
-
-        ${totalHours.toLocaleString()} hours total
-
-        </p>
+            </h3>
 
 
-        <div class="playtime">
+
+            <p>
+
+                ${hours.toLocaleString()} total hours
+
+            </p>
 
 
-        <div class="bar">
 
-        <div
-
-        class="fill"
-
-        style="width:${Math.min(totalHours,100)}%">
-
-        </div>
-
-        </div>
+            <div class="playtime">
 
 
-        <p>
-
-        Played ${recentHours}h recently
-
-        </p>
+                <div class="bar">
 
 
-        </div>
+                    <div
+
+                    class="fill"
+
+                    style="width:${Math.min(hours,100)}%">
+
+                    </div>
+
+
+                </div>
+
+
+
+                <p>
+
+                ${recent}h played recently
+
+                </p>
+
+
+            </div>
 
 
         </div>
@@ -685,7 +899,10 @@ async function loadRecentGames(){
 
 
 
+
+
         container.appendChild(card);
+
 
 
     });
@@ -697,66 +914,113 @@ async function loadRecentGames(){
 
 
 
-/* ==========================================
-   END PART 2
-========================================== */
-/* ==========================================
-   PART 3
-   GITHUB SYSTEM (FIXED)
-========================================== */
+
+/*=====================================================
+END PART 2
+=====================================================*/
+/*=====================================================
+    BUKK1T Dashboard v5
+
+    PART 3 / 4
+    GitHub System
+=====================================================*/
 
 
-/* ==========================================
-   LOAD GITHUB REPOSITORIES
-========================================== */
+
+
+
+/*=====================================================
+LOAD GITHUB REPOSITORIES
+=====================================================*/
+
 
 async function loadGitHubRepos(){
 
-    const repos = await api("github/repos");
 
-    const container = $("repos");
-
-    if(!container) return;
+    const container =
+    $("repos");
 
 
-    container.innerHTML = "";
+
+    if(!container)
+        return;
 
 
-    if(!Array.isArray(repos) || repos.length === 0){
 
-        container.innerHTML = `
+
+    const repos =
+    await api("/github/repos");
+
+
+
+    container.innerHTML="";
+
+
+
+
+
+    if(
+        !Array.isArray(repos)
+        ||
+        repos.length===0
+    ){
+
+
+
+        container.innerHTML=`
 
         <div class="repoCard">
 
             <h3>
-                No Repositories Found
+                No Repositories
             </h3>
 
+
             <p>
-                GitHub data is currently unavailable.
+                GitHub data unavailable.
             </p>
+
 
         </div>
 
+
         `;
 
+
+
         setText(
+
             "timelineGithub",
-            "Unable to load repositories"
+
+            "GitHub unavailable"
+
         );
+
+
 
         return;
 
+
     }
+
+
+
+
 
 
 
     repos
 
     .sort(
+
         (a,b)=>
-        (b.stargazers_count || 0) -
-        (a.stargazers_count || 0)
+
+        (b.stargazers_count||0)
+
+        -
+
+        (a.stargazers_count||0)
+
     )
 
     .slice(0,6)
@@ -764,87 +1028,121 @@ async function loadGitHubRepos(){
     .forEach(repo=>{
 
 
+
+
+
         const card =
         document.createElement("div");
+
 
 
         card.className =
         "repoCard reveal";
 
 
-        card.innerHTML = `
-
-            <h3>
-                ${repo.name}
-            </h3>
-
-
-            <p>
-                ${
-                    repo.description ||
-                    "No description available."
-                }
-            </p>
-
-
-            <div class="repoInfo">
-
-
-                <span>
-                    ⭐ ${
-                        repo.stargazers_count || 0
-                    }
-                </span>
-
-
-                <span>
-                    🍴 ${
-                        repo.forks_count || 0
-                    }
-                </span>
-
-
-                <span>
-                    💻 ${
-                        repo.language ||
-                        "Unknown"
-                    }
-                </span>
-
-
-            </div>
 
 
 
-            <a
-            href="${repo.html_url}"
-            target="_blank"
-            rel="noopener noreferrer">
 
-                Open Repository →
+        card.innerHTML=`
 
-            </a>
+        <h3>
+
+            ${escapeHTML(repo.name)}
+
+        </h3>
+
+
+
+        <p>
+
+            ${
+                escapeHTML(
+                repo.description ||
+                "No description available."
+                )
+            }
+
+        </p>
+
+
+
+        <div class="repoInfo">
+
+
+            <span>
+
+            ⭐ ${repo.stargazers_count || 0}
+
+            </span>
+
+
+
+            <span>
+
+            🍴 ${repo.forks_count || 0}
+
+            </span>
+
+
+
+            <span>
+
+            💻 ${
+                repo.language ||
+                "Unknown"
+            }
+
+            </span>
+
+
+
+        </div>
+
+
+
+
+        <a
+
+        href="${repo.html_url}"
+
+        target="_blank"
+
+        rel="noopener noreferrer">
+
+
+        Open Repository →
+
+        </a>
+
 
 
         `;
 
 
+
+
         container.appendChild(card);
+
 
 
     });
 
 
 
+
+
+
     setText(
+
         "timelineGithub",
+
         `${repos.length} Public Repositories`
+
     );
 
 
-    revealElements();
 
-    cardTilt();
 
 
 }
@@ -853,64 +1151,97 @@ async function loadGitHubRepos(){
 
 
 
-/* ==========================================
-   FEATURED REPOSITORY
-========================================== */
+
+
+
+
+/*=====================================================
+FEATURED REPOSITORY
+=====================================================*/
+
 
 async function loadFeatured(){
 
 
+
     const repo =
-    await api("github/featured");
+    await api("/github/featured");
 
 
-    if(!repo){
 
-        setText(
-            "featuredRepoName",
-            "Unavailable"
-        );
-
+    if(!repo)
         return;
 
-    }
+
+
+
 
 
 
     setText(
+
         "featuredRepoName",
-        repo.name || "Unknown"
+
+        repo.name ||
+        "Unknown"
+
     );
 
 
 
+
+
     setText(
+
         "featuredRepoDescription",
+
         repo.description ||
         "No description available."
+
     );
+
+
+
 
 
 
     setText(
+
         "featuredLanguage",
+
         repo.language ||
         "Unknown"
+
     );
 
 
 
+
+
+
     animateNumber(
+
         "featuredStars",
+
         repo.stargazers_count || 0
+
     );
+
+
 
 
 
     animateNumber(
+
         "featuredForks",
+
         repo.forks_count || 0
+
     );
+
+
+
+
 
 
 
@@ -919,10 +1250,17 @@ async function loadFeatured(){
 
 
 
-    if(button && repo.html_url){
+    if(
+
+        button &&
+        repo.html_url
+
+    ){
+
 
         button.href =
         repo.html_url;
+
 
     }
 
@@ -934,115 +1272,158 @@ async function loadFeatured(){
 
 
 
-/* ==========================================
-   GITHUB AUTO UPDATE
-========================================== */
+
+
+
+/*=====================================================
+GITHUB REFRESH
+=====================================================*/
 
 
 async function refreshGitHub(){
 
 
+
     await Promise.all([
+
 
         loadGitHubRepos(),
 
+
         loadFeatured()
+
 
     ]);
 
 
-} 
-/* ==========================================
-   PART 4
-   VISUAL ENGINE (FIXED)
-========================================== */
+
+}
 
 
-/* ==========================================
-   CARD TILT
-========================================== */
 
-function cardTilt(){
 
-    const cards =
-    document.querySelectorAll(
-        ".statCard," +
-        ".repoCard," +
-        ".gameCard," +
-        ".featureCard," +
-        ".activityCard," +
-        ".miniCard"
+
+/*=====================================================
+END PART 3
+=====================================================*/
+/*=====================================================
+    BUKK1T Dashboard v5
+
+    PART 4 / 4
+    Visual Engine + Startup
+=====================================================*/
+
+
+
+
+
+/*=====================================================
+CUSTOM CURSOR
+=====================================================*/
+
+
+function initCursor(){
+
+
+    const cursor =
+    $("customCursor");
+
+
+    const glow =
+    $("cursorGlow");
+
+
+
+    if(
+        !cursor ||
+        !glow
+    )
+    return;
+
+
+
+
+
+    let mouseX=0;
+    let mouseY=0;
+
+
+    let currentX=0;
+    let currentY=0;
+
+
+
+
+
+    document.addEventListener(
+        "mousemove",
+        e=>{
+
+
+            mouseX=e.clientX;
+
+            mouseY=e.clientY;
+
+
+        }
     );
 
 
-    cards.forEach(card=>{
-
-
-        if(card.dataset.tilt)
-            return;
-
-
-        card.dataset.tilt = "true";
 
 
 
-        card.addEventListener(
-            "mousemove",
-            e=>{
 
 
-                const rect =
-                card.getBoundingClientRect();
+    function animate(){
 
 
-                const x =
-                e.clientX - rect.left;
-
-
-                const y =
-                e.clientY - rect.top;
+        currentX +=
+        (mouseX-currentX)*0.15;
 
 
 
-                const rotateX =
-                -(y - rect.height / 2) / 18;
+        currentY +=
+        (mouseY-currentY)*0.15;
 
 
 
-                const rotateY =
-                (x - rect.width / 2) / 18;
+
+
+        cursor.style.left =
+        currentX+"px";
 
 
 
-                card.style.transform =
-                `
-                perspective(1000px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateY(-8px)
-                scale(1.02)
-                `;
+        cursor.style.top =
+        currentY+"px";
 
 
-            }
+
+
+        glow.style.left =
+        currentX+"px";
+
+
+
+        glow.style.top =
+        currentY+"px";
+
+
+
+
+
+        requestAnimationFrame(
+            animate
         );
 
 
 
-        card.addEventListener(
-            "mouseleave",
-            ()=>{
+    }
 
 
-                card.style.transform =
-                "";
 
+    animate();
 
-            }
-        );
-
-
-    });
 
 
 }
@@ -1052,58 +1433,11 @@ function cardTilt(){
 
 
 
-/* ==========================================
-   CUSTOM CURSOR
-========================================== */
 
-function cursorEffect() {
+/*=====================================================
+PARTICLES
+=====================================================*/
 
-const cursor = document.getElementById("customCursor");
-
-const glow = document.getElementById("cursorGlow");
-
-if (!cursor || !glow) return;
-
-let mouseX = 0;
-
-let mouseY = 0;
-
-let currentX = 0;
-
-let currentY = 0;
-
-document.addEventListener("mousemove", e => {
-
-mouseX = e.clientX;
-
-mouseY = e.clientY;
-
-});
-
-function animate() {
-
-currentX += (mouseX - currentX) * 0.15;
-
-currentY += (mouseY - currentY) * 0.15;
-
-cursor.style.left = currentX + "px";
-
-cursor.style.top = currentY + "px";
-
-glow.style.left = currentX + "px";
-
-glow.style.top = currentY + "px";
-
-requestAnimationFrame(animate);
-
-}
-
-animate();
-
-}
-/* ==========================================
-   PARTICLE SYSTEM
-========================================== */
 
 function createParticles(){
 
@@ -1112,8 +1446,10 @@ function createParticles(){
     $("particles");
 
 
+
     if(!container)
         return;
+
 
 
 
@@ -1121,11 +1457,14 @@ function createParticles(){
 
 
 
+
+
     for(
         let i=0;
-        i<90;
+        i<100;
         i++
     ){
+
 
 
         const star =
@@ -1133,8 +1472,9 @@ function createParticles(){
 
 
 
-        star.className =
-        "star";
+        star.className="star";
+
+
 
 
 
@@ -1148,6 +1488,8 @@ function createParticles(){
 
 
 
+
+
         const size =
         Math.random()*3+1;
 
@@ -1157,31 +1499,40 @@ function createParticles(){
         size+"px";
 
 
+
         star.style.height =
         size+"px";
 
 
 
+
+
         star.style.animationDuration =
+
         (
             5+
-            Math.random()*12
+            Math.random()*15
+
         )
         +"s";
 
 
 
+
         star.style.animationDelay =
+
         Math.random()*5+"s";
 
 
 
-        container.appendChild(
-            star
-        );
+
+
+        container.appendChild(star);
+
 
 
     }
+
 
 
 }
@@ -1192,23 +1543,28 @@ function createParticles(){
 
 
 
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
+/*=====================================================
+SCROLL REVEAL
+=====================================================*/
 
 
-let revealObserver;
+let revealObserver=null;
 
 
 
-function revealElements(){
+
+
+function initReveal(){
+
 
 
     if(!revealObserver){
 
 
+
         revealObserver =
         new IntersectionObserver(
+
             entries=>{
 
 
@@ -1220,6 +1576,7 @@ function revealElements(){
                             entry.isIntersecting
                         ){
 
+
                             entry.target
                             .classList
                             .add("active");
@@ -1228,31 +1585,48 @@ function revealElements(){
                         }
 
 
+
                     }
                 );
 
 
+
             },
+
             {
-                threshold:.12
+                threshold:.15
             }
+
+
         );
+
 
 
     }
 
 
 
+
+
+
+
     document
     .querySelectorAll(
-        "section,"+
-        ".repoCard,"+
-        ".gameCard,"+
-        ".statCard,"+
-        ".activityCard,"+
-        ".featureCard,"+
-        ".achievementCard"
+        "section,"
+        +
+        ".card,"
+        +
+        ".statCard,"
+        +
+        ".repoCard,"
+        +
+        ".gameCard,"
+        +
+        ".activityCard,"
+        +
+        ".featureCard"
     )
+
     .forEach(el=>{
 
 
@@ -1261,12 +1635,13 @@ function revealElements(){
         );
 
 
-        revealObserver.observe(
-            el
-        );
+
+        revealObserver.observe(el);
+
 
 
     });
+
 
 
 }
@@ -1278,12 +1653,200 @@ function revealElements(){
 
 
 
-/* ==========================================
-   START DASHBOARD
-========================================== */
+/*=====================================================
+NAVBAR ACTIVE LINK
+=====================================================*/
+
+
+function initNavbar(){
+
+
+
+    const links =
+    document.querySelectorAll(
+        "nav a"
+    );
+
+
+
+    const sections =
+    document.querySelectorAll(
+        "section"
+    );
+
+
+
+
+
+
+    function update(){
+
+
+
+        let current="hero";
+
+
+
+
+
+        sections.forEach(section=>{
+
+
+
+            const top =
+            section.offsetTop - 150;
+
+
+
+
+            if(
+                window.scrollY >= top
+            ){
+
+
+                current =
+                section.id;
+
+
+            }
+
+
+
+        });
+
+
+
+
+
+        links.forEach(link=>{
+
+
+            link.classList.toggle(
+
+                "active",
+
+                link
+                .getAttribute("href")
+                ===
+                "#"+current
+
+            );
+
+
+        });
+
+
+
+    }
+
+
+
+
+
+
+    window.addEventListener(
+        "scroll",
+        update
+    );
+
+
+
+    update();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/*=====================================================
+CARD HOVER EFFECT
+=====================================================*/
+
+
+function initCards(){
+
+
+
+    const cards =
+    document.querySelectorAll(
+
+    ".statCard,"
+    +
+    ".repoCard,"
+    +
+    ".gameCard,"
+    +
+    ".featureCard,"
+    +
+    ".miniCard,"
+    +
+    ".activityCard"
+
+    );
+
+
+
+
+
+    cards.forEach(card=>{
+
+
+        card.addEventListener(
+            "mouseenter",
+            ()=>{
+
+
+                card.style.transform =
+                "translateY(-10px)";
+
+
+            }
+        );
+
+
+
+
+
+        card.addEventListener(
+            "mouseleave",
+            ()=>{
+
+
+                card.style.transform="";
+
+
+            }
+        );
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+
+/*=====================================================
+START DASHBOARD
+=====================================================*/
 
 
 async function startDashboard(){
+
 
 
     console.clear();
@@ -1291,13 +1854,16 @@ async function startDashboard(){
 
 
     console.log(
-        "%cBUKK1T Dashboard",
+        "%cBUKK1T Dashboard Loaded",
         "color:#66c0f4;font-size:18px;font-weight:bold"
     );
 
 
 
-    cursorEffect();
+
+
+    initCursor();
+
 
 
     createParticles();
@@ -1307,81 +1873,90 @@ async function startDashboard(){
     await Promise.all([
 
 
+
         loadSteamProfile(),
+
 
         loadSteamStats(),
 
+
         loadFriends(),
+
 
         loadSteamLevel(),
 
+
         loadAchievements(),
+
 
         loadRecentGames(),
 
+
         loadGitHubRepos(),
 
+
         loadFeatured()
+
 
 
     ]);
 
 
 
-    updateTimeline();
 
 
-    revealElements();
+    updateTimestamp();
 
 
-    cardTilt();
+
+
+
+    initReveal();
+
+
+
+    initNavbar();
+
+
+
+    initCards();
+
+
+
+
+
+    Dashboard.loaded=true;
+
 
 
 
     console.log(
-        "Dashboard Ready!"
+        "Dashboard Ready 🚀"
     );
 
 
-}
-
-
-
-
-
-
-
-/* ==========================================
-   DOM READY
-========================================== */
-document.addEventListener("DOMContentLoaded", async () => {
-
-await startDashboard();
-
-const navLinks = document.querySelectorAll("nav a");
-
-function setActiveLink() {
-
-let current = "#hero";
-
-document.querySelectorAll("section").forEach(section => {
-
-const top = section.offsetTop - 120;
-
-if (window.scrollY >= top) current = "#" + section.id;
-
-});
-
-navLinks.forEach(link => {
-
-link.classList.toggle("active", link.getAttribute("href") === current);
-
-});
 
 }
 
-setActiveLink();
 
-window.addEventListener("scroll", setActiveLink);
+
+
+
+
+
+
+/*=====================================================
+DOM READY
+=====================================================*/
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    startDashboard();
+
+
 
 });
