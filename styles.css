@@ -1183,8 +1183,9 @@ GLOBAL CARD STYLE
     border-color:rgba(102,192,244,.30);
 
     box-shadow:
-
-        0 25px 70px rgba(0,0,0,.35);
+    0 25px 70px rgba(0,0,0,.35),
+    0 0 30px rgba(102,192,244,.15),
+    0 0 50px rgba(139,92,246,.10);
 
 }
 
