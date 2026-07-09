@@ -1356,17 +1356,17 @@ async function startDashboard(){
 ========================================== */
 
 
-document.addEventListener("DOMContentLoaded", async () => {'{'}
+document.addEventListener("DOMContentLoaded", async () => {
 
 await startDashboard();
 
 const navLinks = document.querySelectorAll("nav a");
 
-function setActiveLink() {'{'}
+function setActiveLink() {
 
 let current = "#hero";
 
-document.querySelectorAll("section").forEach(section => {'{'}
+document.querySelectorAll("section").forEach(section => {
 
 const top = section.offsetTop - 120;
 
@@ -1374,15 +1374,9 @@ if (window.scrollY >= top) current = "#" + section.id;
 
 });
 
-navLinks.forEach(link => {'{'}
+navLinks.forEach(link => {
 
-link.classList.remove("active");
-
-if (link.getAttribute("href") === current) {'{'}
-
-link.classList.add("active");
-
-}
+link.classList.toggle("active", link.getAttribute("href") === current);
 
 });
 
