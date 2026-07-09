@@ -2284,3 +2284,259 @@ EXTRA HOVER DEPTH
 
 
 }
+
+/*=====================================================
+    BUKK1T VISUAL UPGRADE PACK 2
+    AURORA BACKGROUND
+=====================================================*/
+
+
+/*==============================
+AURORA LIGHT WAVES
+==============================*/
+
+
+body{
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0,212,255,.20),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(139,92,246,.22),
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255,0,204,.15),
+            transparent 45%
+        ),
+
+        #05070d;
+
+}
+
+
+
+/* floating aurora layer */
+
+
+body::after{
+
+
+    content:"";
+
+
+    position:fixed;
+
+
+    inset:-50%;
+
+
+    pointer-events:none;
+
+
+    z-index:-6;
+
+
+
+    background:
+
+
+        conic-gradient(
+
+            from 0deg,
+
+            transparent,
+
+            rgba(0,212,255,.12),
+
+            rgba(139,92,246,.15),
+
+            rgba(255,0,204,.12),
+
+            transparent
+
+        );
+
+
+    filter:blur(120px);
+
+
+
+    animation:
+
+        auroraSpin 40s linear infinite;
+
+
+
+}
+
+
+
+
+@keyframes auroraSpin{
+
+
+    from{
+
+        transform:
+        rotate(0deg)
+        scale(1);
+
+    }
+
+
+    to{
+
+        transform:
+        rotate(360deg)
+        scale(1.2);
+
+    }
+
+
+}
+
+
+
+
+
+/*==============================
+MOVING LIGHT DOTS
+==============================*/
+
+
+.lightOrb{
+
+
+    position:fixed;
+
+
+    width:300px;
+
+    height:300px;
+
+
+    border-radius:50%;
+
+
+    filter:blur(80px);
+
+
+    opacity:.25;
+
+
+    pointer-events:none;
+
+
+    z-index:-3;
+
+
+    animation:
+
+        orbMove 25s ease-in-out infinite alternate;
+
+
+}
+
+
+
+
+.lightOrb.one{
+
+
+    background:#00d4ff;
+
+
+    top:10%;
+
+    left:5%;
+
+
+}
+
+
+
+.lightOrb.two{
+
+
+    background:#8b5cf6;
+
+
+    bottom:5%;
+
+    right:10%;
+
+
+    animation-delay:-10s;
+
+
+}
+
+
+
+@keyframes orbMove{
+
+
+    from{
+
+
+        transform:
+
+        translate(0,0)
+        scale(1);
+
+
+    }
+
+
+    to{
+
+
+        transform:
+
+        translate(120px,-80px)
+        scale(1.3);
+
+
+    }
+
+
+}
+
+
+
+
+/*==============================
+SUBTLE SCREEN GLOW
+==============================*/
+
+
+body{
+
+    isolation:isolate;
+
+}
+
+
+
+body main,
+section,
+nav,
+footer{
+
+
+    position:relative;
+
+
+    z-index:1;
+
+
+}
