@@ -362,7 +362,9 @@ CUSTOM CURSOR
 
 body{
 
-cursor:none;
+cursor:none !important;
+
+}
 
 }
 
