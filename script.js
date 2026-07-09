@@ -1354,8 +1354,6 @@ async function startDashboard(){
 /* ==========================================
    DOM READY
 ========================================== */
-
-
 document.addEventListener("DOMContentLoaded", async () => {
 
 await startDashboard();
