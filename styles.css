@@ -645,29 +645,29 @@ HERO
 
 .heroRight h1{
 
-font-size:72px;
+    font-size:72px;
 
-margin:18px 0;
+    margin:18px 0;
 
-background:linear-gradient(90deg,#ffffff,#66c0f4,#8b5cf6,#00d4ff,#57ff91,#ffffff);
+    background:linear-gradient(90deg,#ffffff,#66c0f4,#8b5cf6,#00d4ff,#57ff91,#ffffff);
 
-background-size:300% 300%;
+    background-size:300% 300%;
 
--webkit-background-clip:text;
+    -webkit-background-clip:text;
 
-color:transparent;
+    color:transparent;
 
-animation:heroGradient 6s linear infinite;
+    animation:heroGradient 6s linear infinite;
 
 }
 
 @keyframes heroGradient{
 
-0%{background-position:0% 50%;}
+    0%{background-position:0% 50%;}
 
-50%{background-position:100% 50%;}
+    50%{background-position:100% 50%;}
 
-100%{background-position:0% 50%;}
+    100%{background-position:0% 50%;}
 
 }
 
