@@ -744,9 +744,7 @@ nav{
 .navLogo{
 
     font-size:24px;
-
     font-weight:1000;
-
     letter-spacing:4px;
 
     background:
@@ -768,77 +766,30 @@ nav{
     bukkitRGB 6s linear infinite;
 
     -webkit-background-clip:text;
-
     background-clip:text;
 
+    -webkit-text-fill-color:transparent;
     color:transparent;
 
-    -webkit-text-fill-color:transparent;
+    cursor:pointer;
+
+    transition:
+    .35s ease;
 
 }
 
 
+.navLogo:hover{
 
-nav ul{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:28px;
-
-    list-style:none;
-
-}
+    transform:
+    translateY(-4px)
+    scale(1.08);
 
 
-
-nav li{
-
-    display:flex;
-
-}
-
-
-
-nav a{
-
-    color:var(--muted);
-
-    font-weight:700;
-
-    font-size:15px;
-
-    padding:8px 14px;
-
-    border-radius:999px;
-
-    transition:.3s ease;
-
-}
-
-
-
-nav a:hover{
-
-    color:white;
-
-    background:
-    rgba(255,255,255,.08);
-
-}
-
-
-
-nav a.active{
-
-    color:white;
-
-    background:
-    rgba(102,192,244,.15);
-
-    box-shadow:
-    0 0 25px rgba(102,192,244,.25);
+    filter:
+    drop-shadow(
+        0 0 20px rgba(0,212,255,.8)
+    );
 
 }
 /* ==========================================
