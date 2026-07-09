@@ -1803,10 +1803,6 @@ function initCards(){
             ()=>{
 
 
-                card.style.transform =
-                "translateY(-10px)";
-
-
             }
         );
 
