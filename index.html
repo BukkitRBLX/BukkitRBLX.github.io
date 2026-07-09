@@ -3,743 +3,1161 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BUKK1T • Steam & GitHub Dashboard</title>
+<title>-> Bukkit <-</title>
 
-    <meta name="description" content="Live Steam and GitHub Dashboard">
-    <meta name="theme-color" content="#090d14">
+<meta name="description" content="Live Steam and GitHub Dashboard">
 
-    <link rel="icon" href="favicon.ico">
+<link rel="icon" href="favicon.ico">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 
 </head>
 
+
 <body>
 
-    <!-- =====================================
-         BACKGROUND EFFECTS
-    ====================================== -->
 
-    <div id="particles"></div>
+<!-- BACKGROUND -->
 
-    <div id="customCursor"></div>
+<div id="particles"></div>
 
-    <div id="cursorGlow"></div>
+<div class="ambient ambient-blue"></div>
+<div class="ambient ambient-purple"></div>
 
-    <div class="gradient gradient-one"></div>
 
-    <div class="gradient gradient-two"></div>
+<div id="customCursor"></div>
+<div id="cursorGlow"></div>
 
-   <!-- =====================================
-     NAVIGATION
-====================================== -->
+
+<!-- NAVBAR -->
+
 <nav>
 
 <div class="navContainer">
 
-    <div class="navLogo">
-        BUKK1T
-    </div>
 
-    <ul>
+<div class="navLogo">
+BUKK1T
+</div>
 
-        <li>
-            <a href="#hero">
-                Home
-            </a>
-        </li>
 
-        <li>
-            <a href="#featured">
-                Featured
-            </a>
-        </li>
+<ul>
 
-        <li>
-            <a href="#stats">
-                Steam
-            </a>
-        </li>
+<li><a href="#hero">Home</a></li>
 
-        <li>
-            <a href="#projects">
-                GitHub
-            </a>
-        </li>
+<li><a href="#featured">Featured</a></li>
 
-        <li>
-            <a href="#activity">
-                Activity
-            </a>
-        </li>
+<li><a href="#stats">Steam</a></li>
 
-    </ul>
+<li><a href="#projects">GitHub</a></li>
 
-    </ul>
+<li><a href="#activity">Activity</a></li>
+
+</ul>
+
 
 </div>
 
 </nav>
 
+
+
+
 <main>
 
+
+<!-- HERO -->
+
+
+<section id="hero">
+
+
+<div class="heroLeft">
+
+
+<div class="avatarWrapper">
+
+
+<img
+id="avatar"
+src="https://placehold.co/260x260"
+alt="Steam Avatar">
+
+
+<div class="avatarGlow"></div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="heroRight">
+
+
+<span class="badge">
+👋 Welcome
+</span>
+
+
+
+<h1 id="username">
+Loading...
+</h1>
+
+
+
+<p class="heroSubtitle">
+
+Steam Gamer • Open Source Developer • Linux Enthusiast
+
+</p>
+
+
+
+
+<div id="status" class="statusBadge">
+
+⚫ Loading Steam Status...
+
+</div>
+
+
+
+
+
+<div class="heroCards">
+
+
+<div class="miniCard">
+
+<span>
+🎮 CURRENT GAME
+</span>
+
+
+<strong id="currentGame">
+Not Playing
+</strong>
+
+
+</div>
+
+
+
+
+
+<div class="miniCard">
+
+
+<span>
+⭐ STEAM LEVEL
+</span>
+
+
+<strong id="steamLevel">
+--
+</strong>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="heroBadges">
+
+
+<span class="badge">💻 HTML</span>
+
+<span class="badge">🎨 CSS</span>
+
+<span class="badge">⚡ JavaScript</span>
+
+<span class="badge">☁️ Cloudflare</span>
+
+<span class="badge">🐧 Linux</span>
+
+<span class="badge">🎮 Steam API</span>
+
+<span class="badge">💙 GitHub API</span>
+
+
+</div>
+
+
+
+
+
+<div class="buttons">
+
+
+<a id="steamButton" href="#" target="_blank">
+
+🎮 Steam Profile
+
+</a>
+
+
+<a href="https://github.com/BukkitRBLX" target="_blank">
+
+💻 GitHub
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
 <!-- =====================================
-     HERO
+     FEATURED PROJECT
 ====================================== -->
 
-    <section id="hero">
 
-        <div class="heroLeft">
+<section id="featured" class="reveal">
 
-            <div class="avatarWrapper float">
 
-                <img
-                    id="avatar"
-                    src="https://placehold.co/230x230"
-                    alt="Steam Avatar"
-                    loading="eager"
-                    decoding="async">
+<div class="sectionHeader">
 
-                <div class="avatarGlow"></div>
+<div>
 
-            </div>
+<h2>
+Featured Project
+</h2>
 
-        </div>
 
-        <div class="heroRight">
+<p class="sectionSubtitle">
+Highlighted GitHub repository
+</p>
 
-            <span class="badge">
-                👋 Welcome
-            </span>
 
-            <h1 id="username">
-                Loading...
-            </h1>
+</div>
 
-            <p class="heroSubtitle">
-                Steam Gamer • Open Source Developer • Linux Enthusiast
-            </p>
 
-            <div
-                id="status"
-                class="statusBadge">
+</div>
 
-                ⚫ Loading Steam Status...
 
-            </div>
 
-            <div class="heroCards">
 
-                <div class="miniCard">
 
-                    <span class="miniTitle">
+<div class="featuredProject">
 
-                        🎮 CURRENT GAME
 
-                    </span>
+<div class="featuredLeft">
 
-                    <strong id="currentGame">
 
-                        Not Playing
+<span class="featuredBadge">
+⭐ FEATURED REPOSITORY
+</span>
 
-                    </strong>
 
-                </div>
 
-                <div class="miniCard">
+<h3 id="featuredRepoName">
+Loading...
+</h3>
 
-                    <span class="miniTitle">
 
-                        ⭐ STEAM LEVEL
 
-                    </span>
+<p id="featuredRepoDescription">
+Loading repository information...
+</p>
 
-                    <strong id="steamLevel">
 
-                        --
 
-                    </strong>
 
-                </div>
 
-            </div>
+<div class="featuredStats">
 
-            <div class="heroBadges">
 
-                <span class="badge">💻 HTML</span>
+<div class="featuredStat">
 
-                <span class="badge">🎨 CSS</span>
+<span>
+⭐
+</span>
 
-                <span class="badge">⚡ JavaScript</span>
+<strong id="featuredStars">
+--
+</strong>
 
-                <span class="badge">☁️ Cloudflare</span>
+<small>
+Stars
+</small>
 
-                <span class="badge">🐧 Linux</span>
+</div>
 
-                <span class="badge">🎮 Steam API</span>
 
-                <span class="badge">💙 GitHub API</span>
 
-            </div>
 
-            <div class="buttons">
 
-                <a
-                    id="steamButton"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer">
+<div class="featuredStat">
 
-                    🎮 Steam Profile
+<span>
+🍴
+</span>
 
-                </a>
+<strong id="featuredForks">
+--
+</strong>
 
-                <a
-                    href="https://github.com/BukkitRBLX"
-                    target="_blank"
-                    rel="noopener noreferrer">
+<small>
+Forks
+</small>
 
-                    💻 GitHub
+</div>
 
-                </a>
 
-            </div>
 
-        </div>
 
-    </section> 
-    <!-- =====================================
-         FEATURED PROJECT
-    ====================================== -->
 
-    <section id="featured" class="reveal">
+<div class="featuredStat">
 
-        <h2>Featured Project</h2>
+<span>
+💻
+</span>
 
-        <div class="featuredProject">
+<strong id="featuredLanguage">
+--
+</strong>
 
-            <div class="featuredLeft">
+<small>
+Language
+</small>
 
-                <span class="featuredBadge">
-                    ⭐ FEATURED REPOSITORY
-                </span>
+</div>
 
-                <h3 id="featuredRepoName">
-                    Loading...
-                </h3>
 
-                <p id="featuredRepoDescription">
-                    Loading repository information...
-                </p>
 
-                <div class="featuredStats">
+</div>
 
-                    <div class="featuredStat">
 
-                        <span>⭐</span>
 
-                        <strong id="featuredStars">--</strong>
 
-                        <small>Stars</small>
 
-                    </div>
+<a 
+id="featuredRepoButton"
+class="primaryButton"
+href="#"
+target="_blank">
 
-                    <div class="featuredStat">
+View Repository →
 
-                        <span>🍴</span>
+</a>
 
-                        <strong id="featuredForks">--</strong>
 
-                        <small>Forks</small>
 
-                    </div>
+</div>
 
-                    <div class="featuredStat">
 
-                        <span>💻</span>
 
-                        <strong id="featuredLanguage">
-                            --
-                        </strong>
 
-                        <small>Language</small>
 
-                    </div>
 
-                </div>
+<div class="featuredRight">
 
-                <a
-                    id="featuredRepoButton"
-                    class="primaryButton"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer">
 
-                    View Repository →
 
-                </a>
+<div class="featureCard">
 
-            </div>
+<h4>
+🚀 Live GitHub Data
+</h4>
 
-            <div class="featuredRight">
 
-                <div class="featureCard">
+<p>
+Automatically synchronized from GitHub API.
+</p>
 
-                    <h4>🚀 Live GitHub Data</h4>
+</div>
 
-                    <p>
-                        Automatically synchronized with GitHub every minute.
-                    </p>
 
-                </div>
 
-                <div class="featureCard">
 
-                    <h4>⚡ Modern Stack</h4>
+<div class="featureCard">
 
-                    <p>
-                        HTML • CSS • JavaScript • Cloudflare Workers • Steam API • GitHub API
-                    </p>
+<h4>
+⚡ Modern Stack
+</h4>
 
-                </div>
 
-                <div class="featureCard">
+<p>
+HTML • CSS • JavaScript • Cloudflare Workers
+</p>
 
-                    <h4>💙 Open Source</h4>
 
-                    <p>
-                        Every repository shown here is pulled live directly from GitHub.
-                    </p>
+</div>
 
-                </div>
 
-            </div>
 
-        </div>
 
-    </section>
 
+<div class="featureCard">
 
+<h4>
+💙 Open Source
+</h4>
 
 
+<p>
+Repositories are loaded dynamically.
+</p>
 
-    <!-- =====================================
-         STEAM STATISTICS
-    ====================================== -->
 
-    <section id="stats" class="reveal">
+</div>
 
-        <h2>Steam Statistics</h2>
 
-        <div class="statsGrid">
 
-            <div class="statCard reveal">
+</div>
 
-                <div class="statIcon">🎮</div>
 
-                <span class="number" id="gamesOwned">--</span>
 
-                <span class="label">
-                    Games Owned
-                </span>
+</div>
 
-            </div>
 
-            <div class="statCard">
+</section>
 
-                <div class="statIcon">🏆</div>
 
-                <span class="number" id="perfectGames">--</span>
 
-                <span class="label">
-                    Perfect Games
-                </span>
 
-            </div>
 
-            <div class="statCard">
 
-                <div class="statIcon">⭐</div>
 
-                <span class="number" id="achievements">--</span>
 
-                <span class="label">
-                    Achievements
-                </span>
+<!-- =====================================
+     STEAM STATS
+====================================== -->
 
-            </div>
 
-            <div class="statCard">
+<section id="stats" class="reveal">
 
-                <div class="statIcon">👥</div>
 
-                <span class="number" id="friends">--</span>
+<div class="sectionHeader">
 
-                <span class="label">
-                    Steam Friends
-                </span>
+<div>
 
-            </div>
+<h2>
+Steam Statistics
+</h2>
 
-            <div class="statCard">
 
-                <div class="statIcon">📈</div>
+<p class="sectionSubtitle">
+Your gaming profile overview
+</p>
 
-                <span class="number" id="steamLevelStat">--</span>
 
-                <span class="label">
-                    Steam Level
-                </span>
+</div>
 
-            </div>
 
-        </div>
+<span class="badge">
+🎮 Steam API
+</span>
 
-    </section>
 
+</div>
 
 
 
 
-    <!-- =====================================
-         ACHIEVEMENT SHOWCASE
-    ====================================== -->
 
-    <section id="achievementsSection" class="reveal">
+<div class="statsGrid">
 
-        <h2>Achievement Showcase</h2>
 
-        <div id="achievementGrid">
 
-            <div class="achievementCard">
+<div class="statCard">
 
-                <div class="achievementIcon">
-                    🏆
-                </div>
+<div class="statIcon">
+🎮
+</div>
 
-                <div class="achievementContent">
 
-                    <h3>
-                        Total Achievements
-                    </h3>
+<span class="number" id="gamesOwned">
+--
+</span>
 
-                    <p id="achievementText">
-                        Loading achievements...
-                    </p>
 
-                </div>
+<span class="label">
+Games Owned
+</span>
 
-            </div>
 
-            <div class="achievementCard">
+</div>
 
-                <div class="achievementIcon">
-                    💯
-                </div>
 
-                <div class="achievementContent">
 
-                    <h3>
-                        Perfect Games
-                    </h3>
 
-                    <p id="perfectText">
-                        Loading perfect games...
-                    </p>
 
-                </div>
+<div class="statCard">
 
-            </div>
+<div class="statIcon">
+🏆
+</div>
 
-        </div>
 
-    </section> 
-    <!-- =====================================
-         RECENTLY PLAYED
-    ====================================== -->
+<span class="number" id="perfectGames">
+--
+</span>
 
-    <section id="games" class="reveal">
 
-        <div class="sectionHeader">
+<span class="label">
+Perfect Games
+</span>
 
-            <div>
 
-                <h2>Recently Played</h2>
+</div>
 
-                <p class="sectionSubtitle">
-                    Your latest Steam activity.
-                </p>
 
-            </div>
 
-            <span class="badge">
-                🎮 Live Steam API
-            </span>
 
-        </div>
 
-        <div
-            id="recentGames"
-            class="gameGrid">
+<div class="statCard">
 
-            <div class="gameCard loading">
+<div class="statIcon">
+⭐
+</div>
 
-                <img
-                    src="https://placehold.co/460x215"
-                    alt="Loading">
 
-                <div class="gameInfo">
+<span class="number" id="achievements">
+--
+</span>
 
-                    <h3>Loading...</h3>
 
-                    <p>Please wait...</p>
+<span class="label">
+Achievements
+</span>
 
-                </div>
 
-            </div>
+</div>
 
-            <div class="gameCard loading">
 
-                <img
-                    src="https://placehold.co/460x215"
-                    alt="Loading">
 
-                <div class="gameInfo">
 
-                    <h3>Loading...</h3>
 
-                    <p>Please wait...</p>
+<div class="statCard">
 
-                </div>
+<div class="statIcon">
+👥
+</div>
 
-            </div>
 
-            <div class="gameCard loading">
+<span class="number" id="friends">
+--
+</span>
 
-                <img
-                    src="https://placehold.co/460x215"
-                    alt="Loading">
 
-                <div class="gameInfo">
+<span class="label">
+Friends
+</span>
 
-                    <h3>Loading...</h3>
 
-                    <p>Please wait...</p>
+</div>
 
-                </div>
 
-            </div>
 
-        </div>
 
-    </section>
 
+<div class="statCard">
 
+<div class="statIcon">
+📈
+</div>
 
 
+<span class="number" id="steamLevelStat">
+--
+</span>
 
-    <!-- =====================================
-         GITHUB PROJECTS
-    ====================================== -->
 
-    <section id="projects" class="reveal">
+<span class="label">
+Steam Level
+</span>
 
-        <div class="sectionHeader">
 
-            <div>
+</div>
 
-                <h2>GitHub Projects</h2>
 
-                <p class="sectionSubtitle">
 
-                    Live repositories from GitHub.
+</div>
 
-                </p>
 
-            </div>
+</section>
 
-            <span class="badge">
 
-                💻 GitHub API
 
-            </span>
 
-        </div>
 
-        <div
-            id="repos"
-            class="repoGrid">
 
-            <div class="repoCard loading">
 
-                <h3>Loading...</h3>
 
-                <p>
-                    Fetching repositories...
-                </p>
 
-            </div>
+<!-- =====================================
+     ACHIEVEMENTS
+====================================== -->
 
-            <div class="repoCard loading">
 
-                <h3>Loading...</h3>
+<section id="achievementsSection" class="reveal">
 
-                <p>
-                    Fetching repositories...
-                </p>
 
-            </div>
+<div class="sectionHeader">
 
-            <div class="repoCard loading">
+<div>
 
-                <h3>Loading...</h3>
+<h2>
+Achievement Showcase
+</h2>
 
-                <p>
-                    Fetching repositories...
-                </p>
 
-            </div>
+<p class="sectionSubtitle">
+Steam achievements summary
+</p>
 
-        </div>
 
-    </section> 
-    <!-- =====================================
-         LIVE ACTIVITY
-    ====================================== -->
+</div>
 
-    <section id="activity" class="reveal">
+</div>
 
-        <div class="sectionHeader">
 
-            <div>
 
-                <h2>Live Activity</h2>
 
-                <p class="sectionSubtitle">
-                    Real-time Steam and GitHub updates.
-                </p>
 
-            </div>
 
-            <span class="badge">
-                🟢 LIVE
-            </span>
+<div id="achievementGrid">
 
-        </div>
 
-        <div id="timeline">
 
-            <div class="activityCard">
+<div class="achievementCard">
 
-                <div class="activityIcon">
-                    🟢
-                </div>
 
-                <div class="activityContent">
+<div class="achievementIcon">
+🏆
+</div>
 
-                    <h3>Steam Status</h3>
 
-                    <p id="timelineStatus">
-                        Loading...
-                    </p>
 
-                </div>
+<div class="achievementContent">
 
-            </div>
 
-            <div class="activityCard">
+<h3>
+Total Achievements
+</h3>
 
-                <div class="activityIcon">
-                    🎮
-                </div>
 
-                <div class="activityContent">
+<p id="achievementText">
+Loading achievements...
+</p>
 
-                    <h3>Current Game</h3>
 
-                    <p id="timelineGame">
-                        Loading...
-                    </p>
+</div>
 
-                </div>
 
-            </div>
 
-            <div class="activityCard">
+</div>
 
-                <div class="activityIcon">
-                    💻
-                </div>
 
-                <div class="activityContent">
 
-                    <h3>GitHub</h3>
 
-                    <p id="timelineGithub">
-                        Loading...
-                    </p>
 
-                </div>
 
-            </div>
+<div class="achievementCard">
 
-            <div class="activityCard">
 
-                <div class="activityIcon">
-                    🔄
-                </div>
+<div class="achievementIcon">
+💯
+</div>
 
-                <div class="activityContent">
 
-                    <h3>Last Update</h3>
 
-                    <p id="timelineUpdate">
-                        Loading...
-                    </p>
+<div class="achievementContent">
 
-                </div>
 
-            </div>
+<h3>
+Perfect Games
+</h3>
 
-        </div>
 
-    </section>
+<p id="perfectText">
+Loading perfect games...
+</p>
 
 
+</div>
 
 
 
-    <!-- =====================================
-         FOOTER
-    ====================================== -->
+</div>
 
-    <footer>
 
-        <h3>BUKK1T</h3>
 
-        <p>
-            Live Steam & GitHub Dashboard
-        </p>
 
-        <p style="margin-top:12px; opacity:.7; font-size:14px;">
-            Built with HTML, CSS, JavaScript & Cloudflare Workers
-        </p>
+</div>
 
-    </footer>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================
+     RECENTLY PLAYED GAMES
+====================================== -->
+
+
+<section id="games" class="reveal">
+
+
+
+<div class="sectionHeader">
+
+
+<div>
+
+<h2>
+Recently Played
+</h2>
+
+
+<p class="sectionSubtitle">
+Latest Steam activity
+</p>
+
+
+</div>
+
+
+
+<span class="badge">
+🎮 LIVE
+</span>
+
+
+
+</div>
+
+
+
+
+
+<div id="recentGames" class="gameGrid">
+
+
+
+<div class="gameCard loading">
+
+
+<img src="https://placehold.co/460x215">
+
+
+<div class="gameInfo">
+
+
+<h3>
+Loading...
+</h3>
+
+
+<p>
+Waiting for Steam data...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</section>
+<!-- =====================================
+     GITHUB PROJECTS
+====================================== -->
+
+
+<section id="projects" class="reveal">
+
+
+<div class="sectionHeader">
+
+
+<div>
+
+<h2>
+GitHub Projects
+</h2>
+
+
+<p class="sectionSubtitle">
+Live repositories from GitHub
+</p>
+
+
+</div>
+
+
+
+<span class="badge">
+💻 GitHub API
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div id="repos" class="repoGrid">
+
+
+
+<div class="repoCard loading">
+
+
+<h3>
+Loading...
+</h3>
+
+
+<p>
+Fetching repositories...
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="repoCard loading">
+
+
+<h3>
+Loading...
+</h3>
+
+
+<p>
+Fetching repositories...
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="repoCard loading">
+
+
+<h3>
+Loading...
+</h3>
+
+
+<p>
+Fetching repositories...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =====================================
+     LIVE ACTIVITY
+====================================== -->
+
+
+<section id="activity" class="reveal">
+
+
+
+<div class="sectionHeader">
+
+
+<div>
+
+<h2>
+Live Activity
+</h2>
+
+
+<p class="sectionSubtitle">
+Real-time Steam and GitHub updates
+</p>
+
+
+</div>
+
+
+
+
+<span class="badge">
+🟢 LIVE
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div id="timeline">
+
+
+
+
+
+<div class="activityCard">
+
+
+<div class="activityIcon">
+🟢
+</div>
+
+
+
+<div class="activityContent">
+
+
+<h3>
+Steam Status
+</h3>
+
+
+<p id="timelineStatus">
+Loading...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="activityCard">
+
+
+<div class="activityIcon">
+🎮
+</div>
+
+
+
+<div class="activityContent">
+
+
+<h3>
+Current Game
+</h3>
+
+
+<p id="timelineGame">
+Loading...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="activityCard">
+
+
+<div class="activityIcon">
+💻
+</div>
+
+
+
+<div class="activityContent">
+
+
+<h3>
+GitHub
+</h3>
+
+
+<p id="timelineGithub">
+Loading...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="activityCard">
+
+
+<div class="activityIcon">
+🔄
+</div>
+
+
+
+<div class="activityContent">
+
+
+<h3>
+Last Update
+</h3>
+
+
+<p id="timelineUpdate">
+Loading...
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================
+     FOOTER
+====================================== -->
+
+
+<footer>
+
+
+
+<h3>
+BUKK1T
+</h3>
+
+
+
+<p>
+Live Steam & GitHub Dashboard
+</p>
+
+
+
+
+<p class="footerSmall">
+
+Built with HTML, CSS, JavaScript & Cloudflare Workers
+
+</p>
+
+
+
+</footer>
+
+
+
+
 
 </main>
 
+
+
+
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
-         
