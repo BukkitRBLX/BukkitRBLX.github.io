@@ -1376,7 +1376,13 @@ if (window.scrollY >= top) current = "#" + section.id;
 
 navLinks.forEach(link => {'{'}
 
-link.classList.toggle("active", link.getAttribute("href") === current);
+link.classList.remove("active");
+
+if (link.getAttribute("href") === current) {'{'}
+
+link.classList.add("active");
+
+}
 
 });
 
