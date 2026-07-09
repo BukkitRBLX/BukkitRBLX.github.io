@@ -441,8 +441,6 @@ display: flex;
 
 align-items: center;
 
-justify-content: center;
-
 gap: 35px;
 
 padding: 14px 25px;
@@ -467,8 +465,6 @@ font-weight: 900;
 
 letter-spacing: 3px;
 
-white-space: nowrap;
-
 background: linear-gradient(90deg, white, var(--blue), var(--purple));
 
 -webkit-background-clip: text;
@@ -480,8 +476,6 @@ color: transparent;
 nav ul {
 
 display: flex;
-
-align-items: center;
 
 gap: 25px;
 
@@ -542,12 +536,6 @@ nav a:hover::after,
 nav a.active::after {
 
 width: 100%;
-
-}
-
-nav a:not(.active)::after {
-
-width: 0 !important;
 
 }
 /* LOGO */
