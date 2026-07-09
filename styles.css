@@ -1982,3 +1982,9 @@ REDUCED MOTION
         transform:scale(1.08);
     }
 }
+
+
+
+.heroRight h1{
+animation:rgbMove 1s linear infinite !important;
+}
