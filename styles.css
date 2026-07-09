@@ -4022,3 +4022,75 @@ scroll-behavior:auto!important;
     0 0 20px rgba(0,212,255,.25);
 
 }
+/* ==========================
+   FINAL BUKK1T RGB TITLE FIX
+========================== */
+
+
+#username{
+
+    font-size:76px;
+    font-weight:1000;
+    letter-spacing:6px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #ff0055,
+        #ff9900,
+        #ffff00,
+        #00ff66,
+        #00ffff,
+        #0088ff,
+        #9900ff,
+        #ff0055
+    );
+
+
+    background-size:400%;
+
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+
+    color:transparent !important;
+
+    -webkit-text-fill-color:transparent !important;
+
+
+    animation:
+
+    bukkitRGB 6s linear infinite;
+
+
+    filter:
+
+    drop-shadow(
+        0 0 20px rgba(0,255,255,.5)
+    );
+
+}
+
+
+
+@keyframes bukkitRGB{
+
+
+    0%{
+
+        background-position:0%;
+
+    }
+
+
+    100%{
+
+        background-position:400%;
+
+    }
+
+
+}
