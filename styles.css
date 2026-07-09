@@ -2002,8 +2002,6 @@ CARD LIGHT SWEEP FIX
 }
 
 
-/* shine layer */
-
 .statCard::before,
 .repoCard::before,
 .gameCard::before,
@@ -2014,28 +2012,42 @@ CARD LIGHT SWEEP FIX
 
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:-150%;
+
+    width:80%;
+    height:100%;
 
     background:
         linear-gradient(
             120deg,
-            transparent 30%,
-            rgba(255,255,255,.12),
-            transparent 70%
+            transparent,
+            rgba(255,255,255,.15),
+            transparent
         );
 
-    transform:translateX(-120%);
+    transform:skewX(-25deg);
 
-    transition:transform .8s ease;
+    transition:
+        left .8s ease;
 
     pointer-events:none;
 
-    z-index:0;
+    z-index:2;
 
 }
 
 
-/* keep content above shine */
+.statCard:hover::before,
+.repoCard:hover::before,
+.gameCard:hover::before,
+.featureCard:hover::before,
+.miniCard:hover::before{
+
+    left:150%;
+
+}
+
 
 .statCard > *,
 .repoCard > *,
@@ -2045,32 +2057,6 @@ CARD LIGHT SWEEP FIX
 
     position:relative;
 
-    z-index:1;
-
-}
-
-
-/* hover */
-
-.statCard:hover::before,
-.repoCard:hover::before,
-.gameCard:hover::before,
-.featureCard:hover::before,
-.miniCard:hover::before{
-
-    transform:translateX(120%);
-
-}
-
-.statCard:hover,
-.repoCard:hover,
-.gameCard:hover,
-.featureCard:hover,
-.miniCard:hover{
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.35),
-        0 0 25px rgba(0,212,255,.18),
-        0 0 50px rgba(139,92,246,.12);
+    z-index:3;
 
 }
