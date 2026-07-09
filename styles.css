@@ -3804,3 +3804,40 @@ nav a:hover{
     translateY(-3px);
 
 }
+/* NAVBAR RECOVERY RESET */
+
+nav{
+    transform: translateX(-50%) !important;
+    top:25px !important;
+    left:50% !important;
+}
+
+.navContainer{
+    flex-direction:row !important;
+    gap:35px !important;
+    padding:14px 28px !important;
+}
+
+.navLogo{
+    background:
+    linear-gradient(
+        90deg,
+        #ff0055,
+        #00ffff,
+        #9900ff,
+        #ff0055
+    );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:bukkitRGB 6s linear infinite;
+}
+
+nav:hover{
+    transform:translateX(-50%) !important;
+}
