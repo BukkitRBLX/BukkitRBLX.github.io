@@ -1356,24 +1356,34 @@ async function startDashboard(){
 ========================================== */
 
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {'{'}
 
 await startDashboard();
 
 const navLinks = document.querySelectorAll("nav a");
 
-navLinks[0].classList.add("active");
+function setActiveLink() {'{'}
 
-navLinks.forEach(link => {
+let current = "#hero";
 
-link.addEventListener("click", () => {
+document.querySelectorAll("section").forEach(section => {'{'}
 
-navLinks.forEach(l => l.classList.remove("active"));
+const top = section.offsetTop - 120;
 
-link.classList.add("active");
+if (window.scrollY >= top) current = "#" + section.id;
+
+});
+
+navLinks.forEach(link => {'{'}
+
+link.classList.toggle("active", link.getAttribute("href") === current);
 
 });
 
-});
+}
+
+setActiveLink();
+
+window.addEventListener("scroll", setActiveLink);
 
 });
