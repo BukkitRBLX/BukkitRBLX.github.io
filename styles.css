@@ -643,47 +643,47 @@ HERO
 
 .heroRight h1{
 
-font-size:72px;
+    font-size:72px;
 
-margin:18px 0;
+    margin:18px 0;
 
-background:linear-gradient(90deg,
+    background:linear-gradient(90deg,
 
-#ff0000,
+    #ff0000,
 
-#ff8800,
+    #ff8800,
+    
+    #ffee00,
 
-#ffee00,
+    #00ff00,
 
-#00ff00,
+    #00ffff,
 
-#00ffff,
+    #0044ff,
 
-#0044ff,
+    #cc00ff,
 
-#cc00ff,
-
-#ff0000
+    #ff0000
 
 );
 
-background-size:600% 100%;
+    background-size:600% 100%;
+    
+    -webkit-background-clip:text;
 
--webkit-background-clip:text;
+    background-clip:text;
 
-background-clip:text;
+    -webkit-text-fill-color:transparent;
 
--webkit-text-fill-color:transparent;
-
-animation:rgbMove 3s linear infinite;
+    animation:rgbMove 3s linear infinite;
 
 }
 
 @keyframes rgbMove{
 
-from{ background-position:0% 50%; }
+    from{ background-position:0% 50%; }
 
-to{ background-position:100% 50%; }
+    to{ background-position:100% 50%; }
 
 }
 
