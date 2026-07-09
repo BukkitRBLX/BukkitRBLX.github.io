@@ -362,7 +362,7 @@ CUSTOM CURSOR
 
 body{
 
-cursor:none;
+cursor:auto;
 
 }
 
@@ -374,15 +374,13 @@ left:0;
 
 top:0;
 
-width:18px;
+width:12px;
 
-height:18px;
+height:12px;
 
 border-radius:50%;
 
 background:white;
-
-mix-blend-mode:difference;
 
 pointer-events:none;
 
@@ -390,7 +388,7 @@ z-index:99999;
 
 transform:translate(-50%,-50%);
 
-transition:width .2s,height .2s,transform .08s linear;
+box-shadow:0 0 12px rgba(255,255,255,.8);
 
 }
 
@@ -402,25 +400,23 @@ left:0;
 
 top:0;
 
-width:220px;
+width:120px;
 
-height:220px;
+height:120px;
 
 border-radius:50%;
 
 pointer-events:none;
 
-z-index:-1;
+z-index:99998;
 
 transform:translate(-50%,-50%);
 
-background:radial-gradient(circle, rgba(102,192,244,.22) 0%, rgba(139,92,246,.16) 35%, rgba(0,212,255,.08) 55%, transparent 75%);
+background:radial-gradient(circle, rgba(102,192,244,.22) 0%, rgba(139,92,246,.16) 40%, transparent 70%);
 
-filter:blur(32px);
+filter:blur(18px);
 
 opacity:.9;
-
-transition:opacity .3s ease;
 
 }
 
