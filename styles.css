@@ -1,13 +1,16 @@
-/*=====================================================
-    BUKK1T DASHBOARD
-    PREMIUM CSS REBUILD
-    PART 1/4
-=====================================================*/
+/* ==========================================
+   BUKK1T Dashboard v5
+   PREMIUM CSS REBUILD
+   PART 1 / 4
+   Core + Background + Navbar
+========================================== */
 
 
-/*==============================
-VARIABLES
-==============================*/
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
 
 :root{
 
@@ -17,7 +20,7 @@ VARIABLES
     rgba(255,255,255,.06);
 
     --surface-hover:
-    rgba(255,255,255,.11);
+    rgba(255,255,255,.12);
 
 
     --border:
@@ -29,7 +32,7 @@ VARIABLES
 
 
     --muted:
-    #94a3b8;
+    #93a7c2;
 
 
     --blue:
@@ -53,7 +56,7 @@ VARIABLES
 
 
     --shadow:
-    0 30px 80px rgba(0,0,0,.5);
+    0 30px 80px rgba(0,0,0,.45);
 
 
     --transition:
@@ -63,9 +66,12 @@ VARIABLES
 
 
 
-/*==============================
-RESET
-==============================*/
+
+
+
+/* ==========================================
+   RESET
+========================================== */
 
 
 *{
@@ -80,11 +86,13 @@ RESET
 
 
 
+
 html{
 
     scroll-behavior:smooth;
 
 }
+
 
 
 
@@ -95,13 +103,14 @@ body{
     background:
     var(--bg);
 
-
     color:
     var(--text);
 
 
     font-family:
-    Inter,Arial,sans-serif;
+    Inter,
+    Arial,
+    sans-serif;
 
 
     overflow-x:hidden;
@@ -110,26 +119,17 @@ body{
 
 
 
-body::selection{
-
-    background:
-    var(--cyan);
-
-    color:
-    #000;
-
-}
-
-
 
 
 a{
 
-    text-decoration:none;
-
     color:inherit;
 
+    text-decoration:none;
+
 }
+
+
 
 
 
@@ -143,33 +143,43 @@ img{
 
 
 
+
+
 section{
 
     width:min(1200px,92%);
 
-    margin:
-    130px auto;
+    margin:120px auto;
+
+    position:relative;
+
+    z-index:2;
 
 }
 
 
 
-h1,h2,h3,h4{
 
-    line-height:1.1;
+h1,
+h2,
+h3,
+h4{
 
-    font-weight:800;
+    font-weight:900;
+
+    line-height:1.15;
 
 }
+
+
 
 
 
 p{
 
-    color:
-    var(--muted);
+    color:var(--muted);
 
-    line-height:1.7;
+    line-height:1.8;
 
 }
 
@@ -177,12 +187,9 @@ p{
 
 
 
-
-
-
-/*==============================
-AURORA BACKGROUND
-==============================*/
+/* ==========================================
+   AURORA BACKGROUND
+========================================== */
 
 
 body::before{
@@ -194,20 +201,26 @@ body::before{
     position:fixed;
 
 
-    inset:-30%;
+    inset:-20%;
 
 
     z-index:-10;
 
 
+    pointer-events:none;
+
+
+
     background:
+
 
 
     radial-gradient(
         circle at 20% 20%,
-        rgba(0,212,255,.22),
+        rgba(102,192,244,.25),
         transparent 35%
     ),
+
 
 
     radial-gradient(
@@ -217,11 +230,13 @@ body::before{
     ),
 
 
+
     radial-gradient(
         circle at 50% 90%,
-        rgba(102,192,244,.15),
+        rgba(0,212,255,.18),
         transparent 40%
     );
+
 
 
     animation:
@@ -230,6 +245,7 @@ body::before{
 
 
 }
+
 
 
 
@@ -250,7 +266,7 @@ body::before{
     to{
 
         transform:
-        translate(-50px,-30px)
+        translate(-60px,-40px)
         scale(1.15);
 
     }
@@ -263,9 +279,10 @@ body::before{
 
 
 
-/*==============================
-GRID EFFECT
-==============================*/
+
+/* ==========================================
+   GRID OVERLAY
+========================================== */
 
 
 body::after{
@@ -286,27 +303,31 @@ body::after{
     pointer-events:none;
 
 
-    opacity:.08;
+    opacity:.12;
 
 
 
     background-image:
 
 
+
     linear-gradient(
-        rgba(255,255,255,.08) 1px,
+        rgba(255,255,255,.06) 1px,
         transparent 1px
     ),
 
 
+
     linear-gradient(
         90deg,
-        rgba(255,255,255,.08) 1px,
+        rgba(255,255,255,.06) 1px,
         transparent 1px
     );
 
 
+
     background-size:
+
     70px 70px;
 
 
@@ -317,11 +338,85 @@ body::after{
 
 
 
+/* ==========================================
+   FLOATING LIGHTS
+========================================== */
 
 
-/*==============================
-AMBIENT LIGHTS
-==============================*/
+.gradient{
+
+
+    position:fixed;
+
+
+    border-radius:50%;
+
+
+    filter:
+    blur(120px);
+
+
+    pointer-events:none;
+
+
+    z-index:-5;
+
+}
+
+
+
+
+
+.gradient-one{
+
+
+    width:600px;
+
+    height:600px;
+
+
+    background:
+    var(--cyan);
+
+
+    top:-200px;
+
+    left:-200px;
+
+
+    opacity:.18;
+
+}
+
+
+
+
+
+.gradient-two{
+
+
+    width:600px;
+
+    height:600px;
+
+
+    background:
+    var(--purple);
+
+
+    right:-200px;
+
+    bottom:-200px;
+
+
+    opacity:.18;
+
+}
+
+
+
+
+
 
 
 .ambient{
@@ -330,27 +425,28 @@ AMBIENT LIGHTS
     position:fixed;
 
 
-    width:500px;
+    width:450px;
 
-    height:500px;
+    height:450px;
 
 
     border-radius:50%;
 
 
-    filter:blur(130px);
+    filter:
+    blur(130px);
 
 
-    opacity:.15;
+    opacity:.12;
 
 
     pointer-events:none;
 
 
-    z-index:-5;
-
+    z-index:-4;
 
 }
+
 
 
 
@@ -361,13 +457,13 @@ AMBIENT LIGHTS
     var(--cyan);
 
 
-    top:-200px;
+    left:-250px;
 
-
-    left:-200px;
-
+    top:30%;
 
 }
+
+
 
 
 
@@ -378,10 +474,121 @@ AMBIENT LIGHTS
     var(--purple);
 
 
-    bottom:-200px;
+    right:-250px;
+
+    bottom:20%;
+
+}
 
 
-    right:-200px;
+
+
+
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+
+#particles{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    overflow:hidden;
+
+
+    pointer-events:none;
+
+
+    z-index:-1;
+
+}
+
+
+
+
+.star{
+
+
+    position:absolute;
+
+
+    width:3px;
+
+    height:3px;
+
+
+    background:white;
+
+
+    border-radius:50%;
+
+
+    opacity:.4;
+
+
+
+    box-shadow:
+
+    0 0 10px white,
+
+    0 0 20px var(--cyan);
+
+
+
+    animation:
+
+    starMove linear infinite,
+    starBlink ease-in-out infinite;
+
+
+}
+
+
+
+
+
+@keyframes starMove{
+
+
+    from{
+
+        transform:
+        translateY(0);
+
+    }
+
+
+    to{
+
+        transform:
+        translateY(-150px);
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes starBlink{
+
+
+    50%{
+
+        opacity:1;
+
+        scale:1.8;
+
+    }
 
 
 }
@@ -393,11 +600,9 @@ AMBIENT LIGHTS
 
 
 
-
-
-/*==============================
-CUSTOM CURSOR
-==============================*/
+/* ==========================================
+   CUSTOM CURSOR
+========================================== */
 
 
 @media(pointer:fine){
@@ -427,10 +632,10 @@ body{
     height:12px;
 
 
-    background:white;
-
-
     border-radius:50%;
+
+
+    background:white;
 
 
     pointer-events:none;
@@ -473,17 +678,19 @@ body{
     translate(-50%,-50%);
 
 
+
     background:
 
     radial-gradient(
         circle,
-        rgba(0,212,255,.25),
+        rgba(102,192,244,.25),
         transparent 70%
     );
 
 
-    filter:blur(20px);
 
+    filter:
+    blur(20px);
 
 }
 
@@ -493,11 +700,9 @@ body{
 
 
 
-
-
-/*==============================
-NAVBAR
-==============================*/
+/* ==========================================
+   NAVBAR
+========================================== */
 
 
 nav{
@@ -516,11 +721,12 @@ nav{
     translateX(-50%);
 
 
-    z-index:10000;
+    z-index:9999;
 
 
-    width:
-    max-content;
+
+    width:max-content;
+
 
 
     background:
@@ -528,17 +734,22 @@ nav{
     rgba(10,15,25,.75);
 
 
+
+    backdrop-filter:
+    blur(22px);
+
+
+
     border:
 
     1px solid var(--border);
 
 
-    backdrop-filter:
-    blur(25px);
-
 
     border-radius:
+
     999px;
+
 
 
     box-shadow:
@@ -547,7 +758,6 @@ nav{
 
 
 }
-
 
 
 
@@ -566,11 +776,11 @@ nav{
 
 
     padding:
+
     14px 28px;
 
 
 }
-
 
 
 
@@ -583,7 +793,7 @@ nav{
     font-size:24px;
 
 
-    font-weight:900;
+    font-weight:1000;
 
 
     letter-spacing:4px;
@@ -595,13 +805,10 @@ nav{
     linear-gradient(
         90deg,
         white,
-        var(--cyan),
-        var(--purple),
-        white
+        var(--blue),
+        var(--purple)
     );
 
-
-    background-size:300%;
 
 
     -webkit-background-clip:text;
@@ -613,35 +820,9 @@ nav{
     -webkit-text-fill-color:transparent;
 
 
-    animation:
-
-    logoFlow 5s infinite linear;
-
-
 }
 
 
-
-
-
-@keyframes logoFlow{
-
-
-    from{
-
-        background-position:0%;
-
-    }
-
-
-    to{
-
-        background-position:300%;
-
-    }
-
-
-}
 
 
 
@@ -652,16 +833,14 @@ nav ul{
     display:flex;
 
 
-    align-items:center;
+    list-style:none;
 
 
     gap:28px;
 
 
-    list-style:none;
-
-
 }
+
 
 
 
@@ -673,27 +852,30 @@ nav a{
     position:relative;
 
 
-    color:
-    var(--muted);
+    color:var(--muted);
 
 
-    font-weight:600;
+    font-weight:700;
 
 
     transition:.3s;
-
 
 }
 
 
 
-nav a:hover{
+
+nav a:hover,
+nav a.active{
 
 
     color:white;
 
 
 }
+
+
+
 
 
 
@@ -706,16 +888,17 @@ nav a::after{
     position:absolute;
 
 
-    bottom:-8px;
-
-
     left:50%;
+
+
+    bottom:-8px;
 
 
     width:0;
 
 
     height:2px;
+
 
 
     transform:
@@ -732,6 +915,7 @@ nav a::after{
     );
 
 
+
     transition:.3s;
 
 
@@ -739,23 +923,28 @@ nav a::after{
 
 
 
-nav a:hover::after{
+
+
+
+nav a:hover::after,
+nav a.active::after{
 
 
     width:100%;
 
 
 }
-/*=====================================================
-    PART 2/4
-    HERO + CARDS + BUTTONS
-=====================================================*/
+/* ==========================================
+   BUKK1T Dashboard v5
+   PART 2 / 4
+   Hero + Cards + Shine System
+========================================== */
 
 
 
-/*==============================
-HERO
-==============================*/
+/* ==========================================
+   HERO
+========================================== */
 
 
 #hero{
@@ -783,6 +972,9 @@ HERO
 
 
 
+
+
+
 .heroLeft{
 
 
@@ -798,10 +990,6 @@ HERO
 
 
 
-/*==============================
-AVATAR
-==============================*/
-
 
 .avatarWrapper{
 
@@ -810,6 +998,8 @@ AVATAR
 
 
 }
+
+
 
 
 
@@ -825,28 +1015,33 @@ AVATAR
     object-fit:cover;
 
 
-    border-radius:35px;
+    border-radius:32px;
+
 
 
     border:
 
-    2px solid rgba(255,255,255,.15);
+    3px solid rgba(255,255,255,.12);
 
 
 
     box-shadow:
 
-    0 0 80px rgba(0,212,255,.25),
-    0 40px 90px rgba(0,0,0,.55);
+
+    0 0 80px rgba(102,192,244,.3),
+
+
+    0 30px 70px rgba(0,0,0,.5);
 
 
 
     transition:
 
-    var(--transition);
+    .5s ease;
 
 
 }
+
 
 
 
@@ -856,18 +1051,21 @@ AVATAR
 
     transform:
 
-    scale(1.05);
+    scale(1.06);
 
 
 
     box-shadow:
 
 
-    0 0 120px rgba(0,212,255,.45),
-    0 50px 100px rgba(0,0,0,.6);
+    0 0 120px rgba(102,192,244,.55),
+
+
+    0 40px 90px rgba(0,0,0,.6);
 
 
 }
+
 
 
 
@@ -897,7 +1095,9 @@ AVATAR
 
 
 
-    filter:blur(40px);
+    filter:
+    blur(40px);
+
 
 
     z-index:-1;
@@ -914,13 +1114,17 @@ AVATAR
 
 
 
+
+
 @keyframes avatarPulse{
 
 
-    0%,100%{
+    0%,
+    100%{
 
 
-        transform:scale(1);
+        transform:
+        scale(1);
 
 
         opacity:.5;
@@ -929,10 +1133,12 @@ AVATAR
     }
 
 
+
     50%{
 
 
-        transform:scale(1.15);
+        transform:
+        scale(1.15);
 
 
         opacity:1;
@@ -950,75 +1156,73 @@ AVATAR
 
 
 
+/* ==========================================
+   HERO TEXT
+========================================== */
 
-/*==============================
-HERO TEXT
-==============================*/
 
 
 .heroRight h1{
 
 
-    font-size:72px;
+    font-size:76px;
 
 
-    margin:
-
-    20px 0;
+    margin:25px 0;
 
 
 
     background:
 
-
     linear-gradient(
 
-    270deg,
+        270deg,
 
-    #ff0000,
+        #ff0000,
 
-    #ff9900,
+        #ff9900,
 
-    #ffff00,
+        #ffff00,
 
-    #00ff00,
+        #00ff00,
 
-    #00ffff,
+        #00ffff,
 
-    #0066ff,
+        #0066ff,
 
-    #9900ff,
+        #9900ff,
 
-    #ff0000
+        #ff0000
 
     );
 
 
 
-    background-size:800% 800%;
+    background-size:
 
+    800% 800%;
 
-
-    background-clip:text;
 
 
     -webkit-background-clip:text;
+
+
+    background-clip:text;
 
 
 
     -webkit-text-fill-color:transparent;
 
 
-    color:transparent;
-
-
 
     animation:
 
-    rainbowTitle 8s infinite ease;
+    rainbowTitle 8s ease infinite;
 
 
 }
+
+
 
 
 
@@ -1029,7 +1233,9 @@ HERO TEXT
 
     0%{
 
-        background-position:0% 50%;
+        background-position:
+
+        0% 50%;
 
     }
 
@@ -1037,7 +1243,9 @@ HERO TEXT
 
     50%{
 
-        background-position:100% 50%;
+        background-position:
+
+        100% 50%;
 
     }
 
@@ -1045,14 +1253,14 @@ HERO TEXT
 
     100%{
 
-        background-position:0% 50%;
+        background-position:
+
+        0% 50%;
 
     }
 
 
 }
-
-
 
 
 
@@ -1076,9 +1284,9 @@ HERO TEXT
 
 
 
-/*==============================
-BADGES
-==============================*/
+/* ==========================================
+   BADGES
+========================================== */
 
 
 .badge{
@@ -1108,7 +1316,7 @@ BADGES
 
     background:
 
-    rgba(255,255,255,.05);
+    rgba(255,255,255,.06);
 
 
 
@@ -1118,9 +1326,7 @@ BADGES
 
 
 
-    color:
-
-    var(--muted);
+    color:var(--muted);
 
 
 
@@ -1143,8 +1349,7 @@ BADGES
 
     border-color:
 
-    var(--cyan);
-
+    var(--blue);
 
 
     transform:
@@ -1161,13 +1366,6 @@ BADGES
 
 
 
-
-
-/*==============================
-STATUS
-==============================*/
-
-
 .statusBadge{
 
 
@@ -1177,13 +1375,9 @@ STATUS
     align-items:center;
 
 
-    gap:10px;
-
-
-
     padding:
 
-    12px 20px;
+    12px 22px;
 
 
 
@@ -1211,7 +1405,7 @@ STATUS
 
 
 
-    font-weight:700;
+    font-weight:800;
 
 
 }
@@ -1222,11 +1416,10 @@ STATUS
 
 
 
+/* ==========================================
+   MINI CARDS
+========================================== */
 
-
-/*==============================
-MINI CARDS
-==============================*/
 
 
 .heroCards{
@@ -1241,12 +1434,10 @@ MINI CARDS
 
 
 
-    gap:20px;
+    gap:22px;
 
 
-    margin:
-
-    35px 0;
+    margin:35px 0;
 
 
 }
@@ -1259,16 +1450,7 @@ MINI CARDS
 .miniCard{
 
 
-    padding:
-
-    25px;
-
-
-
-    border-radius:
-
-    var(--radius);
-
+    padding:25px;
 
 
     background:
@@ -1283,6 +1465,12 @@ MINI CARDS
 
 
 
+    border-radius:
+
+    24px;
+
+
+
     backdrop-filter:
 
     blur(20px);
@@ -1294,14 +1482,9 @@ MINI CARDS
     var(--transition);
 
 
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
 }
+
+
 
 
 
@@ -1311,19 +1494,13 @@ MINI CARDS
 
     transform:
 
-    translateY(-10px);
+    translateY(-8px);
 
 
 
     background:
 
     var(--surface-hover);
-
-
-
-    box-shadow:
-
-    var(--shadow);
 
 
 }
@@ -1348,12 +1525,10 @@ MINI CARDS
     font-size:12px;
 
 
-
     letter-spacing:1px;
 
 
-
-    margin-bottom:10px;
+    margin-bottom:12px;
 
 
 }
@@ -1377,10 +1552,9 @@ MINI CARDS
 
 
 
-
-/*==============================
-HERO BADGES AREA
-==============================*/
+/* ==========================================
+   HERO BADGES + BUTTONS
+========================================== */
 
 
 .heroBadges{
@@ -1395,7 +1569,7 @@ HERO BADGES AREA
     gap:12px;
 
 
-    margin:30px 0;
+    margin:35px 0;
 
 
 }
@@ -1403,14 +1577,6 @@ HERO BADGES AREA
 
 
 
-
-
-
-
-
-/*==============================
-BUTTONS
-==============================*/
 
 
 .buttons{
@@ -1422,10 +1588,11 @@ BUTTONS
     gap:18px;
 
 
-    margin-top:35px;
+    margin-top:40px;
 
 
 }
+
 
 
 
@@ -1436,10 +1603,10 @@ BUTTONS
     display:inline-flex;
 
 
-    align-items:center;
-
-
     justify-content:center;
+
+
+    align-items:center;
 
 
 
@@ -1455,16 +1622,17 @@ BUTTONS
 
 
 
-    font-weight:700;
+    font-weight:800;
 
 
 
     transition:
 
-    var(--transition);
+    .35s;
 
 
 }
+
 
 
 
@@ -1476,13 +1644,9 @@ BUTTONS
     background:
 
     linear-gradient(
-
-    135deg,
-
-    var(--blue),
-
-    var(--cyan)
-
+        135deg,
+        var(--blue),
+        var(--cyan)
     );
 
 
@@ -1493,10 +1657,12 @@ BUTTONS
 
     box-shadow:
 
-    0 20px 50px rgba(0,212,255,.3);
+    0 15px 40px rgba(102,192,244,.35);
 
 
 }
+
+
 
 
 
@@ -1523,7 +1689,6 @@ BUTTONS
 
 
 
-
 .buttons a:hover{
 
 
@@ -1532,7 +1697,6 @@ BUTTONS
     translateY(-8px);
 
 
-
 }
 
 
@@ -1542,185 +1706,9 @@ BUTTONS
 
 
 
-
-/*==============================
-GLOBAL CARD SHINE
-==============================*/
-
-
-.miniCard,
-.featureCard,
-.statCard,
-.gameCard,
-.repoCard,
-.activityCard,
-.featuredProject{
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
-    isolation:isolate;
-
-
-}
-
-
-
-
-
-
-.miniCard::before,
-.featureCard::before,
-.statCard::before,
-.gameCard::before,
-.repoCard::before,
-.activityCard::before,
-.featuredProject::before{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    top:0;
-
-
-    left:-150%;
-
-
-    width:70%;
-
-
-    height:100%;
-
-
-
-    background:
-
-    linear-gradient(
-
-    120deg,
-
-    transparent,
-
-    rgba(255,255,255,.2),
-
-    transparent
-
-    );
-
-
-
-    transform:
-
-    skewX(-25deg);
-
-
-
-    transition:
-
-    .8s;
-
-
-}
-
-
-
-
-
-.miniCard:hover::before,
-.featureCard:hover::before,
-.statCard:hover::before,
-.gameCard:hover::before,
-.repoCard:hover::before,
-.activityCard:hover::before,
-.featuredProject:hover::before{
-
-
-    left:150%;
-
-
-}
-
-
-
-
-.miniCard > *,
-.featureCard > *,
-.statCard > *,
-.gameCard > *,
-.repoCard > *,
-.activityCard > *,
-.featuredProject > *{
-
-
-    position:relative;
-
-
-    z-index:2;
-
-
-}
-/*=====================================================
-    PART 3/4
-    DASHBOARD SECTIONS
-=====================================================*/
-
-
-
-
-
-/*==============================
-SECTION HEADERS
-==============================*/
-
-
-.sectionHeader{
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:flex-end;
-
-
-    gap:20px;
-
-
-    margin-bottom:45px;
-
-
-}
-
-
-
-.sectionSubtitle{
-
-
-    margin-top:10px;
-
-
-}
-
-
-
-
-
-
-
-
-/*==============================
-FEATURED PROJECT
-==============================*/
+/* ==========================================
+   FEATURED PROJECT
+========================================== */
 
 
 .featuredProject{
@@ -1729,14 +1717,19 @@ FEATURED PROJECT
     display:grid;
 
 
-    grid-template-columns:1.2fr .8fr;
+    grid-template-columns:
+
+    1.2fr .8fr;
 
 
-    gap:35px;
+
+    gap:40px;
 
 
 
-    padding:45px;
+    padding:
+
+    45px;
 
 
 
@@ -1769,25 +1762,8 @@ FEATURED PROJECT
     var(--shadow);
 
 
-
-    transition:
-
-    var(--transition);
-
-
 }
 
-
-
-.featuredProject:hover{
-
-
-    transform:
-
-    translateY(-8px);
-
-
-}
 
 
 
@@ -1813,23 +1789,14 @@ FEATURED PROJECT
 
     background:
 
-    rgba(139,92,246,.2);
+    rgba(139,92,246,.18);
 
 
 
     color:#e8ddff;
 
 
-
-    font-weight:700;
-
-
-
-    margin-bottom:20px;
-
-
 }
-
 
 
 
@@ -1839,13 +1806,16 @@ FEATURED PROJECT
 .featuredLeft h3{
 
 
-    font-size:42px;
+    font-size:44px;
 
 
-    margin-bottom:15px;
+    margin:
+
+    20px 0;
 
 
 }
+
 
 
 
@@ -1868,7 +1838,9 @@ FEATURED PROJECT
 
 
 
-    margin:35px 0;
+    margin:
+
+    35px 0;
 
 
 }
@@ -1878,16 +1850,16 @@ FEATURED PROJECT
 
 
 
-
 .featuredStat{
-
-
-    text-align:center;
 
 
     padding:
 
     22px;
+
+
+
+    text-align:center;
 
 
 
@@ -1914,17 +1886,14 @@ FEATURED PROJECT
 
 
 
-
 .featuredStat span{
 
 
     font-size:32px;
 
 
-    display:block;
-
-
 }
+
 
 
 
@@ -1932,27 +1901,10 @@ FEATURED PROJECT
 .featuredStat strong{
 
 
-    font-size:28px;
-
-
     display:block;
 
 
-    margin-top:10px;
-
-
-}
-
-
-
-
-
-.featuredStat small{
-
-
-    color:
-
-    var(--muted);
+    font-size:28px;
 
 
 }
@@ -1972,7 +1924,7 @@ FEATURED PROJECT
 
     padding:
 
-    16px 30px;
+    16px 32px;
 
 
 
@@ -1985,24 +1937,17 @@ FEATURED PROJECT
     background:
 
     linear-gradient(
-
-    135deg,
-
-    var(--blue),
-
-    var(--purple)
-
+        135deg,
+        var(--blue),
+        var(--purple)
     );
 
 
 
-    font-weight:700;
+    font-weight:800;
 
 
-
-    transition:
-
-    var(--transition);
+    transition:.35s;
 
 
 }
@@ -2022,7 +1967,7 @@ FEATURED PROJECT
 
     box-shadow:
 
-    0 25px 60px rgba(102,192,244,.35);
+    0 20px 60px rgba(102,192,244,.4);
 
 
 }
@@ -2045,8 +1990,6 @@ FEATURED PROJECT
 
 
 }
-
-
 
 
 
@@ -2090,6 +2033,7 @@ FEATURED PROJECT
 
 
 
+
 .featureCard:hover{
 
 
@@ -2101,12 +2045,10 @@ FEATURED PROJECT
 
     border-color:
 
-    var(--cyan);
+    var(--blue);
 
 
 }
-
-
 
 
 
@@ -2130,19 +2072,270 @@ FEATURED PROJECT
 
 
 
+/* ==========================================
+   UNIVERSAL HOVER SHINE
+========================================== */
 
-/*==============================
-GRIDS
-==============================*/
+
+.miniCard,
+.featureCard,
+.featuredProject{
 
 
-.statsGrid,
-#achievementGrid,
-.gameGrid,
-.repoGrid{
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    isolation:isolate;
+
+
+}
+
+
+
+
+.miniCard::before,
+.featureCard::before,
+.featuredProject::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-150%;
+
+
+    width:60%;
+
+
+    height:100%;
+
+
+
+    background:
+
+    linear-gradient(
+
+        120deg,
+
+        transparent,
+
+        rgba(255,255,255,.18),
+
+        transparent
+
+    );
+
+
+
+    transform:
+
+    skewX(-25deg);
+
+
+
+    transition:
+
+    .8s ease;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+.miniCard:hover::before,
+.featureCard:hover::before,
+.featuredProject:hover::before{
+
+
+    left:160%;
+
+
+}
+/* ==========================================
+   BUKK1T Dashboard v5
+   PART 3 / 4
+   Dashboard Cards
+========================================== */
+
+
+
+/* ==========================================
+   SECTION HEADERS
+========================================== */
+
+
+.sectionHeader{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:flex-end;
+
+
+    gap:20px;
+
+
+    margin-bottom:50px;
+
+
+}
+
+
+
+.sectionHeader h2,
+.sectionTitle h2{
+
+
+    font-size:42px;
+
+
+}
+
+
+
+
+.sectionSubtitle{
+
+
+    margin-top:10px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   GLOBAL CARD SYSTEM
+========================================== */
+
+
+.statCard,
+.achievementCard,
+.gameCard,
+.repoCard,
+.activityCard{
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    background:
+
+    var(--surface);
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    border-radius:
+
+    26px;
+
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+
+    transition:
+
+    var(--transition);
+
+
+
+    isolation:isolate;
+
+
+}
+
+
+
+
+
+.statCard:hover,
+.achievementCard:hover,
+.gameCard:hover,
+.repoCard:hover,
+.activityCard:hover{
+
+
+    transform:
+
+    translateY(-10px);
+
+
+
+    border-color:
+
+    rgba(102,192,244,.5);
+
+
+
+    box-shadow:
+
+
+    0 30px 80px rgba(0,0,0,.45),
+
+
+    0 0 40px rgba(102,192,244,.15);
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   STEAM STATISTICS
+========================================== */
+
+
+.statsGrid{
 
 
     display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(220px,1fr));
+
 
 
     gap:28px;
@@ -2154,68 +2347,6 @@ GRIDS
 
 
 
-.statsGrid{
-
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(220px,1fr));
-
-
-}
-
-
-
-#achievementGrid{
-
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(320px,1fr));
-
-
-}
-
-
-
-
-.gameGrid{
-
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(350px,1fr));
-
-
-}
-
-
-
-
-.repoGrid{
-
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(320px,1fr));
-
-
-}
-
-
-
-
-
-
-
-
-
-
-/*==============================
-STEAM STATS
-==============================*/
-
-
 .statCard{
 
 
@@ -2224,53 +2355,11 @@ STEAM STATS
     35px 25px;
 
 
+
     text-align:center;
 
 
-    background:
-
-    var(--surface);
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:
-
-    26px;
-
-
-    transition:
-
-    var(--transition);
-
-
 }
-
-
-
-
-
-
-.statCard:hover{
-
-
-    transform:
-
-    translateY(-10px);
-
-
-    box-shadow:
-
-    var(--shadow);
-
-
-}
-
-
-
 
 
 
@@ -2278,10 +2367,10 @@ STEAM STATS
 .statIcon{
 
 
-    font-size:45px;
+    font-size:48px;
 
 
-    margin-bottom:15px;
+    margin-bottom:20px;
 
 
 }
@@ -2296,28 +2385,28 @@ STEAM STATS
     display:block;
 
 
-    font-size:56px;
+    font-size:58px;
 
 
-    font-weight:900;
+    font-weight:1000;
 
 
 
     background:
 
     linear-gradient(
-
-    90deg,
-
-    white,
-
-    var(--blue)
-
+        90deg,
+        white,
+        var(--blue)
     );
 
 
 
     -webkit-background-clip:text;
+
+
+    background-clip:text;
+
 
 
     -webkit-text-fill-color:transparent;
@@ -2337,6 +2426,10 @@ STEAM STATS
     var(--muted);
 
 
+
+    font-weight:600;
+
+
 }
 
 
@@ -2346,10 +2439,31 @@ STEAM STATS
 
 
 
+/* ==========================================
+   ACHIEVEMENTS
+========================================== */
 
-/*==============================
-ACHIEVEMENTS
-==============================*/
+
+#achievementGrid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(320px,1fr));
+
+
+
+    gap:28px;
+
+
+}
+
+
+
+
 
 
 .achievementCard{
@@ -2364,27 +2478,10 @@ ACHIEVEMENTS
     gap:22px;
 
 
+
     padding:
 
-    28px;
-
-
-
-    background:
-
-    var(--surface);
-
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    border-radius:
-
-    26px;
+    30px;
 
 
 }
@@ -2394,45 +2491,46 @@ ACHIEVEMENTS
 
 
 
-
 .achievementIcon{
 
 
-    width:72px;
+    width:75px;
 
 
-    height:72px;
+    height:75px;
+
 
 
     display:flex;
 
 
+    justify-content:center;
+
+
     align-items:center;
 
-
-    justify-content:center;
 
 
     border-radius:
 
-    20px;
+    22px;
 
 
 
-    font-size:34px;
+    font-size:35px;
+
+
+
+    flex-shrink:0;
 
 
 
     background:
 
     linear-gradient(
-
-    135deg,
-
-    var(--blue),
-
-    var(--purple)
-
+        135deg,
+        var(--blue),
+        var(--purple)
     );
 
 
@@ -2443,13 +2541,47 @@ ACHIEVEMENTS
 
 
 
+.achievementContent h3{
+
+
+    margin-bottom:10px;
+
+
+}
 
 
 
 
-/*==============================
-RECENT GAMES
-==============================*/
+
+
+
+
+/* ==========================================
+   RECENT GAMES
+========================================== */
+
+
+.gameGrid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(360px,1fr));
+
+
+
+    gap:28px;
+
+
+}
+
+
+
+
+
 
 
 .gameCard{
@@ -2461,45 +2593,10 @@ RECENT GAMES
     gap:22px;
 
 
+
     padding:
 
-    25px;
-
-
-    background:
-
-    var(--surface);
-
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    border-radius:
-
-    26px;
-
-
-    transition:
-
-    var(--transition);
-
-
-}
-
-
-
-
-
-.gameCard:hover{
-
-
-    transform:
-
-    translateY(-10px);
+    24px;
 
 
 }
@@ -2514,10 +2611,12 @@ RECENT GAMES
     width:180px;
 
 
-    height:84px;
+    height:90px;
+
 
 
     object-fit:cover;
+
 
 
     border-radius:
@@ -2526,8 +2625,6 @@ RECENT GAMES
 
 
 }
-
-
 
 
 
@@ -2544,15 +2641,17 @@ RECENT GAMES
 
 
 
+
 .gameInfo h3{
 
 
     font-size:24px;
 
 
+    margin-bottom:10px;
+
+
 }
-
-
 
 
 
@@ -2561,7 +2660,7 @@ RECENT GAMES
 .playtime{
 
 
-    margin-top:18px;
+    margin-top:20px;
 
 
 }
@@ -2569,7 +2668,12 @@ RECENT GAMES
 
 
 
+
+
 .bar{
+
+
+    width:100%;
 
 
     height:8px;
@@ -2577,12 +2681,14 @@ RECENT GAMES
 
     background:
 
-    rgba(255,255,255,.1);
+    rgba(255,255,255,.08);
+
 
 
     border-radius:
 
     999px;
+
 
 
     overflow:hidden;
@@ -2592,23 +2698,29 @@ RECENT GAMES
 
 
 
+
+
+
 .fill{
 
 
     height:100%;
 
 
+
     background:
 
     linear-gradient(
-
-    90deg,
-
-    var(--cyan),
-
-    var(--purple)
-
+        90deg,
+        var(--blue),
+        var(--purple)
     );
+
+
+
+    border-radius:
+
+    inherit;
 
 
 }
@@ -2619,11 +2731,32 @@ RECENT GAMES
 
 
 
+/* ==========================================
+   GITHUB REPOSITORIES
+========================================== */
 
 
-/*==============================
-GITHUB REPOS
-==============================*/
+.repoGrid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(320px,1fr));
+
+
+
+    gap:28px;
+
+
+}
+
+
+
+
+
 
 
 .repoCard{
@@ -2635,48 +2768,10 @@ GITHUB REPOS
 
 
 
-    background:
-
-    var(--surface);
-
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    border-radius:
-
-    26px;
-
-
-
-    transition:
-
-    var(--transition);
-
-
-
     display:flex;
 
 
     flex-direction:column;
-
-
-}
-
-
-
-
-
-.repoCard:hover{
-
-
-    transform:
-
-    translateY(-10px);
 
 
 }
@@ -2694,7 +2789,11 @@ GITHUB REPOS
 
 
 
-    font-size:25px;
+    font-size:26px;
+
+
+
+    margin-bottom:15px;
 
 
 }
@@ -2709,10 +2808,13 @@ GITHUB REPOS
     flex:1;
 
 
-    margin:15px 0;
+    margin-bottom:25px;
 
 
 }
+
+
+
 
 
 
@@ -2723,14 +2825,17 @@ GITHUB REPOS
     display:flex;
 
 
-    gap:10px;
-
-
     flex-wrap:wrap;
 
 
-}
+    gap:10px;
 
+
+
+    margin-bottom:20px;
+
+
+}
 
 
 
@@ -2745,18 +2850,25 @@ GITHUB REPOS
     8px 14px;
 
 
+
     border-radius:
 
     999px;
 
 
+
     background:
 
-    rgba(255,255,255,.05);
+    rgba(255,255,255,.06);
+
+
+
+    color:
+
+    var(--muted);
 
 
 }
-
 
 
 
@@ -2774,23 +2886,24 @@ GITHUB REPOS
     12px 22px;
 
 
+
     border-radius:
 
-    15px;
+    14px;
 
 
 
     background:
 
     linear-gradient(
-
-    135deg,
-
-    var(--blue),
-
-    var(--purple)
-
+        135deg,
+        var(--blue),
+        var(--purple)
     );
+
+
+
+    font-weight:800;
 
 
 }
@@ -2802,9 +2915,9 @@ GITHUB REPOS
 
 
 
-/*==============================
-ACTIVITY TIMELINE
-==============================*/
+/* ==========================================
+   LIVE ACTIVITY
+========================================== */
 
 
 #timeline{
@@ -2816,10 +2929,11 @@ ACTIVITY TIMELINE
     flex-direction:column;
 
 
-    gap:22px;
+    gap:24px;
 
 
 }
+
 
 
 
@@ -2836,29 +2950,15 @@ ACTIVITY TIMELINE
     gap:25px;
 
 
+
     padding:
 
-    28px;
-
-
-    background:
-
-    var(--surface);
-
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    border-radius:
-
-    26px;
+    30px;
 
 
 }
+
+
 
 
 
@@ -2872,6 +2972,7 @@ ACTIVITY TIMELINE
     height:70px;
 
 
+
     display:flex;
 
 
@@ -2881,24 +2982,23 @@ ACTIVITY TIMELINE
     align-items:center;
 
 
+
     border-radius:
 
     22px;
 
 
+
     font-size:32px;
+
 
 
     background:
 
     linear-gradient(
-
-    135deg,
-
-    var(--blue),
-
-    var(--purple)
-
+        135deg,
+        var(--blue),
+        var(--purple)
     );
 
 
@@ -2909,33 +3009,34 @@ ACTIVITY TIMELINE
 
 
 
+.activityContent h3{
 
-.activityContent{
 
-
-    flex:1;
+    margin-bottom:8px;
 
 
 }
-/*=====================================================
-    PART 4/4
-    FINAL POLISH
-=====================================================*/
 
 
 
-/*==============================
-LOADING SHIMMER
-==============================*/
+
+
+
+
+/* ==========================================
+   LOADING SHIMMER
+========================================== */
 
 
 .loading{
 
+
     position:relative;
 
-    overflow:hidden;
 
 }
+
+
 
 
 
@@ -2955,15 +3056,10 @@ LOADING SHIMMER
     background:
 
     linear-gradient(
-
-    90deg,
-
-    transparent,
-
-    rgba(255,255,255,.15),
-
-    transparent
-
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
     );
 
 
@@ -2976,10 +3072,12 @@ LOADING SHIMMER
 
     animation:
 
-    shimmer 1.6s infinite;
+    shimmer 1.5s infinite;
 
 
 }
+
+
 
 
 
@@ -2988,15 +3086,14 @@ LOADING SHIMMER
 @keyframes shimmer{
 
 
-    100%{
-
+    to{
 
         transform:
 
         translateX(100%);
 
-
     }
+
 
 }
 
@@ -3004,45 +3101,58 @@ LOADING SHIMMER
 
 
 
+/* ==========================================
+   CARD SHINE FOR ALL
+========================================== */
+
+
+.statCard::before,
+.achievementCard::before,
+.gameCard::before,
+.repoCard::before,
+.activityCard::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-150%;
 
 
 
-
-/*==============================
-SCROLL REVEAL
-==============================*/
+    width:70%;
 
 
-.reveal{
+    height:100%;
 
 
-    opacity:0;
+
+    background:
+
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.16),
+        transparent
+    );
+
 
 
     transform:
 
-    translateY(40px);
+    skewX(-25deg);
 
 
 
     transition:
 
-    opacity .8s ease,
-
-    transform .8s ease;
-
-
-}
-
-
-
-.reveal.active{
-
-
-    opacity:1;
-
-
-    transform:none;
+    .8s ease;
 
 
 }
@@ -3052,75 +3162,39 @@ SCROLL REVEAL
 
 
 
+.statCard:hover::before,
+.achievementCard:hover::before,
+.gameCard:hover::before,
+.repoCard:hover::before,
+.activityCard:hover::before{
 
 
-
-/*==============================
-FLOAT ANIMATION
-==============================*/
-
-
-.float{
-
-
-    animation:
-
-    floating 6s ease-in-out infinite;
+    left:160%;
 
 
 }
+/*=====================================================
+    BUKK1T Dashboard v5
+    PREMIUM CSS REBUILD
+    PART 4 / 4
+
+    Footer
+    Animations
+    Responsive
+    Final Polish
+=====================================================*/
 
 
 
-
-@keyframes floating{
-
-
-    0%,100%{
-
-
-        transform:
-
-        translateY(0);
-
-
-    }
-
-
-
-    50%{
-
-
-        transform:
-
-        translateY(-15px);
-
-
-    }
-
-
-}
-
-
-
-
-
-
-
-
-
-/*==============================
+/*=====================================================
 FOOTER
-==============================*/
+=====================================================*/
 
 
 footer{
 
 
-    margin-top:
-
-    150px;
-
+    margin-top:160px;
 
 
     padding:
@@ -3142,13 +3216,9 @@ footer{
     background:
 
     linear-gradient(
-
-    to top,
-
-    rgba(255,255,255,.05),
-
-    transparent
-
+        to top,
+        rgba(255,255,255,.06),
+        transparent
     );
 
 
@@ -3157,41 +3227,31 @@ footer{
 
 
 
-
-
-
 footer h3{
 
 
-    font-size:42px;
+    font-size:44px;
+
 
 
     margin-bottom:15px;
 
 
 
-
     background:
 
     linear-gradient(
-
-    90deg,
-
-    white,
-
-    var(--cyan),
-
-    var(--purple)
-
+        90deg,
+        white,
+        var(--blue),
+        var(--purple)
     );
 
 
 
-    background-clip:text;
-
-
     -webkit-background-clip:text;
 
+    background-clip:text;
 
 
     -webkit-text-fill-color:transparent;
@@ -3203,22 +3263,268 @@ footer h3{
 
 
 
+footer p{
+
+
+    color:var(--muted);
+
+
+}
 
 
 
 
-/*==============================
-CUSTOM SCROLLBAR
-==============================*/
+
+/*=====================================================
+SCROLL REVEAL
+=====================================================*/
+
+
+.reveal{
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(50px);
+
+
+
+    transition:
+
+    opacity .8s ease,
+
+    transform .8s ease;
+
+
+}
+
+
+
+
+.reveal.active{
+
+
+    opacity:1;
+
+
+    transform:none;
+
+
+}
+
+
+
+
+
+/*=====================================================
+FLOATING
+=====================================================*/
+
+
+.float{
+
+
+animation:
+
+floating 6s ease-in-out infinite;
+
+
+}
+
+
+
+@keyframes floating{
+
+
+0%,
+100%{
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+
+50%{
+
+
+transform:
+
+translateY(-15px);
+
+
+}
+
+
+
+}
+
+
+
+
+
+/*=====================================================
+FADE
+=====================================================*/
+
+
+.fade{
+
+
+animation:
+
+fadeIn .8s ease;
+
+
+}
+
+
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:
+
+translateY(25px);
+
+
+}
+
+
+
+to{
+
+
+opacity:1;
+
+
+transform:none;
+
+
+}
+
+
+
+}
+
+
+
+
+
+/*=====================================================
+LOADING SHIMMER
+=====================================================*/
+
+
+.loading{
+
+
+position:relative;
+
+
+overflow:hidden;
+
+
+}
+
+
+
+
+.loading::after{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:0;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.15),
+
+transparent
+
+);
+
+
+
+transform:
+
+translateX(-100%);
+
+
+
+animation:
+
+loading 1.5s infinite;
+
+
+}
+
+
+
+
+
+@keyframes loading{
+
+
+to{
+
+
+transform:
+
+translateX(100%);
+
+
+}
+
+
+}
+
+
+
+
+
+/*=====================================================
+SCROLLBAR
+=====================================================*/
 
 
 ::-webkit-scrollbar{
 
 
-    width:12px;
+width:12px;
 
 
 }
+
 
 
 
@@ -3226,10 +3532,11 @@ CUSTOM SCROLLBAR
 ::-webkit-scrollbar-track{
 
 
-    background:#05070d;
+background:#060b12;
 
 
 }
+
 
 
 
@@ -3237,19 +3544,38 @@ CUSTOM SCROLLBAR
 ::-webkit-scrollbar-thumb{
 
 
-    border-radius:999px;
+border-radius:999px;
+
+
+background:
+
+linear-gradient(
+
+var(--blue),
+
+var(--purple)
+
+);
+
+
+}
 
 
 
-    background:
 
-    linear-gradient(
 
-    var(--cyan),
+::-webkit-scrollbar-thumb:hover{
 
-    var(--purple)
 
-    );
+background:
+
+linear-gradient(
+
+var(--cyan),
+
+var(--purple)
+
+);
 
 
 }
@@ -3258,99 +3584,21 @@ CUSTOM SCROLLBAR
 
 
 
+/*=====================================================
+SELECTION
+=====================================================*/
+
+
+::selection{
+
+
+background:
+
+var(--blue);
 
 
 
-
-/*==============================
-PARTICLES
-==============================*/
-
-
-#particles{
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    pointer-events:none;
-
-
-    z-index:-3;
-
-
-    overflow:hidden;
-
-
-}
-
-
-
-
-.star{
-
-
-    position:absolute;
-
-
-    width:3px;
-
-
-    height:3px;
-
-
-    border-radius:50%;
-
-
-    background:white;
-
-
-
-    opacity:.35;
-
-
-
-    box-shadow:
-
-    0 0 10px var(--cyan);
-
-
-    animation:
-
-    starMove linear infinite;
-
-
-}
-
-
-
-
-@keyframes starMove{
-
-
-    from{
-
-
-        transform:
-
-        translateY(0);
-
-
-    }
-
-
-    to{
-
-
-        transform:
-
-        translateY(-200px);
-
-
-    }
+color:#061019;
 
 
 }
@@ -3359,429 +3607,37 @@ PARTICLES
 
 
 
-
-
-
-
-/*==============================
-RESPONSIVE
-==============================*/
-
-
-@media(max-width:1100px){
-
-
-
-    #hero{
-
-
-        grid-template-columns:1fr;
-
-
-        text-align:center;
-
-
-        gap:50px;
-
-
-    }
-
-
-
-
-
-    .heroLeft{
-
-
-        justify-content:center;
-
-
-    }
-
-
-
-
-
-    .featuredProject{
-
-
-        grid-template-columns:1fr;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:900px){
-
-
-
-    nav{
-
-
-        width:92%;
-
-
-    }
-
-
-
-
-
-    .navContainer{
-
-
-        gap:15px;
-
-
-        padding:
-
-        14px 18px;
-
-
-    }
-
-
-
-
-
-    nav ul{
-
-
-        gap:15px;
-
-
-        flex-wrap:wrap;
-
-
-        justify-content:center;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:768px){
-
-
-
-    section{
-
-
-        width:94%;
-
-
-    }
-
-
-
-
-    #hero{
-
-
-        padding-top:180px;
-
-
-    }
-
-
-
-
-
-    #avatar{
-
-
-        width:190px;
-
-
-        height:190px;
-
-
-    }
-
-
-
-
-
-
-    .heroRight h1{
-
-
-        font-size:48px;
-
-
-    }
-
-
-
-
-
-    .heroCards{
-
-
-        grid-template-columns:1fr;
-
-
-    }
-
-
-
-
-
-
-    .buttons{
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-
-
-
-    .buttons a{
-
-
-        width:100%;
-
-
-    }
-
-
-
-
-
-
-    .featuredStats{
-
-
-        grid-template-columns:1fr;
-
-
-    }
-
-
-
-
-
-
-    .gameCard{
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-
-
-    .gameCard img{
-
-
-        width:100%;
-
-
-        height:auto;
-
-
-    }
-
-
-
-
-
-    .activityCard{
-
-
-        flex-direction:column;
-
-
-        align-items:flex-start;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:500px){
-
-
-
-    .navLogo{
-
-
-        font-size:18px;
-
-
-    }
-
-
-
-
-
-    nav ul{
-
-
-        display:none;
-
-
-    }
-
-
-
-
-
-    .heroRight h1{
-
-
-        font-size:38px;
-
-
-    }
-
-
-
-
-
-
-    .number{
-
-
-        font-size:42px;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/*==============================
-ACCESSIBILITY
-==============================*/
-
-
-@media(prefers-reduced-motion:reduce){
-
-
-    *,
-
-
-    *::before,
-
-
-    *::after{
-
-
-        animation:none!important;
-
-
-        transition:none!important;
-
-
-        scroll-behavior:auto!important;
-
-
-    }
-
-
-}
-
-
-
-
-
-
-
-/*==============================
-FINAL FIXES
-==============================*/
-
-
-main,
-footer,
-section{
-
-
-    position:relative;
-
-
-    z-index:1;
-
-
-}
-
-
-
+/*=====================================================
+UTILITY
+=====================================================*/
 
 
 .hidden{
 
 
-    display:none!important;
+display:none!important;
 
 
 }
+
 
 
 
 .center{
 
 
-    text-align:center;
+text-align:center;
 
 
 }
 
 
 
+
 .mt20{
 
 
-    margin-top:20px;
+margin-top:20px;
 
 
 }
@@ -3791,7 +3647,7 @@ section{
 .mt40{
 
 
-    margin-top:40px;
+margin-top:40px;
 
 
 }
@@ -3801,7 +3657,7 @@ section{
 .mb20{
 
 
-    margin-bottom:20px;
+margin-bottom:20px;
 
 
 }
@@ -3811,7 +3667,333 @@ section{
 .mb40{
 
 
-    margin-bottom:40px;
+margin-bottom:40px;
+
+
+}
+
+
+
+
+
+/*=====================================================
+RESPONSIVE
+=====================================================*/
+
+
+@media(max-width:1100px){
+
+
+
+#hero{
+
+
+grid-template-columns:1fr;
+
+
+text-align:center;
+
+
+}
+
+
+
+.heroLeft{
+
+
+justify-content:center;
+
+
+}
+
+
+
+.featuredProject{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+
+
+nav{
+
+
+width:92%;
+
+
+}
+
+
+
+.navContainer{
+
+
+flex-direction:column;
+
+
+gap:18px;
+
+
+}
+
+
+
+nav ul{
+
+
+gap:18px;
+
+
+flex-wrap:wrap;
+
+
+justify-content:center;
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+
+section{
+
+
+width:94%;
+
+
+}
+
+
+
+
+#hero{
+
+
+padding-top:180px;
+
+
+}
+
+
+
+
+#avatar{
+
+
+width:180px;
+
+
+height:180px;
+
+
+}
+
+
+
+
+.heroRight h1{
+
+
+font-size:48px;
+
+
+}
+
+
+
+
+
+.heroCards{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+
+
+.buttons{
+
+
+flex-direction:column;
+
+
+}
+
+
+
+
+
+.buttons a{
+
+
+width:100%;
+
+
+}
+
+
+
+
+.featuredStats{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+
+
+.gameCard{
+
+
+flex-direction:column;
+
+
+}
+
+
+
+
+
+.gameCard img{
+
+
+width:100%;
+
+
+height:auto;
+
+
+}
+
+
+
+
+
+.activityCard{
+
+
+flex-direction:column;
+
+
+align-items:flex-start;
+
+
+}
+
+
+
+}
+
+
+
+
+
+@media(max-width:500px){
+
+
+
+.navLogo{
+
+
+font-size:18px;
+
+
+}
+
+
+
+
+.heroRight h1{
+
+
+font-size:38px;
+
+
+}
+
+
+
+
+h2{
+
+
+font-size:32px;
+
+
+}
+
+
+
+
+.number{
+
+
+font-size:42px;
+
+
+}
+
+
+
+}
+
+
+
+
+
+/*=====================================================
+ACCESSIBILITY
+=====================================================*/
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+*{
+
+
+animation:none!important;
+
+
+transition:none!important;
+
+
+scroll-behavior:auto!important;
+
+
+}
+
 
 
 }
