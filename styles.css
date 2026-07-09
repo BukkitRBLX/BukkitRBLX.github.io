@@ -741,7 +741,7 @@ nav{
 
 
 
-.navLogo{
+.navLogo {
 
     font-size:24px;
     font-weight:1000;
@@ -762,19 +762,26 @@ nav{
 
     background-size:400%;
 
-    animation:
-    bukkitRGB 6s linear infinite;
+    animation: navRainbow 6s linear infinite;
 
     -webkit-background-clip:text;
     background-clip:text;
 
-    -webkit-text-fill-color:transparent;
     color:transparent;
+    -webkit-text-fill-color:transparent;
 
-    cursor:pointer;
+}
 
-    transition:
-    .35s ease;
+
+@keyframes navRainbow {
+
+    from {
+        background-position:0%;
+    }
+
+    to {
+        background-position:400%;
+    }
 
 }
 
@@ -3840,4 +3847,28 @@ nav{
 
 nav:hover{
     transform:translateX(-50%) !important;
+}
+
+
+
+nav a {
+
+    padding:10px 16px;
+
+    border-radius:14px;
+
+    transition:.35s ease;
+
+}
+
+
+nav a:hover {
+
+    background:rgba(255,255,255,.12);
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 10px 30px rgba(102,192,244,.25);
+
 }
