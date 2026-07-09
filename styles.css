@@ -152,7 +152,7 @@ body::before{
         transparent 45%);
 
     animation:
-        backgroundMove 18s ease-in-out infinite alternate;
+        backgroundMove 30s ease-in-out infinite alternate;
 
 }
 
@@ -2046,5 +2046,14 @@ REDUCED MOTION
         transform:translateY(-12px);
 
     }
+
+}
+
+.buttons a:hover,
+.primaryButton:hover{
+
+    box-shadow:
+        0 0 25px rgba(102,192,244,.45),
+        0 0 60px rgba(139,92,246,.25);
 
 }
