@@ -694,97 +694,52 @@ body{
 
 }
 
-
-
-
-
-
-
 /* ==========================================
    NAVBAR
 ========================================== */
 
-
 nav{
-
 
     position:fixed;
 
-
     top:25px;
-
 
     left:50%;
 
-
-    transform:
-    translateX(-50%);
-
+    transform:translateX(-50%);
 
     z-index:9999;
 
-
-
-    width:max-content;
-
-
-
     background:
-
     rgba(10,15,25,.75);
-
-
 
     backdrop-filter:
     blur(22px);
 
-
-
     border:
-
     1px solid var(--border);
 
-
-
-    border-radius:
-
-    999px;
-
-
+    border-radius:999px;
 
     box-shadow:
-
     0 20px 60px rgba(0,0,0,.5);
 
-
 }
-
-
-
 
 
 .navContainer{
 
-
     display:flex;
-
 
     align-items:center;
 
+    gap:45px;
 
-    gap:35px;
-
-
-    padding:
-
-    14px 28px;
-
+    padding:14px 28px;
 
 }
 
-/* ==========================================
-   RGB BUKK1T LOGO
-========================================== */
+
 
 .navLogo{
 
@@ -794,9 +749,7 @@ nav{
 
     letter-spacing:4px;
 
-
     background:
-
     linear-gradient(
         90deg,
         #ff0055,
@@ -809,50 +762,85 @@ nav{
         #ff0055
     );
 
-
     background-size:400%;
-
 
     animation:
     bukkitRGB 6s linear infinite;
 
-
     -webkit-background-clip:text;
+
     background-clip:text;
-
-
-    -webkit-text-fill-color:transparent;
 
     color:transparent;
 
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+nav ul{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+    list-style:none;
+
 }
 
 
 
-@keyframes bukkitRGB{
+nav li{
 
-    from{
-
-        background-position:0%;
-
-    }
-
-
-    to{
-
-        background-position:400%;
-
-    }
+    display:flex;
 
 }
-/* ==========================================
-   BUKK1T Dashboard v5
-   PART 2 / 4
-   Hero + Cards + Shine System
-========================================== */
 
 
 
+nav a{
+
+    color:var(--muted);
+
+    font-weight:700;
+
+    font-size:15px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    transition:.3s ease;
+
+}
+
+
+
+nav a:hover{
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.08);
+
+}
+
+
+
+nav a.active{
+
+    color:white;
+
+    background:
+    rgba(102,192,244,.15);
+
+    box-shadow:
+    0 0 25px rgba(102,192,244,.25);
+
+}
 /* ==========================================
    HERO
 ========================================== */
@@ -3551,34 +3539,35 @@ grid-template-columns:1fr;
 }
 
 
-
-
-
 @media(max-width:900px){
-
-
 
 nav{
 
-
-width:92%;
-
+    width:92%;
 
 }
-
 
 
 .navContainer{
 
+    flex-direction:column;
 
-flex-direction:column;
-
-
-gap:18px;
-
+    gap:15px;
 
 }
 
+
+nav ul{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+}
+
+}
 
 
 nav ul{
