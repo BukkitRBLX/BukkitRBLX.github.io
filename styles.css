@@ -1941,3 +1941,10 @@ REDUCED MOTION
     }
 
 }
+nav a:not(.active)::after
+
+{
+
+width: 0 !important;
+
+}
