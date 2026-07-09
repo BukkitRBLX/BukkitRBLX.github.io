@@ -1985,3 +1985,42 @@ REDUCED MOTION
         transform:scale(1.08);
     }
 }
+
+.statCard::before,
+.repoCard::before,
+.gameCard::before,
+.featureCard::before,
+.miniCard::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,.12),
+            transparent 70%
+        );
+
+    transform:translateX(-120%);
+
+    transition:.8s;
+
+    pointer-events:none;
+
+}
+
+
+.statCard:hover::before,
+.repoCard:hover::before,
+.gameCard:hover::before,
+.featureCard:hover::before,
+.miniCard:hover::before{
+
+    transform:translateX(120%);
+
+}
