@@ -1356,16 +1356,13 @@ async function startDashboard(){
 ========================================== */
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    startDashboard
-);
-
 document.addEventListener("DOMContentLoaded", async () => {
 
 await startDashboard();
 
 const navLinks = document.querySelectorAll("nav a");
+
+navLinks[0].classList.add("active");
 
 navLinks.forEach(link => {
 
