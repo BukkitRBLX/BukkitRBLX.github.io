@@ -423,21 +423,19 @@ opacity:.9;
 }
 
 }
-/*==============================
-NAVIGATION
-==============================*/
+/* NAVIGATION */
 
-nav {'{'}
+nav {
 
 position: fixed;
 
-top: 20px;
+top: 25px;
 
 left: 50%;
 
 transform: translateX(-50%);
 
-z-index: 9999;
+z-index: 5000;
 
 display: flex;
 
@@ -445,29 +443,47 @@ align-items: center;
 
 justify-content: center;
 
-gap: 30px;
+gap: 35px;
 
-padding: 14px 24px;
+padding: 14px 25px;
 
-background: rgba(10,15,25,.82);
+background: rgba(10,15,25,.75);
 
 backdrop-filter: blur(20px);
 
-border: 1px solid rgba(255,255,255,.08);
+border: 1px solid rgba(255,255,255,.1);
 
 border-radius: 999px;
 
-box-shadow: 0 15px 40px rgba(0,0,0,.35);
+box-shadow: 0 20px 60px rgba(0,0,0,.4);
 
-{'}'}
+}
 
-nav ul {'{'}
+.navLogo {
+
+font-size: 22px;
+
+font-weight: 900;
+
+letter-spacing: 3px;
+
+white-space: nowrap;
+
+background: linear-gradient(90deg, white, var(--blue), var(--purple));
+
+-webkit-background-clip: text;
+
+color: transparent;
+
+}
+
+nav ul {
 
 display: flex;
 
 align-items: center;
 
-gap: 24px;
+gap: 25px;
 
 list-style: none;
 
@@ -475,23 +491,23 @@ margin: 0;
 
 padding: 0;
 
-{'}'}
+}
 
-nav a {'{'}
+nav a {
 
 position: relative;
 
 color: var(--muted);
 
+font-size: 15px;
+
 font-weight: 600;
 
-padding: 4px 0;
+transition: .3s ease;
 
-transition: .25s ease;
+}
 
-{'}'}
-
-nav a::after {'{'}
+nav a::after {
 
 content: "";
 
@@ -499,51 +515,41 @@ position: absolute;
 
 left: 50%;
 
-bottom: -6px;
+bottom: -7px;
 
 width: 0;
 
 height: 2px;
 
+background: linear-gradient(90deg, var(--cyan), var(--purple));
+
 transform: translateX(-50%);
 
-background: linear-gradient(90deg,var(--cyan),var(--purple));
+transition: .3s ease;
 
-transition: width .25s ease;
+}
 
-{'}'}
+nav a:hover,
 
-nav a:hover {'{'}
+nav a.active {
 
-color: #fff;
+color: white;
 
-{'}'}
+}
 
-nav a:hover::after {'{'}
+nav a:hover::after,
 
-width: 100%;
-
-{'}'}
-
-nav a.active {'{'}
-
-color: #fff;
-
-{'}'}
-
-nav a.active::after {'{'}
+nav a.active::after {
 
 width: 100%;
 
-{'}'}
+}
 
-nav a:not(.active)::after {'{'}
+nav a:not(.active)::after {
 
 width: 0 !important;
 
-{'}'}
-
-
+}
 /* LOGO */
 
 .navLogo {
