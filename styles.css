@@ -760,15 +760,29 @@ nav{
         #ff0055
     );
 
-    background-size:400%;
-
-    animation: navRainbow 6s linear infinite;
+    background-size:400% 400%;
 
     -webkit-background-clip:text;
     background-clip:text;
 
-    color:transparent;
     -webkit-text-fill-color:transparent;
+    color:transparent;
+
+    animation:
+    navRainbow 6s linear infinite;
+
+    transition:.35s ease;
+
+}
+
+
+.navLogo:hover {
+
+    transform:
+    scale(1.08);
+
+    filter:
+    drop-shadow(0 0 20px rgba(0,212,255,.8));
 
 }
 
@@ -776,27 +790,12 @@ nav{
 @keyframes navRainbow {
 
     from {
-        background-position:0%;
+        background-position:0% 50%;
     }
 
     to {
-        background-position:400%;
+        background-position:400% 50%;
     }
-
-}
-
-
-.navLogo:hover{
-
-    transform:
-    translateY(-4px)
-    scale(1.08);
-
-
-    filter:
-    drop-shadow(
-        0 0 20px rgba(0,212,255,.8)
-    );
 
 }
 /* ==========================================
@@ -3696,19 +3695,6 @@ align-items:flex-start;
 
 @media(max-width:500px){
 
-
-
-.navLogo{
-
-
-font-size:18px;
-
-
-}
-
-
-
-
 .heroRight h1{
 
 
@@ -3823,52 +3809,4 @@ nav{
     flex-direction:row !important;
     gap:35px !important;
     padding:14px 28px !important;
-}
-
-.navLogo{
-    background:
-    linear-gradient(
-        90deg,
-        #ff0055,
-        #00ffff,
-        #9900ff,
-        #ff0055
-    );
-
-    background-size:300%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    animation:bukkitRGB 6s linear infinite;
-}
-
-nav:hover{
-    transform:translateX(-50%) !important;
-}
-
-
-
-nav a {
-
-    padding:10px 16px;
-
-    border-radius:14px;
-
-    transition:.35s ease;
-
-}
-
-
-nav a:hover {
-
-    background:rgba(255,255,255,.12);
-
-    transform:translateY(-5px);
-
-    box-shadow:
-    0 10px 30px rgba(102,192,244,.25);
-
 }
