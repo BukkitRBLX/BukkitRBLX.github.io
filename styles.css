@@ -364,36 +364,35 @@ CUSTOM CURSOR
 
     }
 
-    #customCursor{
+    #cursorGlow{
 
-        position:fixed;
+position: fixed;
 
-        left:0;
-        top:0;
+left: 0;
 
-        width:18px;
-        height:18px;
+top: 0;
 
-        border-radius:50%;
+width: 220px;
 
-        background:white;
+height: 220px;
 
-        mix-blend-mode:difference;
+border-radius: 50%;
 
-        pointer-events:none;
+pointer-events: none;
 
-        z-index:99999;
+z-index: -1;
 
-        transform:
-            translate(-50%,-50%);
+transform: translate(-50%, -50%);
 
-        transition:
-            width .2s,
-            height .2s,
-            transform .08s linear;
+background: radial-gradient(circle, rgba(102,192,244,.22) 0%, rgba(139,92,246,.16) 35%, rgba(0,212,255,.08) 55%, transparent 75%);
 
-    }
+filter: blur(32px);
 
+opacity: .9;
+
+transition: opacity .3s ease;
+
+}
 } 
 
 /*==============================
