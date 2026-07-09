@@ -1986,6 +1986,24 @@ REDUCED MOTION
     }
 }
 
+/*==============================
+CARD LIGHT SWEEP FIX
+==============================*/
+
+.statCard,
+.repoCard,
+.gameCard,
+.featureCard,
+.miniCard{
+
+    position:relative;
+    overflow:hidden;
+
+}
+
+
+/* shine layer */
+
 .statCard::before,
 .repoCard::before,
 .gameCard::before,
@@ -1996,32 +2014,43 @@ REDUCED MOTION
 
     position:absolute;
 
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    border-radius:inherit;
+    inset:0;
 
     background:
         linear-gradient(
             120deg,
-            transparent 35%,
-            rgba(255,255,255,.10),
-            transparent 65%
+            transparent 30%,
+            rgba(255,255,255,.12),
+            transparent 70%
         );
 
     transform:translateX(-120%);
 
-    transition:.8s ease;
+    transition:transform .8s ease;
 
     pointer-events:none;
+
+    z-index:0;
+
+}
+
+
+/* keep content above shine */
+
+.statCard > *,
+.repoCard > *,
+.gameCard > *,
+.featureCard > *,
+.miniCard > *{
+
+    position:relative;
 
     z-index:1;
 
 }
 
+
+/* hover */
 
 .statCard:hover::before,
 .repoCard:hover::before,
