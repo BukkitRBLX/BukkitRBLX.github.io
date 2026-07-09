@@ -427,43 +427,121 @@ opacity:.9;
 NAVIGATION
 ==============================*/
 
-nav {
+nav {'{'}
 
-    position:fixed;
+position: fixed;
 
-    top:25px;
+top: 20px;
 
-    left:50%;
+left: 50%;
 
-    transform:translateX(-50%);
+transform: translateX(-50%);
 
-    z-index:5000;
+z-index: 9999;
 
-    display:flex;
+display: flex;
 
-    align-items:center;
+align-items: center;
 
-    justify-content:center;
+justify-content: center;
 
-    gap:35px;
+gap: 30px;
 
-    padding:14px 25px;
+padding: 14px 24px;
 
-    background:
-        rgba(10,15,25,.75);
+background: rgba(10,15,25,.82);
 
-    backdrop-filter:
-        blur(20px);
+backdrop-filter: blur(20px);
 
-    border:
-        1px solid rgba(255,255,255,.1);
+border: 1px solid rgba(255,255,255,.08);
 
-    border-radius:999px;
+border-radius: 999px;
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.4);
+box-shadow: 0 15px 40px rgba(0,0,0,.35);
 
-}
+{'}'}
+
+nav ul {'{'}
+
+display: flex;
+
+align-items: center;
+
+gap: 24px;
+
+list-style: none;
+
+margin: 0;
+
+padding: 0;
+
+{'}'}
+
+nav a {'{'}
+
+position: relative;
+
+color: var(--muted);
+
+font-weight: 600;
+
+padding: 4px 0;
+
+transition: .25s ease;
+
+{'}'}
+
+nav a::after {'{'}
+
+content: "";
+
+position: absolute;
+
+left: 50%;
+
+bottom: -6px;
+
+width: 0;
+
+height: 2px;
+
+transform: translateX(-50%);
+
+background: linear-gradient(90deg,var(--cyan),var(--purple));
+
+transition: width .25s ease;
+
+{'}'}
+
+nav a:hover {'{'}
+
+color: #fff;
+
+{'}'}
+
+nav a:hover::after {'{'}
+
+width: 100%;
+
+{'}'}
+
+nav a.active {'{'}
+
+color: #fff;
+
+{'}'}
+
+nav a.active::after {'{'}
+
+width: 100%;
+
+{'}'}
+
+nav a:not(.active)::after {'{'}
+
+width: 0 !important;
+
+{'}'}
 
 
 /* LOGO */
