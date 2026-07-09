@@ -741,61 +741,30 @@ nav{
 
 
 
-.navLogo {
+.navLogo{
 
     font-size:24px;
     font-weight:1000;
     letter-spacing:4px;
 
-    background:
-    linear-gradient(
-        90deg,
-        #ff0055,
-        #ff9900,
-        #ffff00,
-        #00ff66,
-        #00ffff,
-        #0088ff,
-        #9900ff,
-        #ff0055
-    );
-
-    background-size:400% 400%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-    color:transparent;
-
-    animation:
-    navRainbow 6s linear infinite;
+    color:white;
 
     transition:.35s ease;
 
-}
-
-
-.navLogo:hover {
-
-    transform:
-    scale(1.08);
-
-    filter:
-    drop-shadow(0 0 20px rgba(0,212,255,.8));
+    cursor:pointer;
 
 }
 
 
-@keyframes navRainbow {
+.navLogo:hover{
 
-    from {
-        background-position:0% 50%;
-    }
+    transform:translateY(-4px) scale(1.08);
 
-    to {
-        background-position:400% 50%;
-    }
+    color:#66c0f4;
+
+    text-shadow:
+    0 0 15px #66c0f4,
+    0 0 40px #00d4ff;
 
 }
 /* ==========================================
