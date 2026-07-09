@@ -63,14 +63,7 @@ body{
 
     overflow-x:hidden;
 
-    background:
-
-    radial-gradient(
-        circle at top,
-        #18273d,
-        #0b111c 45%,
-        #05070d 100%
-    );
+    background:#05070d;
 
 }
 
