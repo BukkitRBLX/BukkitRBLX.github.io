@@ -2793,3 +2793,285 @@ footer p{
 
 
 }
+/*=====================================================
+    BUKK1T BACKGROUND DEPTH PACK
+=====================================================*/
+
+
+/* STAR PARTICLES */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-3;
+
+}
+
+
+
+.star{
+
+    position:absolute;
+
+    width:3px;
+
+    height:3px;
+
+    border-radius:50%;
+
+
+    background:white;
+
+
+    opacity:.35;
+
+
+    box-shadow:
+
+    0 0 8px white,
+    0 0 20px rgba(102,192,244,.8);
+
+
+    animation:
+
+    starMove linear infinite,
+    starBlink ease-in-out infinite;
+
+}
+
+
+
+@keyframes starMove{
+
+
+    from{
+
+        transform:
+
+        translateY(0);
+
+    }
+
+
+    to{
+
+        transform:
+
+        translateY(-180px);
+
+    }
+
+}
+
+
+
+
+@keyframes starBlink{
+
+
+    0%,
+    100%{
+
+        opacity:.25;
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        opacity:.9;
+
+        transform:scale(1.8);
+
+    }
+
+
+}
+
+
+
+
+
+/* MOVING GRID */
+
+body{
+
+    isolation:isolate;
+
+}
+
+
+
+body::after{
+
+
+    content:"";
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    pointer-events:none;
+
+
+    z-index:-8;
+
+
+
+    background-image:
+
+
+
+    linear-gradient(
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    ),
+
+
+
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    );
+
+
+
+    background-size:
+
+    80px 80px;
+
+
+
+    mask-image:
+
+    radial-gradient(
+        circle at center,
+        black,
+        transparent 75%
+    );
+
+
+    animation:
+
+    gridMove 25s linear infinite;
+
+}
+
+
+
+
+@keyframes gridMove{
+
+
+    from{
+
+        transform:
+
+        translate(0,0);
+
+    }
+
+
+    to{
+
+        transform:
+
+        translate(80px,80px);
+
+    }
+
+
+}
+
+
+
+
+
+/* EXTRA FLOATING LIGHT ORBS */
+
+
+body .ambient{
+
+    position:fixed;
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+
+    filter:blur(100px);
+
+
+    opacity:.12;
+
+
+    pointer-events:none;
+
+
+    z-index:-4;
+
+
+}
+
+
+
+.ambient.blue{
+
+    background:#00d4ff;
+
+    top:20%;
+
+    left:-150px;
+
+}
+
+
+
+.ambient.purple{
+
+    background:#8b5cf6;
+
+    bottom:10%;
+
+    right:-150px;
+
+}
+
+
+
+
+
+/* NOISE TEXTURE */
+
+body{
+
+    background-image:
+
+
+    radial-gradient(
+        rgba(255,255,255,.04) 1px,
+        transparent 1px
+    );
+
+
+    background-size:
+
+    4px 4px;
+
+
+}
