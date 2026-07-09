@@ -641,44 +641,42 @@ HERO
 
 }
 
-.heroRight h1{
-
-    font-size:72px;
-
-    margin:18px 0;
-
-    background:linear-gradient(
-        90deg,
+.heroRight h1 {
+    background: linear-gradient(
+        270deg,
         #ff0000,
-        #ff8800,
-        #ffee00,
+        #ff9900,
+        #ffff00,
         #00ff00,
         #00ffff,
-        #0044ff,
-        #cc00ff,
+        #0066ff,
+        #9900ff,
         #ff0000
     );
 
-    background-size:600% 100%;
+    background-size: 800% 800%;
 
-    -webkit-background-clip:text;
-    background-clip:text;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-    -webkit-text-fill-color:transparent;
+    -webkit-text-fill-color: transparent;
 
-    animation:rgbMove 3s linear infinite;
-
+    animation: rainbowTitle 5s ease infinite !important;
 }
 
 
-@keyframes rgbMove{
+@keyframes rainbowTitle {
 
-    from{
-        background-position:0% 50%;
+    0% {
+        background-position: 0% 50%;
     }
 
-    to{
-        background-position:100% 50%;
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 
 }
@@ -1981,49 +1979,4 @@ REDUCED MOTION
         opacity:1;
         transform:scale(1.08);
     }
-}
-
-
-
-
-
-
-.heroRight h1 {
-    background: linear-gradient(
-        270deg,
-        #ff0000,
-        #ff9900,
-        #ffff00,
-        #00ff00,
-        #00ffff,
-        #0066ff,
-        #9900ff,
-        #ff0000
-    );
-
-    background-size: 800% 800%;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    animation: rainbowTitle 5s ease infinite !important;
-}
-
-
-@keyframes rainbowTitle {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-
 }
