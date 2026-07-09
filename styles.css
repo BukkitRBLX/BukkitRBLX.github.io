@@ -782,33 +782,92 @@ nav{
 
 }
 
-
-
-
-
+/* ==========================================
+   RGB BUKK1T LOGO
+========================================== */
 
 .navLogo{
 
+    position:relative;
 
-    font-size:24px;
-
+    font-size:28px;
 
     font-weight:1000;
 
+    letter-spacing:5px;
 
-    letter-spacing:4px;
+    color:white;
 
+    background:
+
+    linear-gradient(
+        270deg,
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0066ff,
+        #9900ff,
+        #ff0000
+    );
+
+
+    background-size:800% 800%;
+
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+
+    -webkit-text-fill-color:transparent;
+
+
+    animation:
+
+    logoRGB 6s linear infinite;
+
+
+    filter:
+
+    drop-shadow(0 0 12px rgba(0,255,255,.8));
+
+}
+
+
+
+.navLogo::before{
+
+
+    content:"BUKK1T";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+    z-index:-1;
 
 
     background:
 
     linear-gradient(
-        90deg,
-        white,
-        var(--blue),
-        var(--purple)
+        270deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        purple,
+        red
     );
 
+
+    background-size:800% 800%;
 
 
     -webkit-background-clip:text;
@@ -817,121 +876,48 @@ nav{
     background-clip:text;
 
 
-    -webkit-text-fill-color:transparent;
+    filter:
+
+    blur(18px);
+
+
+    opacity:.8;
+
+
+    animation:
+
+    logoRGB 6s linear infinite;
 
 
 }
 
 
 
+@keyframes logoRGB{
 
 
+    0%{
 
-nav ul{
+        background-position:
+        0% 50%;
 
+    }
 
-    display:flex;
 
+    50%{
 
-    list-style:none;
+        background-position:
+        100% 50%;
 
+    }
 
-    gap:28px;
 
+    100%{
 
-}
+        background-position:
+        0% 50%;
 
-
-
-
-
-
-nav a{
-
-
-    position:relative;
-
-
-    color:var(--muted);
-
-
-    font-weight:700;
-
-
-    transition:.3s;
-
-}
-
-
-
-
-nav a:hover,
-nav a.active{
-
-
-    color:white;
-
-
-}
-
-
-
-
-
-
-nav a::after{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    left:50%;
-
-
-    bottom:-8px;
-
-
-    width:0;
-
-
-    height:2px;
-
-
-
-    transform:
-    translateX(-50%);
-
-
-
-    background:
-
-    linear-gradient(
-        90deg,
-        var(--cyan),
-        var(--purple)
-    );
-
-
-
-    transition:.3s;
-
-
-}
-
-
-
-
-
-
-nav a:hover::after,
-nav a.active::after{
-
-
-    width:100%;
-
+    }
 
 }
 /* ==========================================
