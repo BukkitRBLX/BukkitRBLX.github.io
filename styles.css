@@ -3014,3 +3014,20 @@ footer{
     z-index:3;
 
 }
+/*=====================================================
+    NAVBAR STACK FIX
+=====================================================*/
+
+nav{
+
+    position:fixed !important;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:99999 !important;
+
+}
