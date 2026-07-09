@@ -427,96 +427,45 @@ filter:blur(18px);
 opacity:.9;
 
 }
-/* NAVIGATION */
+/*==============================
+NAVIGATION
+==============================*/
 
-nav {
+nav{
 
-position: fixed;
+    position:fixed;
 
-top: 25px;
+    top:25px;
 
-left: 50%;
+    left:50%;
 
-transform: translateX(-50%);
+    transform:translateX(-50%);
 
-z-index: 5000;
+    z-index:5000;
 
-display: flex;
+    display:flex;
 
-align-items: center;
+    align-items:center;
 
-gap: 35px;
+    gap:35px;
 
-padding: 14px 25px;
+    padding:14px 25px;
 
-background: rgba(10,15,25,.75);
+    background:rgba(10,15,25,.75);
 
-backdrop-filter: blur(20px);
+    backdrop-filter:blur(20px);
 
-border: 1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.1);
 
-border-radius: 999px;
+    border-radius:999px;
 
-box-shadow: 0 20px 60px rgba(0,0,0,.4);
-
-}
-
-.navLogo {
-
-font-size: 22px;
-
-font-weight: 900;
-
-letter-spacing: 3px;
-
-background: linear-gradient(90deg, white, var(--blue), var(--purple));
-
--webkit-background-clip: text;
-
-color: transparent;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.4);
 
 }
 
-nav a::after {
 
-content: "";
-
-position: absolute;
-
-left: 50%;
-
-bottom: -7px;
-
-width: 0;
-
-height: 2px;
-
-background: linear-gradient(90deg, var(--cyan), var(--purple));
-
-transform: translateX(-50%);
-
-transition: .3s ease;
-
-}
-
-nav a:hover,
-
-nav a.active {
-
-color: white;
-
-}
-
-nav a:hover::after,
-
-nav a.active::after {
-
-width: 100%;
-
-}
-/* LOGO */
-
-.navLogo {
+.navLogo{
 
     font-size:22px;
 
@@ -541,9 +490,7 @@ width: 100%;
 }
 
 
-/* LINKS */
-
-nav ul {
+nav ul{
 
     display:flex;
 
@@ -553,10 +500,14 @@ nav ul {
 
     list-style:none;
 
+    margin:0;
+
+    padding:0;
+
 }
 
 
-nav a {
+nav a{
 
     position:relative;
 
@@ -571,7 +522,7 @@ nav a {
 }
 
 
-nav a::after {
+nav a::after{
 
     content:"";
 
@@ -592,7 +543,8 @@ nav a::after {
             var(--purple)
         );
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     transition:.3s ease;
 
@@ -600,7 +552,7 @@ nav a::after {
 
 
 nav a:hover,
-nav a.active {
+nav a.active{
 
     color:white;
 
@@ -608,7 +560,7 @@ nav a.active {
 
 
 nav a:hover::after,
-nav a.active::after {
+nav a.active::after{
 
     width:100%;
 
@@ -1987,12 +1939,5 @@ REDUCED MOTION
         scroll-behavior:auto!important;
 
     }
-
-}
-nav a:not(.active)::after
-
-{
-
-width: 0 !important;
 
 }
