@@ -1056,85 +1056,51 @@ function cardTilt(){
    CUSTOM CURSOR
 ========================================== */
 
-function cursorEffect(){
+function cursorEffect() {
 
+const cursor = document.getElementById("customCursor");
 
-    const cursor =
-    $("customCursor");
+const glow = document.getElementById("cursorGlow");
 
+if (!cursor || !glow) return;
 
-    if(!cursor)
-        return;
+let mouseX = 0;
 
+let mouseY = 0;
 
+let currentX = 0;
 
-    let x = 0;
-    let y = 0;
+let currentY = 0;
 
+document.addEventListener("mousemove", e => {
 
-    let cx = 0;
-    let cy = 0;
+mouseX = e.clientX;
 
+mouseY = e.clientY;
 
+});
 
-    document.addEventListener(
-        "mousemove",
-        e=>{
+function animate() {
 
+currentX += (mouseX - currentX) * 0.15;
 
-            x =
-            e.clientX;
+currentY += (mouseY - currentY) * 0.15;
 
+cursor.style.left = currentX + "px";
 
-            y =
-            e.clientY;
+cursor.style.top = currentY + "px";
 
+glow.style.left = currentX + "px";
 
-        }
-    );
+glow.style.top = currentY + "px";
 
-
-
-    function animate(){
-
-
-        cx +=
-        (x-cx)*0.2;
-
-
-        cy +=
-        (y-cy)*0.2;
-
-
-
-        cursor.style.left =
-        cx+"px";
-
-
-        cursor.style.top =
-        cy+"px";
-
-
-
-        requestAnimationFrame(
-            animate
-        );
-
-
-    }
-
-
-
-    animate();
-
+requestAnimationFrame(animate);
 
 }
 
+animate();
 
-
-
-
-
+}
 /* ==========================================
    PARTICLE SYSTEM
 ========================================== */
