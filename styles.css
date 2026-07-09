@@ -1996,21 +1996,29 @@ REDUCED MOTION
 
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    border-radius:inherit;
 
     background:
         linear-gradient(
             120deg,
-            transparent 30%,
-            rgba(255,255,255,.12),
-            transparent 70%
+            transparent 35%,
+            rgba(255,255,255,.10),
+            transparent 65%
         );
 
     transform:translateX(-120%);
 
-    transition:.8s;
+    transition:.8s ease;
 
     pointer-events:none;
+
+    z-index:1;
 
 }
 
@@ -2022,38 +2030,5 @@ REDUCED MOTION
 .miniCard:hover::before{
 
     transform:translateX(120%);
-
-}
-
-#avatar{
-
-    animation:
-        avatarFloat 6s ease-in-out infinite;
-
-}
-
-
-@keyframes avatarFloat{
-
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-12px);
-
-    }
-
-}
-
-.buttons a:hover,
-.primaryButton:hover{
-
-    box-shadow:
-        0 0 25px rgba(102,192,244,.45),
-        0 0 60px rgba(139,92,246,.25);
 
 }
