@@ -1039,6 +1039,14 @@ to { background-position: 400% 50%; }
 
 
 }
+
+@keyframes bukkitRGB{
+
+0%{ background-position:0% 50%; }
+
+100%{ background-position:400% 50%; }
+
+}
 /* ==========================================
    BADGES
 ========================================== */
@@ -3516,7 +3524,13 @@ gap:18px;
 
 @media(max-width:768px){
 
+nav{
 
+width:92%;
+
+max-width:92%;
+
+}
 
 section{
 
