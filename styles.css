@@ -3474,27 +3474,27 @@ grid-template-columns:1fr;
 
 nav{
 
-    width:92%;
+width:92%;
 
 }
-
 
 .navContainer{
 
-    flex-direction:column;
+flex-direction:column;
 
-    gap:15px;
+gap:15px;
 
 }
 
-
 nav ul{
 
-    flex-wrap:wrap;
+display:flex;
 
-    justify-content:center;
+flex-wrap:wrap;
 
-    gap:12px;
+justify-content:center;
+
+gap:18px;
 
 }
 
