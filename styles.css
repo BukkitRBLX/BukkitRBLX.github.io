@@ -3729,15 +3729,17 @@ nav{
 
 }
 
+   nav:hover{
 
-nav:hover{
+   transform:
 
-    transform:
-    translateX(-50%)
-    translateY(-8px)
-    scale(1.03);
+   translateX(-50%)
 
+   translateY(-8px);
 
+   }
+
+{
     box-shadow:
     0 30px 90px rgba(0,0,0,.7),
     0 0 40px rgba(102,192,244,.25);
