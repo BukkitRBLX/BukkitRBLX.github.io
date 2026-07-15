@@ -2030,7 +2030,15 @@ to { background-position: 400% 50%; }
 
 }
 
+.repoCard:hover{
 
+box-shadow:
+
+0 30px 80px rgba(0,0,0,.45),
+
+0 0 60px rgba(102,192,244,.22);
+
+}
 
 
 
@@ -3745,6 +3753,14 @@ nav a:hover{
 
     transform:
     translateY(-3px);
+
+}
+
+nav a{
+
+padding:8px 12px;
+
+border-radius:12px;
 
 }
 /* NAVBAR RECOVERY RESET */
