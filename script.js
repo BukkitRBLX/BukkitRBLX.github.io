@@ -839,6 +839,8 @@ async function loadRecentGames(){
 
         <img
 
+        onerror="this.src='https://placehold.co/460x215/1b2838/66c0f4?text=Steam+Game'"
+
         src="https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg"
 
         loading="lazy"
@@ -961,11 +963,9 @@ async function loadGitHubRepos(){
 
 
 
-    if(
-        !Array.isArray(repos)
-        ||
-        repos.length===0
-    ){
+    const repoList = Array.isArray(repos) ? repos : repos?.repos || [];
+
+    if(repoList.length === 0)
 
 
 
@@ -1925,7 +1925,35 @@ async function startDashboard(){
 
     Dashboard.loaded=true;
 
+setInterval(async () => {
 
+if (Dashboard.updating) return;
+
+Dashboard.updating = true;
+
+await Promise.all([
+
+loadSteamProfile(),
+
+loadSteamStats(),
+
+loadFriends(),
+
+loadSteamLevel(),
+
+loadAchievements(),
+
+loadRecentGames(),
+
+refreshGitHub()
+
+]);
+
+updateTimestamp();
+
+Dashboard.updating = false;
+
+}, 300000);
 
 
     console.log(
